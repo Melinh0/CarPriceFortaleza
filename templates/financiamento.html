@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Simulador de financiamento — CarPrice{% endblock %}
+
+{% block content %}
+<section class="titulo-pagina">
+  <div>
+    <h1>Simulador de financiamento</h1>
+    <p class="sub">Parcela, total pago e juros pela tabela Price — para comparar com o pagamento à vista</p>
+  </div>
+</section>
+
+<form class="card form-busca" method="get" action="{{ url_for('routes.financiamento') }}">
+  <div class="grade">
+    <label>Preço do carro (R$)
+      <input type="number" name="preco" step="0.01" min="1" required value="{{ valores.preco }}" placeholder="Ex.: 95000">
+    </label>
+    <label>Entrada (R$)
+      <input type="number" name="entrada" step="0.01" min="0" value="{{ valores.entrada }}" placeholder="Ex.: 20000">
+    </label>
+    <label>Taxa de juros ao ano (%)
+      <input type="number" name="taxa" step="0.1" min="0" required value="{{ valores.taxa }}">
+    </label>
+    <label>Prazo (meses)
+      <input type="number" name="meses" min="1" max="120" required value="{{ valores.meses }}">
+    </label>
+  </div>
+  <p class="menor">Taxas de financiamento de concessionária costumam ficar entre 11% e 20% a.a.
+  Confira sempre o <strong>CET</strong> (Custo Efetivo Total) no contrato — ele inclui IOF e tarifas.</p>
+  <div class="acoes">
+    <button class="btn primario" type="submit">Simular parcelas</button>
+  </div>
+</form>
+
+{% if erro %}<div class="aviso erro">{{ erro }}</div>{% endif %}
+
+{% if resultado %}
+<section class="cards-estatisticas">
+  <div class="card stat"><span class="rotulo">Parcela mensal</span><strong class="destaque-texto">{{ resultado.parcela|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Total pago</span><strong>{{ resultado.total_pago|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Juros no total</span><strong>{{ resultado.juros|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Valor financiado</span><strong>{{ resultado.financiado|brl }}</strong></div>
+</section>
+
+<section class="card">
+  <h2>Detalhamento</h2>
+  <ul class="listagem-detalhes">
+    <li><span>Preço do carro</span><strong>{{ resultado.preco|brl }}</strong></li>
+    <li><span>Entrada</span><strong>{{ resultado.entrada|brl }} ({{ resultado.entrada_pct|round(1) }}%)</strong></li>
+    <li><span>Taxa</span><strong>{{ resultado.taxa_aa }}% a.a. ≈ {{ resultado.taxa_mes|round(2) }}% a.m.</strong></li>
+    <li><span>Prazo</span><strong>{{ resultado.meses }} meses</strong></li>
+    <li><span>Custo do crédito</span><strong>{{ resultado.juros|brl }} de juros</strong></li>
+  </ul>
+  <div class="aviso">Simulação sem IOF e tarifas bancárias. O valor real do contrato pode ser
+  ligeiramente maior — compare com a simulação oficial do banco e com o CET.</div>
+</section>
+{% endif %}
+
+<section class="card">
+  <h2>Alternativas ao financiamento</h2>
+  <p>Antes de decidir, compare com pagamento à vista, consórcio e troca do usado —
+  veja a descrição completa de cada método no relatório de qualquer busca
+  ou na seção <a href="{{ url_for('routes.index') }}">Buscar carros</a>.</p>
+  <p class="menor">Dica: aplique o valor da entrada ou do carro na
+  <a href="{{ url_for('routes.cdi') }}">calculadora de CDI</a> para verificar quanto o seu dinheiro
+  rende esperando comprar à vista.</p>
+</section>
+{% endblock %}

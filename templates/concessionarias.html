@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Concessionárias em Fortaleza — CarPrice{% endblock %}
+
+{% block content %}
+<section class="titulo-pagina">
+  <div>
+    <h1>Concessionárias em Fortaleza</h1>
+    <p class="sub">Endereço, telefone, horário e rota no Google Maps</p>
+  </div>
+  <form method="get" action="{{ url_for('routes.concessionarias') }}" class="form-inline">
+    <select name="marca" onchange="this.form.submit()">
+      <option value="">Todas as marcas</option>
+      {% for m in marcas %}
+      <option value="{{ m }}" {% if m == marca %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
+  </form>
+</section>
+
+{% if busca_mapa %}
+<div class="aviso">
+  Nenhuma concessionária desta marca está na base local ainda.
+  <a href="{{ busca_mapa }}" target="_blank" rel="noopener">Buscar no Google Maps</a>
+</div>
+{% endif %}
+
+<div class="grid-concessionarias">
+  {% for d in concessionarias %}
+  <div class="card concessionaria">
+    <h3>{{ d.nome }}</h3>
+    <p class="marcas-tag">
+      {% for m in d.marcas %}<span class="selo">{{ m }}</span>{% endfor %}
+    </p>
+    <p class="end">{{ d.endereco }} — {{ d.bairro }}, {{ d.cidade }}/{{ d.uf }}</p>
+    <p class="menor">
+      {% if d.telefone %}Telefone: <strong>{{ d.telefone }}</strong> · {% endif %}
+      {{ d.horario }}
+    </p>
+    <div class="acoes-menores">
+      <a class="btn primario pequeno" href="{{ d.rota_url }}" target="_blank" rel="noopener">Como chegar</a>
+      <a class="btn pequeno" href="{{ d.maps_url }}" target="_blank" rel="noopener">Ver no mapa</a>
+      {% if d.site %}<a class="btn pequeno" href="https://{{ d.site }}" target="_blank" rel="noopener">Site</a>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<p class="menor disclaimer">Dados coletados de sites oficiais das concessionárias e páginas de
+classificados (set/2026). Confirme endereço, telefone e horário antes de sair.</p>
+{% endblock %}

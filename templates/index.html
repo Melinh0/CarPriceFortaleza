@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Buscar carros em Fortaleza — CarPrice{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Encontre o carro certo <em>em Fortaleza</em></h1>
+  <p>Selecione as características que você busca. O sistema pesquisa preços em sites,
+  levanta comentários de usuários, monta um relatório detalhado e indica em qual
+  concessionária da cidade ir — com endereço e rota.</p>
+</section>
+
+<form class="card form-busca" method="get" action="{{ url_for('routes.buscar') }}">
+  <div class="grade">
+    <label>Marca
+      <select name="marca" id="campo-marca">
+        <option value="">Todas as marcas</option>
+        {% for m in catalogo.marcas %}
+        <option value="{{ m.nome }}">{{ m.nome }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Modelo
+      <select name="modelo" id="campo-modelo">
+        <option value="">Todos os modelos</option>
+      </select>
+    </label>
+
+    <label>Preço mínimo (R$)
+      <input type="number" name="preco_min" min="0" step="1000" placeholder="Ex.: 60000">
+    </label>
+    <label>Preço máximo (R$)
+      <input type="number" name="preco_max" min="0" step="1000" placeholder="Ex.: 120000">
+    </label>
+
+    <label>Ano mínimo
+      <input type="number" name="ano_min" min="2000" max="2026" placeholder="Ex.: 2020">
+    </label>
+    <label>Ano máximo
+      <input type="number" name="ano_max" min="2000" max="2026" placeholder="Ex.: 2025">
+    </label>
+
+    <label>Km máximo
+      <input type="number" name="km_max" min="0" step="1000" placeholder="Ex.: 80000">
+    </label>
+
+    <label>Combustível
+      <select name="combustivel">
+        <option>Qualquer</option>
+        <option>Flex</option>
+        <option>Gasolina</option>
+        <option>Alcool</option>
+        <option>Diesel</option>
+        <option>Hibrido</option>
+        <option>Eletrico</option>
+      </select>
+    </label>
+
+    <label>Câmbio
+      <select name="cambio">
+        <option>Qualquer</option>
+        <option>Manual</option>
+        <option>Automatico</option>
+        <option>CVT</option>
+        <option>Robotizado</option>
+      </select>
+    </label>
+
+    <label>Carroceria
+      <select name="carroceria">
+        <option>Qualquer</option>
+        {% for c in catalogo.carrocerias %}
+        <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Ordenar por
+      <select name="ordenar">
+        <option value="menor_preco">Menor preço</option>
+        <option value="maior_preco">Maior preço</option>
+        <option value="ano">Mais novo</option>
+        <option value="km">Menor km</option>
+      </select>
+    </label>
+  </div>
+
+  <fieldset class="caracteristicas">
+    <legend>Características obrigatórias</legend>
+    <div class="chips">
+      {% for c in catalogo.caracteristicas %}
+      <label class="chip">
+        <input type="checkbox" name="caracteristicas" value="{{ c }}">
+        <span>{{ c }}</span>
+      </label>
+      {% endfor %}
+    </div>
+  </fieldset>
+
+  <div class="acoes">
+    <button class="btn primario" type="submit">Pesquisar carros e gerar relatório</button>
+    <a class="btn" href="{{ url_for('routes.concessionarias') }}">Ver concessionárias</a>
+  </div>
+</form>
+
+<section class="grid-3">
+  <div class="card destaque">
+    <h3>Preços reais</h3>
+    <p>Busca em portais de anúncios e pesquisas variadas na web, com cache local e
+    base de referência quando o site bloqueia a consulta.</p>
+  </div>
+  <div class="card destaque">
+    <h3>Comentários de usuários</h3>
+    <p>Coleta opiniões de donos sobre o modelo — pontos fortes, fracos e o que dizem
+    sobre preço — além de relatos encontrados na web.</p>
+  </div>
+  <div class="card destaque">
+    <h3>Onde ir em Fortaleza</h3>
+    <p>Relatório lista as concessionárias da marca na cidade com endereço, telefone,
+    horário e botão de rota no Google Maps.</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const MARCAS = {{ catalogo.marcas | tojson }};
+</script>
+{% endblock %}

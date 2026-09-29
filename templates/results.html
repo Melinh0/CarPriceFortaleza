@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Resultado da busca — CarPrice{% endblock %}
+
+{% block content %}
+<section class="titulo-pagina">
+  <div>
+    <h1>Resultado da pesquisa</h1>
+    <p class="sub">
+      {% if filtros.marca %}{{ filtros.marca }}{% else %}Todas as marcas{% endif %}
+      {% if filtros.modelo %} · {{ filtros.modelo }}{% endif %}
+      · {{ resultado.ofertas|length }} ofertas
+    </p>
+  </div>
+  <a class="btn primario" href="{{ url_for('routes.relatorio', search_id=search_id) }}">
+    Abrir relatório detalhado
+  </a>
+</section>
+
+{% if resultado.filtros_relaxados %}
+<div class="aviso">
+  Filtros de {{ resultado.filtros_relaxados|join(', ') }} relaxados para gerar resultados —
+  o relatório detalhado explica o ajuste.
+</div>
+{% endif %}
+
+{% if resultado.fontes_ao_vivo == 0 %}
+<div class="aviso">
+  Nenhum anúncio ao vivo foi capturado desta vez — os portais podem ter bloqueado a
+  automação ou mudado a estrutura da página. Os valores exibidos vêm da
+  <strong>base local de referência</strong> e continuam úteis para dimensionar o preço
+  de mercado. O relatório indica a origem de cada dado.
+</div>
+{% endif %}
+
+<div class="cards-estatisticas">
+  <div class="card stat">
+    <span class="rotulo">Menor preço</span>
+    <strong>{{ resultado.estatisticas.min|brl }}</strong>
+  </div>
+  <div class="card stat">
+    <span class="rotulo">Mediana</span>
+    <strong>{{ resultado.estatisticas.mediana|brl }}</strong>
+  </div>
+  <div class="card stat">
+    <span class="rotulo">Maior preço</span>
+    <strong>{{ resultado.estatisticas.max|brl }}</strong>
+  </div>
+  <div class="card stat">
+    <span class="rotulo">Ofertas ao vivo</span>
+    <strong>{{ resultado.estatisticas.ao_vivo }} / {{ resultado.estatisticas.total }}</strong>
+  </div>
+</div>
+
+<section class="card">
+  <h2>Ofertas encontradas</h2>
+  <div class="tabela-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Veículo</th>
+          <th>Ano</th>
+          <th>Km</th>
+          <th>Vendedor</th>
+          <th>Cidade</th>
+          <th>Preço</th>
+          <th>Origem</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for o in resultado.ofertas[:40] %}
+        <tr>
+          <td>
+            {% if o.url %}<a href="{{ o.url }}" target="_blank" rel="noopener">{{ o.titulo }}</a>
+            {% else %}{{ o.titulo }}{% endif %}
+          </td>
+          <td>{{ o.ano or '—' }}</td>
+          <td>{{ '{:,}'.format(o.km).replace(',', '.') if o.km else '—' }}</td>
+          <td>{{ o.vendedor or '—' }}</td>
+          <td>{{ o.cidade or '—' }}</td>
+          <td class="num destaque-texto">{{ o.preco|brl }}</td>
+          <td>
+            {% if o.ao_vivo %}<span class="selo vivo">ao vivo · {{ o.fonte }}</span>
+            {% else %}<span class="selo estimativa">estimativa</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if resultado.ofertas|length > 40 %}
+  <p class="menor">Exibindo as 40 primeiras de {{ resultado.ofertas|length }} ofertas — o relatório completo
+  traz todas.</p>
+  {% endif %}
+</section>
+
+{% if resultado.mencoes_web %}
+<section class="card">
+  <h2>Menções de preço na web</h2>
+  <ul class="lista-links">
+    {% for m in resultado.mencoes_web %}
+    <li>
+      <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
+      {% if m.preco %}<span class="selo vivo">{{ m.preco|brl }}</span>{% endif %}
+      {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<div class="acoes">
+  <a class="btn primario" href="{{ url_for('routes.relatorio', search_id=search_id) }}">Ver relatório detalhado</a>
+  <a class="btn" href="{{ url_for('routes.index') }}">Refazer busca</a>
+</div>
+{% endblock %}

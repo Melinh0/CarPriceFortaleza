@@ -1,0 +1,106 @@
+{
+  "atualizado_em": "2026-09-28",
+  "observacao": "Resumo agregado de avaliações amplamente relatadas por donos em fóruns e sites de avaliação. Nao sao citacoes literais de usuarios.",
+  "modelos": {
+    "Onix": {
+      "pontos_positivos": ["Bom custo-beneficio", "Consumo economico na cidade", "Espaco interno para a categoria", "Facil de revender"],
+      "pontos_negativos": ["Som de qualidade media", "Suspensao dura em lombadas/brasil", "Versoes base com itens de seguranca basicos"],
+      "sobre_preco": ["Usados de 2021/2022 concentram ofertas entre R$ 58 mil e R$ 68 mil", "Versao LTZ com pouca km valoriza bem"]
+    },
+    "HB20": {
+      "pontos_positivos": ["Conforto de suspensao", "Acabamento interno", "Garantia de 5 anos da Hyundai", "Consumo razoavel"],
+      "pontos_negativos": ["Motor 1.0 aspirado fraco com ar e cheio", "Ruido do motor em aceleracao forte"],
+      "sobre_preco": ["Concorre direto com Onix: mesma faixa de preco", "Versao Shine automatica pede premio de R$ 6 mil a R$ 8 mil"]
+    },
+    "Strada": {
+      "pontos_positivos": ["Praticidade de picape urbana", "Bom consumo", "Alta demanda de revenda"],
+      "pontos_negativos": ["Caixa de carga pequena", "Somente 4 lugares"],
+      "sobre_preco": ["Picape mais vendida do Brasil: usado perde pouco valor", "Versoes Freedom e Volcano tem maior giracao"]
+    },
+    "Corolla": {
+      "pontos_positivos": ["Confiabilidade mecanica", "Conforto em viagens longas", "Ótima revenda"],
+      "pontos_negativos": ["Preco acima de concorrentes na concessionaria", "Itens de tecnologia atrasados em versoes base"],
+      "sobre_preco": ["Seminovos 2020/2021 giram em torno de R$ 125 mil a R$ 140 mil", "Hibrido (GE) tem menor oferta e maior valor"]
+    },
+    "T-Cross": {
+      "pontos_positivos": ["Espaco interno", "Motor 1.0 TSI eficiente", "Posicao de dirigir elevada"],
+      "pontos_negativos": ["Acabamento plastico duro", "Preco de revisao acima da media"],
+      "sobre_preco": ["Usado 2021/2022 com 50 mil km fica proximo de R$ 100 mil", "Versao Comfortline e Track tem maior oferta"]
+    },
+    "Compass": {
+      "pontos_positivos": ["Conforto em viagens", "Design que envelhece bem", "Boa tecnologia nas versoes superiores"],
+      "pontos_negativos": ["Consumo acima da media na cidade", "Manutencao mais cara que SUVs populares"],
+      "sobre_preco": ["Seminovo 2021/2022 1.3 turbo flex entre R$ 130 mil e R$ 150 mil", "Versao Trailhawk tem preco bem superior"]
+    },
+    "Kicks": {
+      "pontos_positivos": ["Conforto de suspensao", "CVT suave", "Espaco no banco traseiro"],
+      "pontos_negativos": ["Aceleracao lenta", "Som fraco nas versoes base"],
+      "sobre_preco": ["Usado costuma ficar abaixo de Creta e T-Cross com mesmo ano"]
+    },
+    "Hilux": {
+      "pontos_positivos": ["Durabilidade", "Alta demanda de revenda", "Bom desempenho diesel"],
+      "pontos_negativos": ["Preco alto de aquisicao", "Suspensao de picape em cidade"],
+      "sobre_preco": ["Seminova 2020/2021 raramente cai abaixo de R$ 190 mil", "Demanda forte em Fortaleza por construcao e agro"]
+    },
+    "Polo": {
+      "pontos_positivos": ["Tratamento acustico", "Dirigibilidade", "Consumo"],
+      "pontos_negativos": ["Espaco traseiro apertado", "Versoes base sem retrovisores eletricos"],
+      "sobre_preco": ["Usado 2020/2021 entre R$ 62 mil e R$ 72 mil"]
+    },
+    "Duster": {
+      "pontos_positivos": ["Espaco e mala", "Suspensao alta para ruas ruins", "Custo-beneficio"],
+      "pontos_negativos": ["Acabamento simples", "Posicao da alavanca de marchas estranha"],
+      "sobre_preco": ["Seminovo perde pouco valor por ser robusta em regioes com pista ruim"]
+    },
+    "Mobi": {
+      "pontos_positivos": ["Preco de entrada baixo", "Consumo muito economico", "Facil de estacionar"],
+      "pontos_negativos": ["Pouco espaco traseiro", "Isolamento acustico fraco", "Motor 1.0 ronca com ar ligado"],
+      "sobre_preco": ["Melhor porta de entrada para primeiro carro", "Usado 2021/2022 em torno de R$ 45 mil a R$ 50 mil"]
+    },
+    "Dolphin Mini": {
+      "pontos_positivos": ["Custo por km muito baixo", "Aceleracao instantanea", "Silencioso"],
+      "pontos_negativos": ["Autonomia reduzida em viagens longas", "Rede de recarga fora de Fortaleza ainda limitada"],
+      "sobre_preco": ["Incentivos fiscais podem reduzir o preco final", "Usado com pouca km aparece com desconto relevante"]
+    },
+    "Dolphin": {
+      "pontos_positivos": ["Espaco interno para a categoria", "Tecnologia e painel digital", "Custo por km baixo"],
+      "pontos_negativos": ["Autonomia real abaixo da homologada em estrada", "Assentos podem ser firmes em viagens longas"],
+      "sobre_preco": ["Usados 2024/2025 aparecem com desconto em relacao ao zero km", "Compare versoes Standard e Pro antes de negociar"]
+    },
+    "Ora 03": {
+      "pontos_positivos": ["Design arrojado", "Conforto de suspensao", "Silencioso e economico na cidade"],
+      "pontos_negativos": ["Porta-malas apertado", "Poucas unidades seminovas a venda"],
+      "sobre_preco": ["Incentivos da marca costumam aparecer em campanhas", "Seminovo com garantia de fabrica ainda vale bem"]
+    },
+    "Kwid E-Tech": {
+      "pontos_positivos": ["Preco de entrada mais baixo entre os eletricos", "Facil de estacionar", "Custo de recarga baixo"],
+      "pontos_negativos": ["Autonomia urbana apenas", "Espaco traseiro limitado"],
+      "sobre_preco": ["E a porta de entrada mais barata para carro eletrico zero km", "Usados aparecem com boa relacao preco-km"]
+    },
+    "Corolla Cross": {
+      "pontos_positivos": ["Confiabilidade Toyota", "Consumo hibrido muito bom", "Revenda forte"],
+      "pontos_negativos": ["Preco acima de concorrentes diretos", "Multimidia basica em versoes de entrada"],
+      "sobre_preco": ["Hibrido tem menor oferta de seminovo e perde menos valor", "Versoes XE e XL tem maior giracao"]
+    },
+    "Fastback": {
+      "pontos_positivos": ["Design coupê-SUV", "Espaco interno e porta-malas", "Motor 1.3 turbo economico"],
+      "pontos_negativos": ["Acabamento com plástico duro", "Posicao de dirigir um pouco baixa"],
+      "sobre_preco": ["Seminovo 2022/2023 concentra ofertas entre R$ 120 mil e R$ 140 mil", "Versoes Limited pedem premio"]
+    },
+    "Creta": {
+      "pontos_positivos": ["Acabamento e conforto", "Lista de itens generosa", "Boa revenda"],
+      "pontos_negativos": ["Preco de revisao acima da media", "Motor 2.0 consome mais na cidade"],
+      "sobre_preco": ["Usado 2021/2022 fica na faixa de R$ 105 mil a R$ 120 mil", "Versao Platinum tem maior demanda"]
+    },
+    "Tiggo 7 Pro": {
+      "pontos_positivos": ["Custo-beneficio", "Tecnologia e telas", "Espaco interno"],
+      "pontos_negativos": ["Consumo acima da media em cidade", "Marca ainda em construcao de reputacao de revenda"],
+      "sobre_preco": ["Seminovo costuma aparecer com desconto relevante frente ao zero km", "Garantia de 7 anos pesa na negociacao"]
+    },
+    "_default": {
+      "pontos_positivos": ["Custo-beneficio", "Demanda de revenda", "Pecas de facul acesso"],
+      "pontos_negativos": ["Verifique revisoes em concessionaria autorizada", "Preco de acessorios originais elevado"],
+      "sobre_preco": ["Compare pelo menos 3 anuncios do mesmo ano e km antes de negociar"]
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Calculadora de CDI — CarPrice{% endblock %}
+
+{% block content %}
+<section class="titulo-pagina">
+  <div>
+    <h1>Calculadora de CDI</h1>
+    <p class="sub">Quanto rende um valor aplicado por um período, em % do CDI — com IR regressivo</p>
+  </div>
+</section>
+
+<form class="card form-busca" method="get" action="{{ url_for('routes.cdi') }}">
+  <div class="grade">
+    <label>Valor a aplicar (R$)
+      <input type="number" name="valor" step="0.01" min="1" required
+             value="{{ valores.valor }}" placeholder="Ex.: 50000">
+    </label>
+    <label>Período (meses)
+      <input type="number" name="meses" min="1" max="600" required value="{{ valores.meses }}">
+    </label>
+    <label>% do CDI (ex.: 100, 110)
+      <input type="number" name="pct" min="1" step="0.1" required value="{{ valores.pct }}">
+    </label>
+    <label>CDI ao ano (%)
+      <input type="number" name="cdi" min="0" step="0.01" required value="{{ valores.cdi }}">
+    </label>
+  </div>
+  <p class="menor">Padrão: CDI de <strong>13,65% a.a.</strong> (setembro/2026, base 252 dias úteis).
+  Atualize o campo conforme a taxa vigente na data do seu investimento.</p>
+  <div class="acoes">
+    <button class="btn primario" type="submit">Calcular rendimento</button>
+  </div>
+</form>
+
+{% if erro %}<div class="aviso erro">{{ erro }}</div>{% endif %}
+
+{% if resultado %}
+<section class="cards-estatisticas">
+  <div class="card stat"><span class="rotulo">Valor total final</span><strong class="destaque-texto">{{ resultado.total_final|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Rendimento líquido</span><strong>{{ resultado.rendimento_liquido|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Rendimento bruto</span><strong>{{ resultado.rendimento_bruto|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Imposto de renda</span><strong>{{ resultado.ir|brl }} ({{ resultado.aliquota_ir }}%)</strong></div>
+  <div class="card stat"><span class="rotulo">Rentabilidade no período</span><strong>{{ resultado.rentabilidade_pct|round(2) }}%</strong></div>
+</section>
+
+<section class="card">
+  <h2>Detalhamento</h2>
+  <ul class="listagem-detalhes">
+    <li><span>Valor aplicado</span><strong>{{ resultado.valor|brl }}</strong></li>
+    <li><span>Prazo</span><strong>{{ resultado.meses }} meses ({{ resultado.dias_uteis }} dias úteis)</strong></li>
+    <li><span>Percentual do CDI</span><strong>{{ resultado.pct_cdi }}%</strong></li>
+    <li><span>CDI anual usado</span><strong>{{ resultado.cdi_aa }}% a.a.</strong></li>
+    <li><span>Taxa diária efetiva</span><strong>{{ resultado.taxa_dia_pct|round(4) }}% a.d.</strong></li>
+    <li><span>Rendimento líquido médio por mês</span><strong>{{ resultado.rendimento_mensal_medio|brl }}</strong></li>
+  </ul>
+  {% if resultado.iof_relevante %}
+  <div class="aviso">Atenção: aplicações de até 30 dias corridos também sofrem retenção de IOF
+  (além do IR de 22,5%), o que reduz o valor líquido apresentado.</div>
+  {% endif %}
+  <p class="menor">Cálculo com capitalização diária em dias úteis (base 252) e IR regressivo:
+  22,5% até 180 dias, 20% até 360 dias, 17,5% até 720 dias e 15% acima disso.
+  O imposto é apagado sobre o rendimento, não sobre o principal.</p>
+</section>
+
+<section class="card">
+  <h2>Evolução mês a mês</h2>
+  <div class="tabela-scroll">
+    <table>
+      <thead><tr><th>Mês</th><th>Dias úteis</th><th>Valor bruto acumulado</th><th>Rendimento bruto acumulado</th></tr></thead>
+      <tbody>
+        {% for linha in resultado.tabela %}
+        <tr>
+          <td>{{ linha.mes }}</td>
+          <td>{{ linha.dias_uteis }}</td>
+          <td class="num">{{ linha.bruto|brl }}</td>
+          <td class="num destaque-texto">{{ linha.rendimento_bruto|brl }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
