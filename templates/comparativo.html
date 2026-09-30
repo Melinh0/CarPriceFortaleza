@@ -1,0 +1,475 @@
+{% extends "base.html" %}
+{% block title %}Comparativo de carros novos — CarPrice{% endblock %}
+
+{% block content %}
+<section class="titulo-pagina">
+  <div>
+    <h1>Comparativo de carros novos</h1>
+    <p class="sub">Preço à vista real, formas de pagamento, parcelas com a sua entrada e garantia — modelo a modelo</p>
+  </div>
+  <a class="btn" href="{{ url_for('routes.index') }}">Busca completa de usados</a>
+</section>
+
+<form class="card form-busca" method="post" action="{{ url_for('routes.comparativo') }}">
+  <h2>1. Escolha os carros (novos)</h2>
+  <div class="grade">
+    <label>Marca
+      <select id="cmp-marca">
+        <option value="">Todas as marcas</option>
+        {% for m in catalogo.marcas %}
+        <option value="{{ m.nome }}"{% if selecoes and selecoes[0].marca == m.nome %} selected{% endif %}>{{ m.nome }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Modelo
+      <select id="cmp-modelo"></select>
+    </label>
+    <label>&nbsp;
+      <button type="button" class="btn" id="cmp-adicionar">Adicionar ao comparativo</button>
+    </label>
+  </div>
+
+  <div class="chips" id="cmp-lista">
+    {% if selecoes %}
+      {% for s in selecoes %}
+      <span class="chip-selecionado">
+        <input type="hidden" name="carros" value="{{ s.marca }}|{{ s.modelo }}">
+        <span>{{ s.marca }} {{ s.modelo }}</span>
+        <button type="button" class="remover" aria-label="Remover">×</button>
+      </span>
+      {% endfor %}
+    {% else %}
+      <span class="menor" id="cmp-vazio">Nenhum carro adicionado ainda — escolha a marca e o modelo acima.</span>
+    {% endif %}
+  </div>
+
+  <h2>2. Condições de pagamento</h2>
+  <div class="grade">
+    <label>Entrada em R$ (opcional)
+      <input type="number" name="entrada" step="100" min="0"
+             value="{{ condicoes.entrada if condicoes.entrada is not none else '' }}"
+             placeholder="Ex.: 20000 — mesma entrada para todos">
+    </label>
+    <label>Entrada padrão (% do valor) — usada se a de R$ ficar vazia
+      <input type="number" name="entrada_pct" step="1" min="0" max="90" value="{{ condicoes.entrada_pct }}">
+    </label>
+    <label>Taxa de juros ao ano (%)
+      <input type="number" name="taxa" step="0.1" min="0" value="{{ condicoes.taxa_aa }}">
+    </label>
+    <label>Prazo com juros (meses)
+      <input type="number" name="meses" min="1" max="120" value="{{ condicoes.meses }}">
+    </label>
+    <label>Prazo sem juros (meses)
+      <input type="number" name="meses_sem_juros" min="1" max="60" value="{{ condicoes.meses_sem_juros }}">
+    </label>
+    <label>Prazo do consórcio (meses)
+      <input type="number" name="meses_consorcio" min="6" max="120" value="{{ condicoes.meses_consorcio }}">
+    </label>
+    <label>Taxa de administração do consórcio (%)
+      <input type="number" name="taxa_adm" step="0.5" min="0" max="20" value="{{ condicoes.taxa_adm }}">
+    </label>
+  </div>
+  <p class="menor">O preço à vista sai da negociação real (menor que o preço de loja virtual/tabela),
+  conferido na web quando o buscador responde. O financiamento com juros usa tabela Price sem IOF —
+  confira o <strong>CET</strong> na proposta. “Sem juros” representa campanha promocional da montadora
+  e o consórcio não é garantia de data.</p>
+
+  <div class="acoes">
+    <button class="btn primario" type="submit">Gerar relatório detalhado</button>
+    {% if rel %}<a class="btn" href="{{ url_for('routes.comparativo') }}">Limpar e recomeçar</a>{% endif %}
+  </div>
+</form>
+
+{% if erro %}<div class="aviso erro">{{ erro }}</div>{% endif %}
+
+{% if rel %}
+{% set entrada_txt = (rel.condicoes.entrada|brl) if rel.condicoes.entrada is not none else (rel.condicoes.entrada_pct|int ~ '% do valor de cada carro') %}
+
+<section class="card">
+  <h2>Fontes do relatório</h2>
+  <ul class="marcadores">
+    {% for f in rel.fontes %}
+    <li>{% if f.ok %}<strong>[ok]</strong>{% else %}<strong>[parcial]</strong>{% endif %} {{ f.nome }} — {{ f.detalhe }}</li>
+    {% endfor %}
+  </ul>
+  <p class="menor">
+    Relatório {{ rel_id }} — gerado em {{ rel.gerado_em }}.
+    <a href="{{ url_for('routes.comparativo_detalhe', cmp_id=rel_id) }}">Link permanente deste relatório</a>.
+    {% if rel.erros %}Fontes com problema: {% for e in rel.erros %}{{ e.fonte }} ({{ e.motivo }}){% if not loop.last %}; {% endif %}{% endfor %}.{% endif %}
+  </p>
+</section>
+
+<section class="card">
+  <h2>Preços e garantia — lado a lado</h2>
+  <div class="tabela-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Veículo</th>
+          <th class="num">Preço loja virtual / tabela</th>
+          <th class="num">Preço à vista real</th>
+          <th class="num">Economia</th>
+          <th>Garantia do veículo</th>
+          <th>Garantia da bateria</th>
+          <th>Origem do preço à vista</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in rel.carros %}
+        <tr>
+          <td><strong>{{ c.marca }} {{ c.modelo }}</strong></td>
+          <td class="num">{{ c.preco_loja|brl }}</td>
+          <td class="num destaque-texto">{{ c.preco_a_vista|brl }}</td>
+          <td class="num">{{ c.economia|brl }} ({{ c.economia_pct|round(1) }}%)</td>
+          <td>{{ c.garantia.anos }} ano(s){% if c.garantia.km %} ou {{ '{:,}'.format(c.garantia.km).replace(',', '.') }} km{% else %} — sem limite de km{% endif %}</td>
+          <td>{% if c.garantia.bateria_anos %}{{ c.garantia.bateria_anos }} ano(s){% if c.garantia.bateria_km %} ou {{ '{:,}'.format(c.garantia.bateria_km).replace(',', '.') }} km{% endif %}{% else %}—{% endif %}</td>
+          <td>{% if c.origem_avista == 'web' %}<span class="selo vivo">web ao vivo</span>{% else %}<span class="selo estimativa">estimativa local</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="menor">O preço à vista é o valor de negociação na concessionária — normalmente menor que o
+  preço publicado em lojas virtuais e sites. Garantias são prazos de referência de fábrica: confirme no
+  manual e no contrato do veículo.</p>
+</section>
+
+<section class="card">
+  <h2>Parcelas — entrada de {{ entrada_txt }}</h2>
+  <div class="tabela-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Veículo</th>
+          <th class="num">À vista (sem juros)</th>
+          <th class="num">Com juros — {{ rel.condicoes.taxa_aa }}% a.a. em {{ rel.condicoes.meses }}x</th>
+          <th class="num">Sem juros — {{ rel.condicoes.meses_sem_juros }}x</th>
+          <th class="num">Consórcio — {{ rel.condicoes.meses_consorcio }}x</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in rel.carros %}
+        {% set s = c.cenarios %}
+        <tr>
+          <td><strong>{{ c.marca }} {{ c.modelo }}</strong></td>
+          <td class="num destaque-texto">{{ s.a_vista.total_pago|brl }}<br><span class="menor">juros: R$ 0</span></td>
+          <td class="num">{{ s.com_juros.parcela|brl }}/mês<br><span class="menor">total {{ s.com_juros.total_pago|brl }} · juros {{ s.com_juros.juros|brl }}</span></td>
+          <td class="num">{{ s.sem_juros.parcela|brl }}/mês<br><span class="menor">total {{ s.sem_juros.total_pago|brl }} · juros: R$ 0</span></td>
+          <td class="num">{{ s.consorcio.parcela|brl }}/mês<br><span class="menor">total {{ s.consorcio.total_pago|brl }} · adm {{ rel.condicoes.taxa_adm|int }}%</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="menor">Mesma entrada para todos os carros ({{ entrada_txt }}). “Com juros” = financiamento
+  bancário pela tabela Price sobre o preço à vista, sem IOF. “Sem juros” = campanha promocional da
+  montadora sobre o mesmo valor. “Consórcio” = carta de crédito com taxa de administração de
+  {{ rel.condicoes.taxa_adm }}% — sem juros de banco, mas sem garantia de data.</p>
+</section>
+
+{% for c in rel.carros %}
+{% set cj = c.cenarios.com_juros %}
+{% set sj = c.cenarios.sem_juros %}
+{% set co = c.cenarios.consorcio %}
+<section class="card" id="carro-{{ loop.index }}">
+  <h2>{{ c.marca }} {{ c.modelo }} — relatório detalhado</h2>
+  <p class="menor">{{ c.titulo }} · {{ c.carroceria }} · {{ c.combustivel }} · {{ c.cambio }}</p>
+
+  <div class="dois-colunas">
+    <div>
+      <h3>Preço à vista real x preço de loja virtual</h3>
+      <ul class="listagem-detalhes">
+        <li><span>Preço de tabela / loja virtual (anunciado)</span><strong>{{ c.preco_loja|brl }}</strong></li>
+        <li><span>Preço à vista de negociação</span><strong class="destaque-texto">{{ c.preco_a_vista|brl }}</strong></li>
+        <li><span>Economia frente ao anunciado</span><strong>{{ c.economia|brl }} ({{ c.economia_pct|round(1) }}%)</strong></li>
+        <li><span>Estimativa local de referência</span><strong>{{ c.preco_a_vista_base|brl }}</strong></li>
+        {% if c.preco_a_vista_web %}
+        <li><span>Mediana dos preços 0 km vistos na web</span><strong>{{ c.preco_a_vista_web|brl }}</strong></li>
+        {% endif %}
+        <li><span>Origem do valor usado</span><strong>{% if c.origem_avista == 'web' %}web ao vivo ({{ c.precos_web|length }} valores plausíveis){% else %}base local{% endif %}</strong></li>
+      </ul>
+      {% if c.nota_a_vista %}<p class="menor">{{ c.nota_a_vista }}</p>{% endif %}
+      {% if c.nota_web %}<div class="aviso">{{ c.nota_web }}</div>{% endif %}
+      {% if c.precos_web %}
+      <p class="menor">Valores 0 km plausíveis encontrados na web:
+        {% for p in c.precos_web %}{{ p|brl }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+      {% endif %}
+
+      <h4>Preços citados na web</h4>
+      {% if c.mencoes_precos %}
+      <ul class="lista-links">
+        {% for m in c.mencoes_precos[:6] %}
+        <li>
+          <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
+          {% if m.preco %}<span class="selo vivo">{{ m.preco|brl }}</span>{% endif %}
+          {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="menor">O buscador limitou as consultas desta vez — vale repetir em alguns minutos.
+      A estimativa local acima continua válida como referência de negociação.</p>
+      {% endif %}
+    </div>
+
+    <div>
+      <h3>Garantia de fábrica</h3>
+      <ul class="listagem-detalhes">
+        <li><span>Veículo</span><strong>{{ c.garantia.anos }} ano(s){% if c.garantia.km %} ou {{ '{:,}'.format(c.garantia.km).replace(',', '.') }} km{% else %} — sem limite de km{% endif %}</strong></li>
+        {% if c.garantia.bateria_anos %}
+        <li><span>Bateria e motor elétrico</span><strong>{{ c.garantia.bateria_anos }} ano(s){% if c.garantia.bateria_km %} ou {{ '{:,}'.format(c.garantia.bateria_km).replace(',', '.') }} km{% endif %}</strong></li>
+        {% endif %}
+      </ul>
+      <p class="menor">{{ c.garantia.obs }}</p>
+      {% if c.mencoes_garantia %}
+      <h4>O que a web diz sobre a garantia</h4>
+      <ul class="lista-links">
+        {% for m in c.mencoes_garantia[:4] %}
+        <li><a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
+          {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <h3>Ficha resumida</h3>
+      <ul class="listagem-detalhes">
+        <li><span>Motor</span><strong>{{ c.motor }}</strong></li>
+        <li><span>Câmbio</span><strong>{{ c.cambio }}</strong></li>
+        <li><span>Carroceria</span><strong>{{ c.carroceria }}</strong></li>
+        <li><span>Combustível</span><strong>{{ c.combustivel }}</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Formas de pagamento detalhadas</h3>
+  <div class="dois-colunas">
+    <div>
+      <h4>Pagamento à vista — sem juros</h4>
+      <ul class="listagem-detalhes">
+        <li><span>Valor a pagar</span><strong class="destaque-texto">{{ c.cenarios.a_vista.total_pago|brl }}</strong></li>
+        <li><span>Juros</span><strong>Nenhum</strong></li>
+        <li><span>Entrada usada na comparação</span><strong>{{ c.cenarios.entrada|brl }} ({{ c.cenarios.entrada_pct|round(1) }}%)</strong></li>
+      </ul>
+      <p class="menor">Negocie o desconto por pagamento à vista e peça o valor final por escrito,
+      com recibo e nota fiscal.</p>
+
+      <h4>Financiamento com juros — tabela Price</h4>
+      <ul class="listagem-detalhes">
+        <li><span>Entrada</span><strong>{{ cj.entrada|brl }} ({{ cj.entrada_pct|round(1) }}%)</strong></li>
+        <li><span>Valor financiado</span><strong>{{ cj.financiado|brl }}</strong></li>
+        <li><span>Taxa</span><strong>{{ cj.taxa_aa }}% a.a. ≈ {{ cj.taxa_mes|round(2) }}% a.m.</strong></li>
+        <li><span>Prazo</span><strong>{{ cj.meses }} meses</strong></li>
+        <li><span>Parcela</span><strong>{{ cj.parcela|brl }}</strong></li>
+        <li><span>Total pago</span><strong>{{ cj.total_pago|brl }}</strong></li>
+        <li><span>Juros do crédito</span><strong>{{ cj.juros|brl }}</strong></li>
+      </ul>
+      <p class="menor">Simulação sem IOF e tarifas: o contrato real vem com CET um pouco maior.
+      {% if cj.parcela == 0 %}<strong>Entrada igual ou maior que o preço:</strong> nada a financiar.{% endif %}</p>
+    </div>
+
+    <div>
+      <h4>Sem juros — plano promocional da montadora</h4>
+      <ul class="listagem-detalhes">
+        <li><span>Entrada</span><strong>{{ sj.entrada|brl }} ({{ c.cenarios.entrada_pct|round(1) }}%)</strong></li>
+        <li><span>Valor parcelado</span><strong>{{ sj.financiado|brl }}</strong></li>
+        <li><span>Prazo</span><strong>{{ sj.meses }} meses</strong></li>
+        <li><span>Parcela</span><strong>{{ sj.parcela|brl }}</strong></li>
+        <li><span>Total pago</span><strong>{{ sj.total_pago|brl }}</strong></li>
+        <li><span>Juros</span><strong>Nenhum</strong></li>
+      </ul>
+      <p class="menor">Campanhas “X vezes sem juros” costumam exigir condições: CPF ou CNPJ, cartão,
+      troca do usado, estoque limitado e prazo de campanha. Confirme a condição na concessionária.</p>
+
+      <h4>Consórcio — sem juros de banco</h4>
+      <ul class="listagem-detalhes">
+        <li><span>Carta de crédito</span><strong>{{ co.carta_credito|brl }}</strong></li>
+        <li><span>Taxa de administração ({{ co.taxa_adm_pct|int }}%)</span><strong>{{ co.adm_total|brl }}</strong></li>
+        <li><span>Prazo</span><strong>{{ co.meses }} meses</strong></li>
+        <li><span>Mensalidade</span><strong>{{ co.parcela|brl }}</strong></li>
+        <li><span>Total estimado</span><strong>{{ co.total_pago|brl }}</strong></li>
+        <li><span>Juros de banco</span><strong>Nenhum</strong></li>
+      </ul>
+      <p class="menor">O consórcio não é garantia de data: o sorteio é aleatório (ou use lance/compra
+      antecipada) e há fundo de reserva além da taxa de administração.</p>
+    </div>
+  </div>
+
+  {% if c.mencoes_campanhas %}
+  <h3>Campanhas e condições de financiamento encontradas na web</h3>
+  <ul class="lista-links">
+    {% for m in c.mencoes_campanhas[:5] %}
+    <li>
+      <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
+      {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <h3>Onde negociar em Fortaleza — {{ c.marca }}</h3>
+  {% if c.concessionarias %}
+  <div class="grid-concessionarias">
+    {% for d in c.concessionarias %}
+    <div class="concessionaria">
+      <h3>{{ d.nome }}</h3>
+      <p class="end">{{ d.endereco }} — {{ d.bairro }}, {{ d.cidade }}/{{ d.uf }}</p>
+      <p class="menor">{% if d.telefone %}Telefone: <strong>{{ d.telefone }}</strong> · {% endif %}{{ d.horario }}</p>
+      <div class="acoes-menores">
+        <a class="btn primario pequeno" href="{{ d.rota_url }}" target="_blank" rel="noopener">Como chegar</a>
+        <a class="btn pequeno" href="{{ d.maps_url }}" target="_blank" rel="noopener">Ver no mapa</a>
+        {% if d.site %}<a class="btn pequeno" href="https://{{ d.site }}" target="_blank" rel="noopener">Site</a>{% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>Sem cadastro local para esta marca — pesquise no Google Maps:
+    <a class="btn pequeno" href="{{ c.maps_busca }}" target="_blank" rel="noopener">Buscar {{ c.marca }} em Fortaleza</a></p>
+  {% endif %}
+  <p class="menor">Confirme estoque e condições por telefone antes de sair. Leve a concorrência
+  (a tabela acima) para negociar o preço à vista.</p>
+</section>
+{% endfor %}
+
+<section class="card">
+  <h2>Formas de compra — como cada uma funciona</h2>
+  <div class="metodos">
+    {% for m in rel.metodos %}
+    <details class="metodo">
+      <summary>{{ m.nome }}</summary>
+      <p class="resumo">{{ m.resumo }}</p>
+      <div class="dois-colunas">
+        <div>
+          <h4>Como funciona</h4>
+          <ul>{% for x in m.como_funciona %}<li>{{ x }}</li>{% endfor %}</ul>
+          <h4>Vantagens</h4>
+          <ul>{% for x in m.vantagens %}<li>{{ x }}</li>{% endfor %}</ul>
+        </div>
+        <div>
+          <h4>Atenção a</h4>
+          <ul class="marcadores negativo">{% for x in m.cuidados %}<li>{{ x }}</li>{% endfor %}</ul>
+          <h4>Documentos</h4>
+          <ul>{% for x in m.documentos %}<li>{{ x }}</li>{% endfor %}</ul>
+        </div>
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card">
+  <h2>Dicas de negociação</h2>
+  <ul class="marcadores">
+    {% for d in rel.dicas %}<li>{{ d }}</li>{% endfor %}
+  </ul>
+  <p class="menor">Precisa de outra taxa ou prazo? Use o
+  <a href="{{ url_for('routes.financiamento') }}">simulador de financiamento</a> e a
+  <a href="{{ url_for('routes.cdi') }}">calculadora de CDI</a> para comparar comprar à vista versus
+  financiar.</p>
+</section>
+
+<p class="menor disclaimer">
+  Relatório gerado pelo CarPrice Fortaleza. Preços de loja virtual/tabela e garantias são dados de
+  referência — o valor à vista definitivo é o da proposta escrita da concessionária. Condições de
+  campanha (sem juros, bônus na troca, prazos) mudam sem aviso e podem exigir CPF/CNPJ, troca do
+  usado ou cartão. Simulações sem IOF e tarifas: confirme o CET no contrato.
+</p>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const CMP_MARCAS = {{ catalogo.marcas | tojson }};
+  (function () {
+    const campoMarca = document.getElementById("cmp-marca");
+    const campoModelo = document.getElementById("cmp-modelo");
+    const botaoAdd = document.getElementById("cmp-adicionar");
+    const lista = document.getElementById("cmp-lista");
+    if (!campoMarca || !campoModelo || !botaoAdd || !lista) return;
+
+    function opcao(valor, texto) {
+      const el = document.createElement("option");
+      el.value = valor;
+      el.textContent = texto;
+      return el;
+    }
+
+    function popularModelos() {
+      const marca = campoMarca.value;
+      campoModelo.innerHTML = "";
+      campoModelo.appendChild(
+        opcao("", marca ? "Escolha o modelo" : "Selecione a marca primeiro")
+      );
+      if (!marca) return;
+      const encontrada = CMP_MARCAS.find((m) => m.nome === marca);
+      const modelos = (encontrada ? encontrada.modelos : []).slice().sort(
+        (a, b) => a.localeCompare(b, "pt-BR")
+      );
+      modelos.forEach((m) => campoModelo.appendChild(opcao(m, m)));
+    }
+
+    function jaAdicionado(valor) {
+      return Array.from(lista.querySelectorAll("input[name=carros]")).some(
+        (i) => i.value === valor
+      );
+    }
+
+    function limparDica() {
+      const dica = document.getElementById("cmp-vazio");
+      if (dica) dica.remove();
+    }
+
+    function mostrarDicaSeVazia() {
+      if (lista.querySelector("input[name=carros]")) return;
+      const dica = document.createElement("span");
+      dica.className = "menor";
+      dica.id = "cmp-vazio";
+      dica.textContent = "Nenhum carro adicionado ainda — escolha a marca e o modelo acima.";
+      lista.appendChild(dica);
+    }
+
+    function adicionar() {
+      const marca = campoMarca.value;
+      const modelo = campoModelo.value;
+      if (!marca || !modelo) {
+        alert("Escolha a marca e o modelo primeiro.");
+        return;
+      }
+      const valor = marca + "|" + modelo;
+      if (jaAdicionado(valor)) return;
+      limparDica();
+
+      const chip = document.createElement("span");
+      chip.className = "chip-selecionado";
+
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "carros";
+      input.value = valor;
+
+      const texto = document.createElement("span");
+      texto.textContent = marca + " " + modelo;
+
+      const remover = document.createElement("button");
+      remover.type = "button";
+      remover.className = "remover";
+      remover.setAttribute("aria-label", "Remover " + marca + " " + modelo);
+      remover.textContent = "×";
+
+      chip.appendChild(input);
+      chip.appendChild(texto);
+      chip.appendChild(remover);
+      lista.appendChild(chip);
+    }
+
+    campoMarca.addEventListener("change", popularModelos);
+    botaoAdd.addEventListener("click", adicionar);
+    lista.addEventListener("click", function (ev) {
+      if (!ev.target.classList.contains("remover")) return;
+      ev.target.parentNode.remove();
+      mostrarDicaSeVazia();
+    });
+    popularModelos();
+  })();
+</script>
+{% endblock %}

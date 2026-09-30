@@ -82,6 +82,32 @@ input:focus, select:focus { outline: 2px solid var(--azul-claro); border-color: 
 }
 .chip input:checked + span { background: var(--azul-claro); border-color: var(--azul-claro); color: #fff; }
 
+.chips .chip-selecionado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--azul-claro);
+  border: 1px solid var(--azul-claro);
+  color: #fff;
+  font-size: .84rem;
+  font-weight: 600;
+}
+.chips .chip-selecionado .remover {
+  border: none;
+  background: rgba(255, 255, 255, .25);
+  color: #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  font-size: .9rem;
+}
+.chips .chip-selecionado .remover:hover { background: rgba(255, 255, 255, .5); }
+
 .acoes { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
 .acoes-menores { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 

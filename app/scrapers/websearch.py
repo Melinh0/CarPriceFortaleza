@@ -17,6 +17,8 @@ BING_URL = "https://www.bing.com/search"
 SLEEP_ENTRE_QUERIES = 0.35
 MAX_MENCOES = 20
 MAX_COMENTARIOS = 14
+MAX_MENCOES_DETALHES = 18
+TEMPO_MAX_DETALHES = 30
 
 
 def _parse_ddg_html(html: str, max_resultados: int) -> list[dict]:
@@ -266,3 +268,54 @@ def pesquisar_comentarios(filtros: dict) -> list[dict]:
         if len(comentarios) >= MAX_COMENTARIOS:
             break
     return comentarios[:MAX_COMENTARIOS]
+
+
+def _consultas_detalhes(marca: str, modelo: str) -> list[str]:
+    base = f"{marca} {modelo}".strip()
+    if not base:
+        return []
+    return [
+        f"{base} preco a vista concessionaria 0 km",
+        f"{base} preco tabela 2026",
+        f"{base} campanha financiamento sem juros parcelas",
+        f"{base} garantia fabrica anos quilometros",
+        f"{base} desconto negociacao loja fisica",
+    ]
+
+
+def _tipo_mencao(consulta: str) -> str:
+    consulta = consulta.lower()
+    if "garantia" in consulta:
+        return "garantia"
+    if "financiamento" in consulta or "sem juros" in consulta:
+        return "campanha"
+    return "preco"
+
+
+def pesquisar_detalhes(marca: str, modelo: str) -> dict:
+    """Levanta precos a vista, campanhas de financiamento e garantia de um modelo novo.
+
+    Diferente de pesquisar_precos (que recebe filtros de busca usados), esta funcao
+    recebe marca/modelo direto e classifica cada mencao em preco, campanha ou garantia.
+    """
+    consultas = _consultas_detalhes(marca, modelo)
+    if not consultas:
+        return {"consultas": [], "mencoes": []}
+
+    mencoes: list[dict] = []
+    vistas: set[str] = set()
+    fim = time.perf_counter() + TEMPO_MAX_DETALHES
+    for query in consultas:
+        if time.perf_counter() > fim:
+            break
+        for item in buscar_na_web(query, max_resultados=8):
+            url = item.get("url", "")
+            if not url or url in vistas:
+                continue
+            vistas.add(url)
+            item["consulta"] = query
+            item["tipo"] = _tipo_mencao(query)
+            mencoes.append(item)
+        if len(mencoes) >= MAX_MENCOES_DETALHES:
+            break
+    return {"consultas": consultas, "mencoes": mencoes[:MAX_MENCOES_DETALHES]}

@@ -181,3 +181,5 @@ cython_debug/
 .cursorindexingignore
 
 .pytest_cache
+# Relatorios de comparativo gerados em runtime
+app/data/cache/comparativos/
