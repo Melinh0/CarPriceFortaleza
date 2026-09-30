@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    container_name: carprice
+    ports:
+      - "5001:5000"
+    environment:
+      - SECRET_KEY=carprice-docker-key
+      - FLASK_DEBUG=0
+    volumes:
+      - cache:/app/app/data/cache
+    restart: unless-stopped
+
+volumes:
+  cache:

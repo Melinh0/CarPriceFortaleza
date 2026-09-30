@@ -1,5 +1,3 @@
-"""Pesquisa diversificada na web (DuckDuckGo + Bing) por precos e mencoes reais."""
-
 from __future__ import annotations
 
 import time
@@ -137,7 +135,7 @@ TEMPO_MAX_POR_QUERY = 20
 TEMPO_MAX_PRECOS = 40
 TEMPO_MAX_COMENTARIOS = 25
 TIMEOUT_ENGINE = 5
-COOLDOWN_ENGINE = 180  # segundos: motor que errou rede fica fora do caminho
+COOLDOWN_ENGINE = 180
 
 _motores_fora: dict[str, float] = {}
 
@@ -151,11 +149,6 @@ def _marcar_motor_fora(engine) -> None:
 
 
 def buscar_na_web(query: str, max_resultados: int = 8, timeout: int | None = None) -> list[dict]:
-    """Busca uma query; tenta DuckDuckGo, DuckDuckGo Lite e Bing ate achar algo.
-
-    Motor que falha na rede entra em cooldown: nas proximas queries ele e
-    pulado, entao o buscador que funciona (ex.: Bing) e alcancado rapido.
-    """
     timeout = TIMEOUT_ENGINE if timeout is None else timeout
     limite = time.perf_counter() + TEMPO_MAX_POR_QUERY
     motores = [e for e in ENGINES if _motor_disponivel(e)] or list(ENGINES)
@@ -165,7 +158,6 @@ def buscar_na_web(query: str, max_resultados: int = 8, timeout: int | None = Non
         try:
             resultados = engine(query, max_resultados, timeout)
         except Exception:
-            # rede bloqueada/indisponivel: nao insiste, marca e passa adiante
             _marcar_motor_fora(engine)
             continue
         if resultados:
@@ -179,7 +171,6 @@ def _consultas_precos(filtros: dict) -> list[str]:
     modelo = filtros.get("modelo") or ""
     base = f"{marca} {modelo}".strip()
     if not base:
-        # busca generica (sem marca): eletricos/hibridos viram pesquisa local
         if normalizar_combustivel(filtros.get("combustivel")) in (
             "eletrico",
             "hibrido",
@@ -214,7 +205,6 @@ def normalizar_combustivel(valor: str) -> str:
 
 
 def pesquisar_precos(filtros: dict) -> dict:
-    """Roda consultas variadas sobre o modelo para levantar precos reais na web."""
     consultas = _consultas_precos(filtros)
     if not consultas:
         return {"consultas": [], "mencoes": []}
@@ -239,7 +229,6 @@ def pesquisar_precos(filtros: dict) -> dict:
 
 
 def pesquisar_comentarios(filtros: dict) -> list[dict]:
-    """Busca opinioes e comentarios de usuarios sobre o modelo."""
     marca = filtros.get("marca") or ""
     modelo = filtros.get("modelo") or ""
     base = f"{marca} {modelo}".strip()
@@ -293,11 +282,6 @@ def _tipo_mencao(consulta: str) -> str:
 
 
 def pesquisar_detalhes(marca: str, modelo: str) -> dict:
-    """Levanta precos a vista, campanhas de financiamento e garantia de um modelo novo.
-
-    Diferente de pesquisar_precos (que recebe filtros de busca usados), esta funcao
-    recebe marca/modelo direto e classifica cada mencao em preco, campanha ou garantia.
-    """
     consultas = _consultas_detalhes(marca, modelo)
     if not consultas:
         return {"consultas": [], "mencoes": []}

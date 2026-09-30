@@ -1,5 +1,3 @@
-"""Calculadora de CDI (renda fixa) com capitalização diária e IR regressivo."""
-
 from __future__ import annotations
 
 DIAS_UTEIS_ANO = 252
@@ -14,7 +12,6 @@ IR_TABELA = (
 
 
 def aliquota_ir(dias_uteis: int) -> float:
-    """Alíquota de IR regressivo sobre rendimento de renda fixa."""
     for limite, aliquota in IR_TABELA:
         if dias_uteis <= limite:
             return aliquota
@@ -27,18 +24,6 @@ def calcular(
     pct_cdi: float = 100.0,
     cdi_aa: float = 13.65,
 ) -> dict:
-    """Simula o rendimento de um investimento indexado ao CDI.
-
-    Args:
-        valor: valor aplicado (R$).
-        meses: prazo em meses.
-        pct_cdi: percentual do CDI pago pelo investimento (ex.: 100, 110).
-        cdi_aa: taxa do CDI anualizada em % (base 252 dias úteis).
-
-    Returns:
-        Dicionário com rendimento bruto, IR, rendimento líquido,
-        valor total final e a tabela mensal.
-    """
     if valor <= 0:
         raise ValueError("O valor aplicado deve ser maior que zero.")
     if meses <= 0:

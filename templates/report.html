@@ -5,86 +5,64 @@
 <section class="titulo-pagina">
   <div>
     <h1>Relatório: {{ rel.marca or 'Carros' }} {{ rel.modelo }}</h1>
-    <p class="sub">Preços, comentários, métodos de compra e onde ir em Fortaleza — CE</p>
+    <p class="sub">Preços, comentários e concessionárias em Fortaleza</p>
   </div>
-  <a class="btn" href="{{ url_for('routes.index') }}">Nova busca</a>
+  <div class="acoes-menores">
+    <a class="btn primario" href="{{ url_for('routes.relatorio_pdf', search_id=search_id) }}">Baixar PDF</a>
+    <a class="btn" href="{{ url_for('routes.relatorio_xlsx', search_id=search_id) }}">Baixar planilha</a>
+  </div>
 </section>
 
 {% if rel.fontes_ao_vivo == 0 %}
 <div class="aviso">
-  <strong>Origem dos dados:</strong> os portais de anúncios não retornaram ofertas ao vivo
-  nesta consulta (bloqueio automático ou mudança de layout). Os preços abaixo são
-  <strong>estimativas da base local</strong>, calculadas sobre a faixa de mercado do modelo.
-  As menções da web e os endereços das concessionárias continuam válidos para a negociação.
+  Sem ofertas ao vivo nesta consulta — os preços abaixo são estimativas da base local de referência.
 </div>
 {% endif %}
 
 {% if rel.filtros_relaxados %}
 <div class="aviso">
-  <strong>Filtros ajustados:</strong> para o relatório não ficar incompleto, a busca foi
-  ampliada relaxando os filtros de <strong>{{ rel.filtros_relaxados|join(', ') }}</strong>.
-  Marca e modelo continuam valendo. Ajuste os filtros se a faixa estiver estreita demais.
+  Filtros de {{ rel.filtros_relaxados|join(', ') }} relaxados para o relatório não ficar incompleto.
 </div>
 {% endif %}
 
 {% if rel.stats.get('total', 0) > 0 and rel.stats.get('total', 0) < 3 %}
 <div class="aviso">
-  <strong>Poucas ofertas:</strong> apenas {{ rel.stats.get('total', 0) }} itens passaram nos
-  filtros. Amplie preço, ano ou km para enriquecer a comparação.
+  Apenas {{ rel.stats.get('total', 0) }} oferta(s) passaram nos filtros — amplie preço, ano ou km.
 </div>
 {% endif %}
 
 {% if rel.stats.get('total', 0) == 0 %}
 <div class="aviso">
-  <strong>Base local sem cobertura:</strong> não encontramos modelos parecidos com a busca.
-  As seções de comentários, métodos de compra e concessionárias continuam válidas — refaça a
-  busca escolhendo uma marca/modelo do catálogo.
+  Base local sem cobertura para esta busca — refaça escolhendo uma marca/modelo do catálogo.
 </div>
 {% endif %}
 
-<section class="card">
-  <h2>Fontes consultadas nesta busca</h2>
-  <ul class="marcadores">
-    {% for f in rel.fontes %}
-    <li>
-      {% if f.ok %}<strong>[ok]</strong>{% else %}<strong>[parcial]</strong>{% endif %}
-      {{ f.nome }} — {{ f.detalhe }}
-    </li>
-    {% endfor %}
-  </ul>
-  {% if rel.erros %}
-  <p class="menor">Fontes com problema: {% for e in rel.erros %}{{ e.fonte }} ({{ e.motivo }}){% if not loop.last %}; {% endif %}{% endfor %}.</p>
-  {% endif %}
-</section>
+<p class="menor">
+  Fontes consultadas nesta busca:
+  {% for f in rel.fontes %}
+    {{ f.nome }} [{% if f.ok %}ok{% else %}parcial{% endif %}]{% if not loop.last %} · {% endif %}
+  {% endfor %}
+  {% if rel.erros %} · com problema: {% for e in rel.erros %}{{ e.fonte }} ({{ e.motivo }}){% if not loop.last %}; {% endif %}{% endfor %}{% endif %}
+</p>
 
 <section class="cards-estatisticas">
   <div class="card stat"><span class="rotulo">Menor preço</span><strong>{{ rel.stats.get('min')|brl }}</strong></div>
-  <div class="card stat"><span class="rotulo">Mediana de mercado</span><strong>{{ rel.stats.get('mediana')|brl }}</strong></div>
+  <div class="card stat"><span class="rotulo">Mediana</span><strong>{{ rel.stats.get('mediana')|brl }}</strong></div>
   <div class="card stat"><span class="rotulo">Média</span><strong>{{ rel.stats.get('media')|brl }}</strong></div>
   <div class="card stat"><span class="rotulo">Maior preço</span><strong>{{ rel.stats.get('max')|brl }}</strong></div>
-  <div class="card stat"><span class="rotulo">Ofertas analisadas</span><strong>{{ rel.stats.get('total', 0) }}</strong></div>
+  <div class="card stat"><span class="rotulo">Ofertas</span><strong>{{ rel.stats.get('total', 0) }}</strong></div>
 </section>
 
 <section class="card">
   <h2>Resumo executivo</h2>
   <p>
-    Foram analisadas <strong>{{ rel.stats.get('total', 0) }}</strong> ofertas para
-    <strong>{{ rel.marca or 'a categoria' }} {{ rel.modelo }}</strong> na região de Fortaleza.
-    A faixa de preço vai de <strong>{{ rel.stats.get('min')|brl }}</strong> a
-    <strong>{{ rel.stats.get('max')|brl }}</strong>, com mediana em
-    <strong>{{ rel.stats.get('mediana')|brl }}</strong> e desvio padrão de
-    {{ rel.stats.get('desvio')|brl }}.
+    <strong>{{ rel.stats.get('total', 0) }}</strong> ofertas para
+    <strong>{{ rel.marca or 'a categoria' }} {{ rel.modelo }}</strong> — faixa de
+    <strong>{{ rel.stats.get('min')|brl }}</strong> a <strong>{{ rel.stats.get('max')|brl }}</strong>,
+    mediana de <strong>{{ rel.stats.get('mediana')|brl }}</strong>.
     {% if rel.melhor_oferta %}
-      A melhor oferta encontrada é <strong>{{ rel.melhor_oferta.titulo }}</strong>
-      por <strong>{{ rel.melhor_oferta.preco|brl }}</strong>
-      ({{ rel.melhor_oferta.cidade or 'Fortaleza - CE' }}).
-    {% endif %}
-    {% if rel.concessionarias %}
-      Há <strong>{{ rel.concessionarias|length }}</strong> concessionária(s) da marca em Fortaleza
-      listadas ao final deste relatório, com endereço e rota.
-    {% else %}
-      Não há concessionária cadastrada para esta marca em Fortaleza na base — use o link de busca
-      no Google Maps na seção de concessionárias.
+      Melhor oferta: <strong>{{ rel.melhor_oferta.titulo }}</strong> por
+      <strong>{{ rel.melhor_oferta.preco|brl }}</strong>.
     {% endif %}
   </p>
 
@@ -108,7 +86,7 @@
     <table>
       <thead>
         <tr>
-          <th>Veículo</th><th>Ano</th><th>Km</th><th>Características</th>
+          <th>Veículo</th><th>Ano</th><th>Km</th>
           <th>Vendedor</th><th>Preço</th><th>Origem</th>
         </tr>
       </thead>
@@ -118,7 +96,6 @@
           <td>{% if o.url %}<a href="{{ o.url }}" target="_blank" rel="noopener">{{ o.titulo }}</a>{% else %}{{ o.titulo }}{% endif %}</td>
           <td>{{ o.ano or '—' }}</td>
           <td>{{ '{:,}'.format(o.km).replace(',', '.') if o.km else '—' }}</td>
-          <td class="menor">{{ (o.caracteristicas or [])|join(', ') or '—' }}</td>
           <td>{{ o.vendedor or '—' }}</td>
           <td class="num destaque-texto">{{ o.preco|brl }}</td>
           <td>{% if o.ao_vivo %}<span class="selo vivo">ao vivo</span>{% else %}<span class="selo estimativa">estimativa</span>{% endif %}</td>
@@ -129,29 +106,9 @@
   </div>
 </section>
 
-<section class="card">
-  <h2>Preços citados na web (pesquisa diversificada)</h2>
-  {% if rel.mencoes_web %}
-  <p class="menor">Resultados de busca com menções de valor em sites de anúncios, fóruns e classificados:</p>
-  <ul class="lista-links">
-    {% for m in rel.mencoes_web %}
-    <li>
-      <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
-      {% if m.preco %}<span class="selo vivo">{{ m.preco|brl }}</span>{% endif %}
-      {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p class="menor">O buscador limitou as consultas desta vez. Repita a busca em alguns minutos
-  ou confira os preços na tabela de ofertas acima, que já agrega portais de anúncios e a base
-  local de referência.</p>
-  {% endif %}
-</section>
-
 {% if rel.comparativo %}
 <section class="card">
-  <h2>Comparativo da marca — outros modelos disponíveis</h2>
+  <h2>Comparativo da marca — outros modelos</h2>
   <div class="tabela-scroll">
     <table>
       <thead>
@@ -170,7 +127,6 @@
       </tbody>
     </table>
   </div>
-  <p class="menor">Faixas de referência para negociação — confirme na concessionária.</p>
 </section>
 {% endif %}
 
@@ -178,14 +134,13 @@
   <h2>Comentários de usuários</h2>
   <div class="dois-colunas">
     <div>
-      <h3>Resumo das avaliações de donos</h3>
       {% if rel.comentarios.resumo_base %}
-      <p class="menor">{{ rel.comentarios.origem.get('base_local', '') }}</p>
-      <h4>Pontos positivos relatados</h4>
+      <h3>Avaliações de donos</h3>
+      <h4>Pontos positivos</h4>
       <ul class="marcadores">
         {% for p in rel.comentarios.resumo_base.get('pontos_positivos', []) %}<li>{{ p }}</li>{% endfor %}
       </ul>
-      <h4>Pontos negativos relatados</h4>
+      <h4>Pontos negativos</h4>
       <ul class="marcadores negativo">
         {% for p in rel.comentarios.resumo_base.get('pontos_negativos', []) %}<li>{{ p }}</li>{% endfor %}
       </ul>
@@ -194,13 +149,12 @@
         {% for p in rel.comentarios.resumo_base.get('sobre_preco', []) %}<li>{{ p }}</li>{% endfor %}
       </ul>
       {% else %}
-      <p class="menor">A base local de opiniões não tem um resumo para este modelo agora.
-      Use a coluna “O que a web diz” e os fóruns de donos indicados no relatório.</p>
+      <p class="menor">Sem resumo de avaliações para este modelo agora.</p>
       {% endif %}
     </div>
     <div>
-      <h3>O que a web diz</h3>
       {% if rel.comentarios.comentarios_web %}
+      <h3>O que a web diz</h3>
       <ul class="lista-links">
         {% for c in rel.comentarios.comentarios_web %}
         <li>
@@ -209,25 +163,27 @@
         </li>
         {% endfor %}
       </ul>
-      {% else %}
-      <p class="menor">Nenhum comentário coletado na web agora (o buscador pode ter limitado a
-      consulta). Consulte fóruns e as páulas de avaliação dos portais pelos links do relatório.</p>
       {% endif %}
     </div>
   </div>
 </section>
 
+{% if rel.mencoes_web %}
+<section class="card">
+  <h2>Preços citados na web</h2>
+  <ul class="lista-links">
+    {% for m in rel.mencoes_web[:6] %}
+    <li>
+      <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
+      {% if m.preco %}<span class="selo vivo">{{ m.preco|brl }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 <section class="card">
   <h2>Como comprar o carro</h2>
-  <div class="passos">
-    {% for passo in rel.guia %}
-    <div class="passo">
-      <h4>{{ passo.titulo }}</h4>
-      <p>{{ passo.descricao }}</p>
-    </div>
-    {% endfor %}
-  </div>
-
   <h3>Métodos de pagamento</h3>
   <div class="metodos">
     {% for m in rel.metodos %}
@@ -261,10 +217,8 @@
       ({{ rel.exemplo_financiamento.entrada|brl }}), {{ rel.exemplo_financiamento.meses }} meses a
       {{ rel.exemplo_financiamento.taxa_aa }}% a.a.:
       parcela de <strong>{{ rel.exemplo_financiamento.parcela|brl }}</strong>,
-      total pago {{ rel.exemplo_financiamento.total_pago|brl }}
-      (juros de {{ rel.exemplo_financiamento.juros|brl }}).
+      total pago {{ rel.exemplo_financiamento.total_pago|brl }}.
     </p>
-    <a class="btn" href="{{ url_for('routes.financiamento', preco=rel.melhor_oferta.preco, entrada=(rel.exemplo_financiamento.entrada|round(2)), taxa=14.9, meses=48) }}">Simular outras condições</a>
   </div>
   {% endif %}
 
@@ -294,20 +248,16 @@
     {% endfor %}
   </div>
   {% if not rel.concessionarias and rel.maps_busca_marca %}
-  <p>Não há cadastro local para esta marca — pesquise no Google Maps:</p>
+  <p>Sem cadastro local para esta marca — pesquise no Google Maps:</p>
   <a class="btn primario" href="{{ rel.maps_busca_marca }}" target="_blank" rel="noopener">Buscar concessionária em Fortaleza</a>
   {% elif rel.concessionarias_genericas %}
-  <p class="menor">Não há concessionária específica desta marca no cadastro local — listamos
-  abaixo lojas multimarcas de Fortaleza que costumam trabalhar o modelo, além do link de busca
-  no Google Maps.</p>
+  <p class="menor">Sem concessionária exata desta marca na base — listamos lojas multimarcas que trabalham o modelo.</p>
   <a class="btn pequeno" href="{{ rel.maps_busca_marca }}" target="_blank" rel="noopener">Buscar concessionária {{ rel.marca }} no mapa</a>
   {% endif %}
-  <p class="menor">Confirme estoque e horários por telefone antes de sair. Os horários podem variar em feriados.</p>
 </section>
 
 <p class="menor disclaimer">
-  Relatório gerado pelo CarPrice Fortaleza. Preços de origem estimativa servem como referência de
-  negociação e não substituem a proposta formal da concessionária. Dados de concessionárias
-  coletados de sites oficiais — confirme endereço e telefone no dia.
+  Gerado pelo CarPrice Fortaleza — preços estimados são referência de negociação e não substituem a
+  proposta formal da concessionária.
 </p>
 {% endblock %}

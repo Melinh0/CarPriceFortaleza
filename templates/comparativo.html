@@ -5,9 +5,14 @@
 <section class="titulo-pagina">
   <div>
     <h1>Comparativo de carros novos</h1>
-    <p class="sub">Preço à vista real, formas de pagamento, parcelas com a sua entrada e garantia — modelo a modelo</p>
+    <p class="sub">Preço à vista, parcelas com a sua entrada e garantia — modelo a modelo</p>
   </div>
-  <a class="btn" href="{{ url_for('routes.index') }}">Busca completa de usados</a>
+  {% if rel and rel_id %}
+  <div class="acoes-menores">
+    <a class="btn primario" href="{{ url_for('routes.comparativo_pdf', cmp_id=rel_id) }}">Baixar PDF</a>
+    <a class="btn" href="{{ url_for('routes.comparativo_xlsx', cmp_id=rel_id) }}">Baixar planilha</a>
+  </div>
+  {% endif %}
 </section>
 
 <form class="card form-busca" method="post" action="{{ url_for('routes.comparativo') }}">
@@ -69,14 +74,11 @@
       <input type="number" name="taxa_adm" step="0.5" min="0" max="20" value="{{ condicoes.taxa_adm }}">
     </label>
   </div>
-  <p class="menor">O preço à vista sai da negociação real (menor que o preço de loja virtual/tabela),
-  conferido na web quando o buscador responde. O financiamento com juros usa tabela Price sem IOF —
-  confira o <strong>CET</strong> na proposta. “Sem juros” representa campanha promocional da montadora
-  e o consórcio não é garantia de data.</p>
+  <p class="menor">O preço à vista sai da negociação real na concessionária. “Sem juros” é campanha
+  da montadora e o consórcio não garante data de entrega.</p>
 
   <div class="acoes">
-    <button class="btn primario" type="submit">Gerar relatório detalhado</button>
-    {% if rel %}<a class="btn" href="{{ url_for('routes.comparativo') }}">Limpar e recomeçar</a>{% endif %}
+    <button class="btn primario" type="submit">Gerar comparativo</button>
   </div>
 </form>
 
@@ -85,19 +87,12 @@
 {% if rel %}
 {% set entrada_txt = (rel.condicoes.entrada|brl) if rel.condicoes.entrada is not none else (rel.condicoes.entrada_pct|int ~ '% do valor de cada carro') %}
 
-<section class="card">
-  <h2>Fontes do relatório</h2>
-  <ul class="marcadores">
-    {% for f in rel.fontes %}
-    <li>{% if f.ok %}<strong>[ok]</strong>{% else %}<strong>[parcial]</strong>{% endif %} {{ f.nome }} — {{ f.detalhe }}</li>
-    {% endfor %}
-  </ul>
-  <p class="menor">
-    Relatório {{ rel_id }} — gerado em {{ rel.gerado_em }}.
-    <a href="{{ url_for('routes.comparativo_detalhe', cmp_id=rel_id) }}">Link permanente deste relatório</a>.
-    {% if rel.erros %}Fontes com problema: {% for e in rel.erros %}{{ e.fonte }} ({{ e.motivo }}){% if not loop.last %}; {% endif %}{% endfor %}.{% endif %}
-  </p>
-</section>
+<p class="menor">
+  Fontes: {% for f in rel.fontes %}{{ f.nome }} [{% if f.ok %}ok{% else %}parcial{% endif %}]{% if not loop.last %} · {% endif %}{% endfor %}
+  · gerado em {{ rel.gerado_em }}
+  · <a href="{{ url_for('routes.comparativo_detalhe', cmp_id=rel_id) }}">link permanente</a>
+  {%- if rel.erros %} · com problema: {% for e in rel.erros %}{{ e.fonte }} ({{ e.motivo }}){% if not loop.last %}; {% endif %}{% endfor %}{% endif %}
+</p>
 
 <section class="card">
   <h2>Preços e garantia — lado a lado</h2>
@@ -129,9 +124,7 @@
       </tbody>
     </table>
   </div>
-  <p class="menor">O preço à vista é o valor de negociação na concessionária — normalmente menor que o
-  preço publicado em lojas virtuais e sites. Garantias são prazos de referência de fábrica: confirme no
-  manual e no contrato do veículo.</p>
+  <p class="menor">Garantias de referência de fábrica — confirme no manual e no contrato do veículo.</p>
 </section>
 
 <section class="card">
@@ -161,10 +154,8 @@
       </tbody>
     </table>
   </div>
-  <p class="menor">Mesma entrada para todos os carros ({{ entrada_txt }}). “Com juros” = financiamento
-  bancário pela tabela Price sobre o preço à vista, sem IOF. “Sem juros” = campanha promocional da
-  montadora sobre o mesmo valor. “Consórcio” = carta de crédito com taxa de administração de
-  {{ rel.condicoes.taxa_adm }}% — sem juros de banco, mas sem garantia de data.</p>
+  <p class="menor">“Com juros” = tabela Price sem IOF · “Sem juros” = campanha da montadora ·
+  “Consórcio” = taxa de administração de {{ rel.condicoes.taxa_adm }}% sem garantia de data.</p>
 </section>
 
 {% for c in rel.carros %}
@@ -202,13 +193,11 @@
         <li>
           <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
           {% if m.preco %}<span class="selo vivo">{{ m.preco|brl }}</span>{% endif %}
-          {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}
         </li>
         {% endfor %}
       </ul>
       {% else %}
-      <p class="menor">O buscador limitou as consultas desta vez — vale repetir em alguns minutos.
-      A estimativa local acima continua válida como referência de negociação.</p>
+      <p class="menor">Sem menções na web agora — a estimativa local acima segue válida.</p>
       {% endif %}
     </div>
 
@@ -250,8 +239,7 @@
         <li><span>Juros</span><strong>Nenhum</strong></li>
         <li><span>Entrada usada na comparação</span><strong>{{ c.cenarios.entrada|brl }} ({{ c.cenarios.entrada_pct|round(1) }}%)</strong></li>
       </ul>
-      <p class="menor">Negocie o desconto por pagamento à vista e peça o valor final por escrito,
-      com recibo e nota fiscal.</p>
+      <p class="menor">Peça o valor final por escrito, com recibo e nota fiscal.</p>
 
       <h4>Financiamento com juros — tabela Price</h4>
       <ul class="listagem-detalhes">
@@ -263,7 +251,7 @@
         <li><span>Total pago</span><strong>{{ cj.total_pago|brl }}</strong></li>
         <li><span>Juros do crédito</span><strong>{{ cj.juros|brl }}</strong></li>
       </ul>
-      <p class="menor">Simulação sem IOF e tarifas: o contrato real vem com CET um pouco maior.
+      <p class="menor">Simulação sem IOF e tarifas — confira o CET na proposta.
       {% if cj.parcela == 0 %}<strong>Entrada igual ou maior que o preço:</strong> nada a financiar.{% endif %}</p>
     </div>
 
@@ -277,8 +265,8 @@
         <li><span>Total pago</span><strong>{{ sj.total_pago|brl }}</strong></li>
         <li><span>Juros</span><strong>Nenhum</strong></li>
       </ul>
-      <p class="menor">Campanhas “X vezes sem juros” costumam exigir condições: CPF ou CNPJ, cartão,
-      troca do usado, estoque limitado e prazo de campanha. Confirme a condição na concessionária.</p>
+      <p class="menor">Campanhas “X vezes sem juros” podem exigir CPF/CNPJ, troca do usado ou
+      estoque limitado — confirme na concessionária.</p>
 
       <h4>Consórcio — sem juros de banco</h4>
       <ul class="listagem-detalhes">
@@ -289,8 +277,8 @@
         <li><span>Total estimado</span><strong>{{ co.total_pago|brl }}</strong></li>
         <li><span>Juros de banco</span><strong>Nenhum</strong></li>
       </ul>
-      <p class="menor">O consórcio não é garantia de data: o sorteio é aleatório (ou use lance/compra
-      antecipada) e há fundo de reserva além da taxa de administração.</p>
+      <p class="menor">O consórcio não garante data: o sorteio é aleatório (ou use lance) e há
+      fundo de reserva além da taxa de administração.</p>
     </div>
   </div>
 
@@ -326,53 +314,19 @@
   <p>Sem cadastro local para esta marca — pesquise no Google Maps:
     <a class="btn pequeno" href="{{ c.maps_busca }}" target="_blank" rel="noopener">Buscar {{ c.marca }} em Fortaleza</a></p>
   {% endif %}
-  <p class="menor">Confirme estoque e condições por telefone antes de sair. Leve a concorrência
-  (a tabela acima) para negociar o preço à vista.</p>
 </section>
 {% endfor %}
-
-<section class="card">
-  <h2>Formas de compra — como cada uma funciona</h2>
-  <div class="metodos">
-    {% for m in rel.metodos %}
-    <details class="metodo">
-      <summary>{{ m.nome }}</summary>
-      <p class="resumo">{{ m.resumo }}</p>
-      <div class="dois-colunas">
-        <div>
-          <h4>Como funciona</h4>
-          <ul>{% for x in m.como_funciona %}<li>{{ x }}</li>{% endfor %}</ul>
-          <h4>Vantagens</h4>
-          <ul>{% for x in m.vantagens %}<li>{{ x }}</li>{% endfor %}</ul>
-        </div>
-        <div>
-          <h4>Atenção a</h4>
-          <ul class="marcadores negativo">{% for x in m.cuidados %}<li>{{ x }}</li>{% endfor %}</ul>
-          <h4>Documentos</h4>
-          <ul>{% for x in m.documentos %}<li>{{ x }}</li>{% endfor %}</ul>
-        </div>
-      </div>
-    </details>
-    {% endfor %}
-  </div>
-</section>
 
 <section class="card">
   <h2>Dicas de negociação</h2>
   <ul class="marcadores">
     {% for d in rel.dicas %}<li>{{ d }}</li>{% endfor %}
   </ul>
-  <p class="menor">Precisa de outra taxa ou prazo? Use o
-  <a href="{{ url_for('routes.financiamento') }}">simulador de financiamento</a> e a
-  <a href="{{ url_for('routes.cdi') }}">calculadora de CDI</a> para comparar comprar à vista versus
-  financiar.</p>
 </section>
 
 <p class="menor disclaimer">
-  Relatório gerado pelo CarPrice Fortaleza. Preços de loja virtual/tabela e garantias são dados de
-  referência — o valor à vista definitivo é o da proposta escrita da concessionária. Condições de
-  campanha (sem juros, bônus na troca, prazos) mudam sem aviso e podem exigir CPF/CNPJ, troca do
-  usado ou cartão. Simulações sem IOF e tarifas: confirme o CET no contrato.
+  Gerado pelo CarPrice Fortaleza — preços de tabela e garantias são referência; o valor à vista
+  definitivo é o da proposta escrita da concessionária. Simulações sem IOF: confirme o CET.
 </p>
 {% endif %}
 {% endblock %}

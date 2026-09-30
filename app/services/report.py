@@ -1,5 +1,3 @@
-"""Monta o relatorio detalhado: precos, comentarios, compra e concessionarias."""
-
 from __future__ import annotations
 
 from urllib.parse import quote
@@ -31,7 +29,6 @@ def _marca_bate(marca: str, lista: list[str]) -> bool:
 
 
 def concessionarias_para(marca: str, data_dir: str) -> list[dict]:
-    """Concessionarias da marca; se nao houver cadastro, devolve alternativas uteis."""
     todos = carregar_concessionarias(data_dir)
     marca_n = normalizar(marca or "")
     if not marca_n:
@@ -39,7 +36,6 @@ def concessionarias_para(marca: str, data_dir: str) -> list[dict]:
     else:
         filtradas = [d for d in todos if _marca_bate(marca_n, d.get("marcas", []))]
         if not filtradas:
-            # sem cadastro exato da marca: oferece lojas multimarcas da cidade
             filtradas = [
                 d
                 for d in todos
@@ -68,7 +64,6 @@ def _fontes_do(resultado: dict) -> list[dict]:
     status = resultado.get("fontes_status")
     if status:
         return status
-    # resultados salvos em versoes antigas: reconstrói a lista
     fontes = [
         {
             "nome": "Portais de anuncios",
@@ -90,7 +85,6 @@ def _fontes_do(resultado: dict) -> list[dict]:
 
 
 def _comparativo_marca(marca: str, catalogo: dict) -> list[dict]:
-    """Outros modelos da mesma marca, para enriquecer o relatorio."""
     marca_n = normalizar(marca or "")
     if not marca_n:
         return []

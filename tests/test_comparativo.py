@@ -62,9 +62,6 @@ def _executar(monkeypatch, selecoes=None, **condicoes):
     )
 
 
-# ---------------------------------------------------------------- catalogo
-
-
 def test_catalogo_todos_modelos_com_preco_a_vista_e_garantia():
     import json
 
@@ -87,8 +84,8 @@ def test_modelos_desejados_pelo_usuario_existem():
     por_modelo = {(m["marca"], m["modelo"]): m for m in catalogo["modelos"]}
 
     dolphin = por_modelo[("BYD", "Dolphin Mini")]
-    assert dolphin["preco_novo_ref"] == 118990  # preço de loja virtual/tabela
-    assert dolphin["preco_a_vista_ref"] == 109990  # campanha à vista de pessoa física
+    assert dolphin["preco_novo_ref"] == 118990
+    assert dolphin["preco_a_vista_ref"] == 109990
     assert dolphin["garantia"]["anos"] == 6
     assert dolphin["garantia"]["bateria_anos"] == 8
 
@@ -103,9 +100,6 @@ def test_modelos_desejados_pelo_usuario_existem():
 
     marcas_vw = next(m for m in catalogo["marcas"] if m["nome"] == "Volkswagen")
     assert "Polo Track" in marcas_vw["modelos"]
-
-
-# ------------------------------------------------------------ cenarios
 
 
 def test_cenarios_matematica_correta():
@@ -129,7 +123,7 @@ def test_cenarios_matematica_correta():
 
     co = cenarios["consorcio"]
     assert co["juros"] == 0.0
-    assert abs(co["total_pago"] - 110000.0) < 0.01  # 10% de taxa de administração
+    assert abs(co["total_pago"] - 110000.0) < 0.01
     assert abs(co["parcela"] - 110000.0 / 60) < 0.01
 
 
@@ -151,9 +145,6 @@ def test_entrada_fixa_e_pct():
     assert estourada["sem_juros"]["parcela"] == 0.0
 
 
-# ------------------------------------------------------- relatorio offline
-
-
 def test_comparativo_com_busca_web(monkeypatch):
     cmp_id, rel = _executar(monkeypatch)
     assert cmp_id and rel["carros"]
@@ -162,7 +153,6 @@ def test_comparativo_com_busca_web(monkeypatch):
 
     dolphin = next(c for c in rel["carros"] if c["modelo"] == "Dolphin Mini")
     assert dolphin["preco_loja"] == 118990
-    # mediana web de 108.000 dentro da faixa de confiança: substitui a base
     assert dolphin["preco_a_vista"] == 108000
     assert dolphin["origem_avista"] == "web"
     assert dolphin["economia"] > 0
@@ -185,7 +175,6 @@ def test_comparativo_sem_web_usa_base_local(monkeypatch):
 
 def test_preco_web_fora_da_faixa_nao_substitui(monkeypatch):
     def web_suspeito(marca, modelo):
-        # preços plausíveis como 0 km, porém todos muito abaixo da faixa confiável
         precos = [
             {"titulo": "usado barato", "url": f"https://u{i}", "trecho": "", "preco": preco,
              "tipo": "preco", "consulta": "q"}
@@ -208,9 +197,6 @@ def test_modelo_desconhecido_vira_erro_sem_parar_relatorio(monkeypatch):
     _, rel = _executar(monkeypatch, selecoes=selecoes)
     assert len(rel["carros"]) == 4
     assert any("não encontrado" in e["motivo"] for e in rel["erros"])
-
-
-# --------------------------------------------------------------- rotas
 
 
 def test_rota_comparativo_formulario():
@@ -247,11 +233,10 @@ def test_post_gera_relatorio_e_permanece_acessivel(monkeypatch):
     assert "Preços e garantia" in html
     assert "Garantia do veículo" in html
     assert "Parcelas" in html
-    assert "R$ 20.000,00" in html  # entrada fixa aplicada a todos
+    assert "R$ 20.000,00" in html
     assert "Dolphin Mini" in html and "Polo Track" in html
     assert "consórcio" in html.lower()
 
-    # relatório persiste em disco e continua acessível sem a memória do processo
     import re
 
     cmp_id = re.search(r"/comparativo/([0-9a-f]{12})", html).group(1)

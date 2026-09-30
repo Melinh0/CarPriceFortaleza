@@ -25,8 +25,7 @@
       <input type="number" name="cdi" min="0" step="0.01" required value="{{ valores.cdi }}">
     </label>
   </div>
-  <p class="menor">Padrão: CDI de <strong>13,65% a.a.</strong> (setembro/2026, base 252 dias úteis).
-  Atualize o campo conforme a taxa vigente na data do seu investimento.</p>
+  <p class="menor">Padrão: CDI de <strong>13,65% a.a.</strong> (set/2026) — ajuste conforme a taxa vigente.</p>
   <div class="acoes">
     <button class="btn primario" type="submit">Calcular rendimento</button>
   </div>
@@ -54,12 +53,10 @@
     <li><span>Rendimento líquido médio por mês</span><strong>{{ resultado.rendimento_mensal_medio|brl }}</strong></li>
   </ul>
   {% if resultado.iof_relevante %}
-  <div class="aviso">Atenção: aplicações de até 30 dias corridos também sofrem retenção de IOF
-  (além do IR de 22,5%), o que reduz o valor líquido apresentado.</div>
+  <div class="aviso">Até 30 dias corridos há também retenção de IOF (além do IR de 22,5%).</div>
   {% endif %}
-  <p class="menor">Cálculo com capitalização diária em dias úteis (base 252) e IR regressivo:
-  22,5% até 180 dias, 20% até 360 dias, 17,5% até 720 dias e 15% acima disso.
-  O imposto é apagado sobre o rendimento, não sobre o principal.</p>
+  <p class="menor">Capitalização diária em dias úteis (base 252) e IR regressivo sobre o
+  rendimento: 22,5% / 20% / 17,5% / 15% conforme o prazo.</p>
 </section>
 
 <section class="card">

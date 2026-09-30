@@ -1,5 +1,3 @@
-"""Infraestrutura comum dos scrapers: fetch, cache e extração de ofertas."""
-
 from __future__ import annotations
 
 import json
@@ -69,7 +67,6 @@ def _cache_set(key: str, data) -> None:
 
 
 def parse_price(text: str) -> float | None:
-    """Extrai um valor em R$ de um texto ('R$ 92.990,00' -> 92990.0)."""
     match = PRICE_RE.search(text or "")
     if not match:
         return None
@@ -84,7 +81,6 @@ def parse_price(text: str) -> float | None:
 
 
 def fetch(url: str, timeout: int = 12, use_cache: bool = True) -> str | None:
-    """Baixa uma pagina com cache local e retry. Retorna None em falha persistente."""
     if use_cache:
         cached = _cache_get("GET:" + url)
         if cached is not None:
@@ -102,7 +98,6 @@ def fetch(url: str, timeout: int = 12, use_cache: bool = True) -> str | None:
         if resp.status_code == 200 and resp.text:
             html = resp.text
             break
-        # 403/429/5xx: tenta de novo; 404 nao adianta insistir
         if resp.status_code in (404, 410):
             break
     if html is None:
@@ -113,7 +108,6 @@ def fetch(url: str, timeout: int = 12, use_cache: bool = True) -> str | None:
 
 
 def extract_offers(html: str, source: str, base_url: str) -> list[dict]:
-    """Extrai ofertas de um HTML por JSON-LD ou blocos de anuncio com preco."""
     soup = BeautifulSoup(html, "html.parser")
     offers: list[dict] = []
 
@@ -181,7 +175,6 @@ def extract_offers(html: str, source: str, base_url: str) -> list[dict]:
 
 
 def _extrair_por_atributos(soup: BeautifulSoup, source: str, base_url: str) -> list[dict]:
-    """Captura precos em atributos comuns de cards de anuncio (data-price, itemprop)."""
     ofertas: list[dict] = []
     for no in soup.select("[data-price], [itemprop='price'], meta[itemprop='price']"):
         bruto = no.get("data-price") or no.get("content") or no.get("value") or ""
@@ -211,7 +204,6 @@ def _extrair_por_atributos(soup: BeautifulSoup, source: str, base_url: str) -> l
 
 
 def _extrair_de_json_embutido(soup: BeautifulSoup, source: str, base_url: str) -> list[dict]:
-    """Varre JSON embutido em <script> (payloads de frameworks) procurando precos."""
     ofertas: list[dict] = []
     for script in soup.find_all("script"):
         texto = (script.string or "").strip()

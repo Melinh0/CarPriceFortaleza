@@ -4,9 +4,8 @@
 {% block content %}
 <section class="hero">
   <h1>Encontre o carro certo <em>em Fortaleza</em></h1>
-  <p>Selecione as características que você busca. O sistema pesquisa preços em sites,
-  levanta comentários de usuários, monta um relatório detalhado e indica em qual
-  concessionária da cidade ir — com endereço e rota.</p>
+  <p>Filtre por marca, preço e ano e gere um relatório com preços, comentários e
+  concessionárias da cidade.</p>
 </section>
 
 <form class="card form-busca" method="get" action="{{ url_for('routes.buscar') }}">
@@ -99,26 +98,21 @@
 
   <div class="acoes">
     <button class="btn primario" type="submit">Pesquisar carros e gerar relatório</button>
-    <a class="btn" href="{{ url_for('routes.comparativo') }}">Comparar carros novos</a>
-    <a class="btn" href="{{ url_for('routes.concessionarias') }}">Ver concessionárias</a>
   </div>
 </form>
 
 <section class="grid-3">
   <div class="card destaque">
     <h3>Preços reais</h3>
-    <p>Busca em portais de anúncios e pesquisas variadas na web, com cache local e
-    base de referência quando o site bloqueia a consulta.</p>
+    <p>Busca em portais de anúncios, com base de referência quando o site bloqueia a consulta.</p>
   </div>
   <div class="card destaque">
     <h3>Comentários de usuários</h3>
-    <p>Coleta opiniões de donos sobre o modelo — pontos fortes, fracos e o que dizem
-    sobre preço — além de relatos encontrados na web.</p>
+    <p>Pontos fortes, fracos e o que os donos dizem sobre preço.</p>
   </div>
   <div class="card destaque">
     <h3>Onde ir em Fortaleza</h3>
-    <p>Relatório lista as concessionárias da marca na cidade com endereço, telefone,
-    horário e botão de rota no Google Maps.</p>
+    <p>Concessionárias da marca com endereço, telefone e rota no Google Maps.</p>
   </div>
 </section>
 {% endblock %}

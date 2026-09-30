@@ -1,5 +1,3 @@
-"""Comentarios e opinioes de usuarios sobre os modelos (web + base local)."""
-
 from __future__ import annotations
 
 import json
@@ -38,7 +36,6 @@ def _resumo_para(base: dict, modelo: str) -> dict:
 
 
 def coletar_comentarios(filtros: dict, data_dir: str) -> dict:
-    """Retorna comentarios agregados da base local + opinioes encontradas na web."""
     base = _carregar_base(data_dir)
     resumo = _resumo_para(base, filtros.get("modelo") or "")
 

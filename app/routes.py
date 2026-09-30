@@ -1,13 +1,13 @@
-"""Rotas do CarPrice: busca, relatorio, CDI, financiamento e concessionarias."""
-
 from __future__ import annotations
 
+import io
 from urllib.parse import quote
 
-from flask import Blueprint, abort, current_app, render_template, request
+from flask import Blueprint, abort, current_app, render_template, request, send_file
 
 from .services import cdi as cdi_service
 from .services import comparativo as comparativo_service
+from .services import exports as exports_service
 from .services import payments
 from .services import report as report_service
 from .services import search as search_service
@@ -109,7 +109,37 @@ def relatorio(search_id: str):
     if not resultado:
         abort(404)
     relatorio_dados = report_service.gerar_relatorio(resultado, current_app.config)
-    return render_template("report.html", rel=relatorio_dados)
+    return render_template("report.html", rel=relatorio_dados, search_id=search_id)
+
+
+@bp.route("/relatorio/<search_id>/pdf")
+def relatorio_pdf(search_id: str):
+    resultado = search_service.recuperar_busca(search_id, current_app.config)
+    if not resultado:
+        abort(404)
+    relatorio_dados = report_service.gerar_relatorio(resultado, current_app.config)
+    arquivo = exports_service.relatorio_pdf(relatorio_dados)
+    return send_file(
+        io.BytesIO(arquivo),
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name=f"relatorio-{search_id}.pdf",
+    )
+
+
+@bp.route("/relatorio/<search_id>/xlsx")
+def relatorio_xlsx(search_id: str):
+    resultado = search_service.recuperar_busca(search_id, current_app.config)
+    if not resultado:
+        abort(404)
+    relatorio_dados = report_service.gerar_relatorio(resultado, current_app.config)
+    arquivo = exports_service.relatorio_xlsx(relatorio_dados)
+    return send_file(
+        io.BytesIO(arquivo),
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        as_attachment=True,
+        download_name=f"relatorio-{search_id}.xlsx",
+    )
 
 
 @bp.route("/comparativo", methods=["GET", "POST"])
@@ -171,6 +201,34 @@ def comparativo_detalhe(cmp_id: str):
         erro=None,
         selecoes=rel.get("selecoes", []),
         condicoes=rel.get("condicoes", dict(comparativo_service.CONDICOES_PADRAO)),
+    )
+
+
+@bp.route("/comparativo/<cmp_id>/pdf")
+def comparativo_pdf(cmp_id: str):
+    rel = comparativo_service.recuperar_comparativo(cmp_id, current_app.config)
+    if not rel:
+        abort(404)
+    arquivo = exports_service.comparativo_pdf(rel)
+    return send_file(
+        io.BytesIO(arquivo),
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name=f"comparativo-{cmp_id}.pdf",
+    )
+
+
+@bp.route("/comparativo/<cmp_id>/xlsx")
+def comparativo_xlsx(cmp_id: str):
+    rel = comparativo_service.recuperar_comparativo(cmp_id, current_app.config)
+    if not rel:
+        abort(404)
+    arquivo = exports_service.comparativo_xlsx(rel)
+    return send_file(
+        io.BytesIO(arquivo),
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        as_attachment=True,
+        download_name=f"comparativo-{cmp_id}.xlsx",
     )
 
 
@@ -236,7 +294,17 @@ def concessionarias():
     data_dir = current_app.config["DATA_DIR"]
     if marca:
         lista = report_service.concessionarias_para(marca, data_dir)
-        busca_mapa = MAPS_BUSCA.format(query=quote(f"concessionaria {marca} Fortaleza CE"))
+        marca_tem_loja = any(
+            report_service._marca_bate(
+                search_service.normalizar(marca), d.get("marcas", [])
+            )
+            for d in lista
+        )
+        busca_mapa = (
+            ""
+            if marca_tem_loja
+            else MAPS_BUSCA.format(query=quote(f"concessionaria {marca} Fortaleza CE"))
+        )
     else:
         lista = search_service.carregar_concessionarias(data_dir)
         for item in lista:

@@ -24,8 +24,8 @@
       <input type="number" name="meses" min="1" max="120" required value="{{ valores.meses }}">
     </label>
   </div>
-  <p class="menor">Taxas de financiamento de concessionária costumam ficar entre 11% e 20% a.a.
-  Confira sempre o <strong>CET</strong> (Custo Efetivo Total) no contrato — ele inclui IOF e tarifas.</p>
+  <p class="menor">Taxas de concessionária costumam ficar entre 11% e 20% a.a. — confira o
+  <strong>CET</strong> no contrato.</p>
   <div class="acoes">
     <button class="btn primario" type="submit">Simular parcelas</button>
   </div>
@@ -50,18 +50,7 @@
     <li><span>Prazo</span><strong>{{ resultado.meses }} meses</strong></li>
     <li><span>Custo do crédito</span><strong>{{ resultado.juros|brl }} de juros</strong></li>
   </ul>
-  <div class="aviso">Simulação sem IOF e tarifas bancárias. O valor real do contrato pode ser
-  ligeiramente maior — compare com a simulação oficial do banco e com o CET.</div>
+  <p class="menor">Simulação sem IOF e tarifas — compare com a oferta oficial do banco e o CET.</p>
 </section>
 {% endif %}
-
-<section class="card">
-  <h2>Alternativas ao financiamento</h2>
-  <p>Antes de decidir, compare com pagamento à vista, consórcio e troca do usado —
-  veja a descrição completa de cada método no relatório de qualquer busca
-  ou na seção <a href="{{ url_for('routes.index') }}">Buscar carros</a>.</p>
-  <p class="menor">Dica: aplique o valor da entrada ou do carro na
-  <a href="{{ url_for('routes.cdi') }}">calculadora de CDI</a> para verificar quanto o seu dinheiro
-  rende esperando comprar à vista.</p>
-</section>
 {% endblock %}

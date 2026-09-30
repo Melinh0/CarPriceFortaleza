@@ -1,11 +1,3 @@
-"""Comparativo de carros novos: preco a vista, financiamento, parcelas e garantia.
-
-Monta um relatorio lado a lado para varios modelos novos escolhidos pelo usuario,
-com precos de loja virtual x precos a vista reais, tres cenarios de parcelamento
-(com juros, sem juros e consorcio) usando a entrada definida, garantia de fabrica
-e as concessionarias da marca em Fortaleza.
-"""
-
 from __future__ import annotations
 
 import json
@@ -26,9 +18,7 @@ COMPARATIVO_TIMEOUT = 75
 COMPARATIVO_GRACIA = 15
 MAX_CARROS = 6
 MAX_CONCESSIONARIAS_POR_CARRO = 4
-# faixa de precos plausiveis para um 0 km em relacao ao preco de tabela/loja
 FAIXA_PRECO_0KM = (0.75, 1.10)
-# a web so substitui a estimativa local se a mediana estiver dentro desta faixa
 FAIXA_CONFIANCA_WEB = (0.85, 1.02)
 MINIMOS_PRECOS_WEB = 3
 
@@ -46,7 +36,6 @@ _COMPARATIVOS: dict[str, dict] = {}
 
 
 def resolver_modelo(selecao: dict, catalogo: dict) -> dict | None:
-    """Resolve uma selecao marca/modelo para um item do catalogo."""
     encontrados = _modelos_selecionados(selecao, catalogo)
     if not encontrados:
         return None
@@ -65,7 +54,6 @@ def _entrada_para(preco: float, cond: dict) -> float:
 
 
 def montar_cenarios(preco: float, cond: dict) -> dict:
-    """Cenarios de pagamento com a mesma entrada: a vista, com juros, sem juros e consorcio."""
     entrada = _entrada_para(preco, cond)
     meses = int(cond.get("meses") or 0)
     meses_sem_juros = int(cond.get("meses_sem_juros") or 0)
@@ -135,7 +123,6 @@ def _precos_plausiveis(mencoes: list[dict], preco_loja: float) -> list[float]:
 
 
 def _definir_preco_avista(preco_base: float, precos_web: list[float]) -> tuple[float, str, str | None]:
-    """Cruza a estimativa local com os precos 0 km achados na web."""
     if len(precos_web) < MINIMOS_PRECOS_WEB:
         return preco_base, "base", None
 

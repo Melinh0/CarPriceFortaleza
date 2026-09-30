@@ -1,5 +1,3 @@
-"""Orquestra a busca: scrapers ao vivo, base local, web e comentarios."""
-
 from __future__ import annotations
 
 import difflib
@@ -41,7 +39,6 @@ def carregar_concessionarias(data_dir: str) -> list[dict]:
 
 
 def _aproximar(alvo: str, opcoes: list[str]) -> str:
-    """Aproxima um nome digitado pelo usuario pelo nome real do catalogo."""
     if not alvo or alvo in opcoes:
         return alvo
     proximo = difflib.get_close_matches(alvo, sorted(opcoes), n=1, cutoff=0.65)
@@ -66,7 +63,6 @@ def _modelos_selecionados(filtros: dict, catalogo: dict) -> list[dict]:
     if exatos:
         return exatos
 
-    # acentos, erro de digitacao ou trecho em comum
     marcas_cat = sorted({normalizar(i["marca"]) for i in catalogo["modelos"]})
     marca = _aproximar(marca, marcas_cat) if marca else marca
     modelos_cat = sorted(
@@ -87,7 +83,6 @@ def _modelos_selecionados(filtros: dict, catalogo: dict) -> list[dict]:
     if flexiveis:
         return flexiveis
 
-    # modelo nao pertence a marca escolhida: prioriza o modelo
     if modelo:
         por_modelo = [
             item for item in catalogo["modelos"] if normalizar(item["modelo"]) == modelo
@@ -95,7 +90,6 @@ def _modelos_selecionados(filtros: dict, catalogo: dict) -> list[dict]:
         if por_modelo:
             return por_modelo
 
-    # ultimo recurso: qualquer item da marca (evita relatorio sem ofertas)
     if marca and not modelo:
         return [
             item
@@ -106,7 +100,6 @@ def _modelos_selecionados(filtros: dict, catalogo: dict) -> list[dict]:
 
 
 def ofertas_estimadas(filtros: dict, catalogo: dict) -> list[dict]:
-    """Ofertas de referencia geradas da base local (rotuladas como estimativa)."""
     modelos = _modelos_selecionados(filtros, catalogo)
     caracteristicas_pool = catalogo["caracteristicas"]
     vendedores = ["Concessionaria autorizada", "Multimarcas", "Particular"]
@@ -308,11 +301,6 @@ def _rotulos_relaxados(chaves: set[str]) -> list[str]:
 
 
 def _filtrar_sem_vazio(ofertas: list[dict], filtros: dict) -> tuple[list[dict], list[str]]:
-    """Aplica os filtros e, se sobrarem poucos resultados, relaxa em etapas.
-
-    1a etapa: solta preco/ano/km/caracteristicas (mantem marca, modelo e
-    combustivel). 2a etapa: solta tudo. Assim o relatorio nunca fica vazio.
-    """
     if not ofertas:
         return [], []
 
@@ -371,10 +359,8 @@ def executar_busca(filtros: dict, config: dict) -> tuple[str, dict]:
         elif tipo == "comentarios":
             comentarios = dados or comentarios
 
-    # coleta tudo o que terminar dentro do tempo, sem descartar fontes
     concluidos, pendentes = futures_wait(set(futuros), timeout=BUSCA_TIMEOUT)
     if pendentes:
-        # pequena graca para nao perder fontes que estavam quase prontas
         extras, pendentes = futures_wait(pendentes, timeout=BUSCA_GRACIA)
         concluidos = set(concluidos) | set(extras)
 
@@ -387,7 +373,6 @@ def executar_busca(filtros: dict, config: dict) -> tuple[str, dict]:
     for futuro in pendentes:
         futuro.cancel()
         erros.append({"fonte": futuros[futuro], "motivo": "tempo esgotado"})
-    # nao bloqueia a resposta esperando threads presas em rede
     pool.shutdown(wait=False, cancel_futures=True)
 
     selecionados = _modelos_selecionados(filtros, catalogo)

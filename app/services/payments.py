@@ -1,5 +1,3 @@
-"""Métodos de compra de carro e simulador de financiamento (tabela Price)."""
-
 from __future__ import annotations
 
 METODOS = [
@@ -184,7 +182,6 @@ DICAS_NEGOCIACAO = [
 
 
 def simulate_financing(preco: float, entrada: float, taxa_aa: float, meses: int) -> dict:
-    """Simula financiamento pela tabela Price com taxa anual convertida em mensal."""
     if preco <= 0:
         raise ValueError("O preço do carro deve ser maior que zero.")
     if meses <= 0:

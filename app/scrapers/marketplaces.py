@@ -1,5 +1,3 @@
-"""Scrapers de portais de anuncios de veiculos (iCarros, Webmotors, Mobiauto)."""
-
 from __future__ import annotations
 
 import time
@@ -21,11 +19,6 @@ class PortalScraper:
     base_url = ""
 
     def build_urls(self, filtros: dict) -> list[str]:
-        """Candidatos do mais especifico para o mais generico.
-
-        Se o portal nao tiver a pagina exata do modelo, tenta a pagina da marca
-        e por fim a listagem geral — assim a busca nunca fica sem resposta.
-        """
         marca = _slug(filtros.get("marca") or "")
         modelo = _slug(filtros.get("modelo") or "")
         caminhos: list[str] = []
@@ -92,7 +85,6 @@ SCRAPERS = [
 
 
 def buscar_em_portais(filtros: dict) -> list[dict]:
-    """Consulta todos os portais em paralelo; falha de um nao afeta os demais."""
     ofertas: list[dict] = []
     pool = ThreadPoolExecutor(max_workers=len(SCRAPERS))
     futuros = {
@@ -104,7 +96,6 @@ def buscar_em_portais(filtros: dict) -> list[dict]:
             ofertas.extend(futuro.result() or [])
         except Exception:
             continue
-    # nao espera scrapers presos: o tempo da busca e limitado
     pool.shutdown(wait=False, cancel_futures=True)
 
     dedup: dict[tuple, dict] = {}

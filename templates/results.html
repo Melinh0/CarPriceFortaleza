@@ -18,17 +18,13 @@
 
 {% if resultado.filtros_relaxados %}
 <div class="aviso">
-  Filtros de {{ resultado.filtros_relaxados|join(', ') }} relaxados para gerar resultados —
-  o relatório detalhado explica o ajuste.
+  Filtros de {{ resultado.filtros_relaxados|join(', ') }} relaxados para gerar resultados.
 </div>
 {% endif %}
 
 {% if resultado.fontes_ao_vivo == 0 %}
 <div class="aviso">
-  Nenhum anúncio ao vivo foi capturado desta vez — os portais podem ter bloqueado a
-  automação ou mudado a estrutura da página. Os valores exibidos vêm da
-  <strong>base local de referência</strong> e continuam úteis para dimensionar o preço
-  de mercado. O relatório indica a origem de cada dado.
+  Nenhum anúncio ao vivo desta vez — os valores vêm da <strong>base local de referência</strong>.
 </div>
 {% endif %}
 
@@ -101,15 +97,9 @@
     <li>
       <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.titulo }}</a>
       {% if m.preco %}<span class="selo vivo">{{ m.preco|brl }}</span>{% endif %}
-      {% if m.trecho %}<p class="menor">{{ m.trecho }}</p>{% endif %}
     </li>
     {% endfor %}
   </ul>
 </section>
 {% endif %}
-
-<div class="acoes">
-  <a class="btn primario" href="{{ url_for('routes.relatorio', search_id=search_id) }}">Ver relatório detalhado</a>
-  <a class="btn" href="{{ url_for('routes.index') }}">Refazer busca</a>
-</div>
 {% endblock %}
