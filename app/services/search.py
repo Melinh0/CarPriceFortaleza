@@ -105,6 +105,15 @@ def ofertas_estimadas(filtros: dict, catalogo: dict) -> list[dict]:
     vendedores = ["Concessionaria autorizada", "Multimarcas", "Particular"]
     cidades = ["Fortaleza - CE"] * 8 + ["Maracanau - CE", "Caucaia - CE"]
 
+    modelo_alvo = bool(normalizar(filtros.get("modelo") or ""))
+    marca_alva = bool(normalizar(filtros.get("marca") or ""))
+    if modelo_alvo:
+        n_usados = 11
+    elif marca_alva:
+        n_usados = 5
+    else:
+        n_usados = 2
+
     ofertas: list[dict] = []
     for item in modelos:
         seed = int(hashlib.md5(
@@ -133,11 +142,15 @@ def ofertas_estimadas(filtros: dict, catalogo: dict) -> list[dict]:
             }
         )
 
-        for i in range(5):
-            preco = item["preco_usado_ref"] * (1 + rng.uniform(-0.13, 0.15))
-            ano = rng.randint(2019, 2025)
-            km = rng.randint(8_000, 12_000) * (2026 - ano)
-            extras = rng.sample(caracteristicas_pool, k=5)
+        for i in range(n_usados):
+            ano = 2025 - (i % 8)
+            fator = 1 + rng.uniform(-0.10, 0.12) - 0.045 * max(2022 - ano, 0)
+            preco = max(item["preco_usado_ref"] * fator, item["preco_usado_ref"] * 0.45)
+            km = int(rng.uniform(8_000, 15_000) * (2026 - ano))
+            extras = [caracteristicas_pool[i % len(caracteristicas_pool)]] + rng.sample(
+                caracteristicas_pool, k=4
+            )
+            extras = list(dict.fromkeys(extras))
             ofertas.append(
                 {
                     "titulo": f"{item['marca']} {item['modelo']} {ano}/{ano % 100:02d} - {item['motor']} {item['cambio']}",

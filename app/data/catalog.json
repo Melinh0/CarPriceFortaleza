@@ -1,17 +1,19 @@
 {
-  "atualizado_em": "2026-09-30",
-  "observacao": "preco_novo_ref = preco de tabela/loja virtual; preco_a_vista_ref = estimativa de negociacao a vista na concessionaria (menor). garantia = prazo de referencia de fabrica. Confirme sempre os tres valores na concessionaria.",
+  "atualizado_em": "2026-10-01",
+  "observacao": "preco_novo_ref = preco de tabela/loja virtual; preco_a_vista_ref = estimativa de negociacao a vista (menor). preco_usado_ref = valor de mercado de um seminovo medio (ano/modelo referencia). garantia = prazo de referencia de fabrica. Modelos descontinuados trazem o ultimo preco de tabela. Confirme sempre os valores. tipo_motor e consumo/autonomia (km/L, km e kWh) sao referencias de fabrica/inmetro - confira na ficha tecnica oficial.",
   "marcas": [
     {
       "nome": "BYD",
       "modelos": [
-        "Atto 3",
-        "Dolphin",
         "Dolphin Mini",
-        "King",
-        "Seal",
+        "Dolphin",
+        "Atto 3",
         "Song Plus",
-        "Atto 2"
+        "Seal",
+        "King",
+        "Atto 2",
+        "Seal U",
+        "Shark"
       ]
     },
     {
@@ -20,20 +22,49 @@
         "Arrizo 6",
         "Tiggo 5x",
         "Tiggo 7 Pro",
-        "Tiggo 8 Pro"
+        "Tiggo 8 Pro",
+        "Tiggo 4 Pro",
+        "Arrizo 5",
+        "Arrizo 8",
+        "Omoda 5",
+        "Tiggo 7 Pro Max"
       ]
     },
     {
       "nome": "Chevrolet",
       "modelos": [
-        "Montana",
         "Onix",
         "Onix Plus",
-        "Spin",
         "Tracker",
+        "Montana",
         "Trax",
+        "Spin",
         "Sonic",
-        "Spark"
+        "Spark",
+        "Cruze",
+        "Prisma",
+        "Trailblazer",
+        "S10",
+        "Celta",
+        "Onix LTZ",
+        "Onix Plus LTZ",
+        "Tracker LTZ",
+        "Spin LTZ",
+        "Montana LTZ",
+        "Onix Turbo Automatico",
+        "Onix Plus Turbo Automatico",
+        "Onix Premier",
+        "Tracker Premier",
+        "Spin Premier",
+        "Trailblazer High Country",
+        "S10 High Country",
+        "Astra",
+        "Vectra",
+        "Meriva",
+        "Zafira",
+        "Cobalt",
+        "Agile",
+        "Captiva"
       ]
     },
     {
@@ -41,29 +72,64 @@
       "modelos": [
         "C3",
         "C3 Aircross",
-        "ë-C3"
+        "ë-C3",
+        "C3 Shine",
+        "Ë-C3 Shine",
+        "C3 Aircross Shine",
+        "Xsara Picasso"
       ]
     },
     {
       "nome": "Fiat",
       "modelos": [
         "Argo",
+        "Mobi",
         "Cronos",
+        "Pulse",
         "Fastback",
         "Grandetta",
-        "Mobi",
-        "Pulse",
         "Strada",
-        "Toro"
+        "Toro",
+        "Mobi Like",
+        "Argo Drive",
+        "Cronos Drive",
+        "Pulse Impetus",
+        "Pulse Drive",
+        "Strada Volcano",
+        "Toro Volcano",
+        "Fastback Turbo 200",
+        "Punto",
+        "Mobi Trekking",
+        "Argo Trekking",
+        "Toro Rubicon",
+        "Uno",
+        "Palio",
+        "Palio Weekend",
+        "Siena",
+        "Idea",
+        "Linea",
+        "Bravo"
       ]
     },
     {
       "nome": "Ford",
       "modelos": [
+        "Ranger",
+        "Territory",
         "Bronco Sport",
         "Maverick",
-        "Ranger",
-        "Territory"
+        "Ka",
+        "EcoSport",
+        "Fusion",
+        "Focus",
+        "Fiesta",
+        "Mustang",
+        "Ranger XLT",
+        "Territory Titanium",
+        "Bronco Sport Wildtrak",
+        "Ranger Limited",
+        "Maverick Lariat",
+        "Bronco Sport Outer Banks"
       ]
     },
     {
@@ -91,51 +157,68 @@
         "Haval Jolion",
         "Ora 03",
         "Poer",
-        "Tank 300"
+        "Tank 300",
+        "Haval H6"
       ]
     },
     {
       "nome": "Honda",
       "modelos": [
-        "City",
         "Civic",
         "HR-V",
+        "City",
         "WR-V",
         "ZR-V",
         "City Hatch",
-        "CR-V"
+        "CR-V",
+        "Fit",
+        "Civic Hybrid",
+        "HR-V Touring",
+        "City Touring"
       ]
     },
     {
       "nome": "Hyundai",
       "modelos": [
-        "Creta",
         "HB20",
         "HB20S",
-        "Ioniq 5",
+        "Creta",
         "Tucson",
+        "Ioniq 5",
         "i20",
-        "Kona"
+        "Kona",
+        "HB20 Comfort",
+        "HB20 Dynamic",
+        "HB20 Premium",
+        "Creta Limited",
+        "Elantra"
       ]
     },
     {
       "nome": "Jeep",
       "modelos": [
-        "Commander",
         "Compass",
         "Renegade",
-        "Avenger"
+        "Commander",
+        "Avenger",
+        "Renegade Sport",
+        "Compass Sport",
+        "Compass Trailhawk",
+        "Wrangler"
       ]
     },
     {
       "nome": "Kia",
       "modelos": [
-        "EV5",
-        "K4",
-        "Seltos",
         "Sonet",
+        "Seltos",
+        "K4",
         "Sportage",
-        "Picanto"
+        "EV5",
+        "Picanto",
+        "Sportage GT-Line",
+        "Picanto LX",
+        "Cerato"
       ]
     },
     {
@@ -148,17 +231,25 @@
     {
       "nome": "Mitsubishi",
       "modelos": [
-        "Eclipse Cross",
         "L200 Triton",
-        "Outlander"
+        "Eclipse Cross",
+        "Outlander",
+        "Lancer"
       ]
     },
     {
       "nome": "Nissan",
       "modelos": [
-        "Frontier",
         "Kicks",
-        "Versa"
+        "Versa",
+        "Frontier",
+        "Kicks Advance",
+        "Versa Sense",
+        "March",
+        "Livina",
+        "Sentra",
+        "Tiida",
+        "X-Trail"
       ]
     },
     {
@@ -167,40 +258,56 @@
         "208",
         "2008",
         "3008",
-        "408"
+        "408",
+        "208 Active",
+        "208 Allure",
+        "2008 Active",
+        "308"
       ]
     },
     {
       "nome": "Porsche",
       "modelos": [
-        "Cayenne",
         "Macan",
-        "Taycan"
+        "Cayenne",
+        "Taycan",
+        "Panamera",
+        "911"
       ]
     },
     {
       "nome": "RAM",
       "modelos": [
         "Rampage",
-        "RAM 1000"
+        "RAM 1000",
+        "RAM 1500",
+        "RAM 1500 Laramie"
       ]
     },
     {
       "nome": "Renault",
       "modelos": [
-        "Duster",
         "Kwid",
         "Kwid E-Tech",
-        "Oroch",
         "Stepway",
-        "Kardian"
+        "Duster",
+        "Oroch",
+        "Kardian",
+        "Sandero",
+        "Kwid Zen",
+        "Duster Intens",
+        "Oroch Outsider",
+        "Logan",
+        "Fluence"
       ]
     },
     {
       "nome": "Suzuki",
       "modelos": [
         "Jimny",
-        "Vitara"
+        "Vitara",
+        "Swift",
+        "Swift Sport"
       ]
     },
     {
@@ -208,33 +315,60 @@
       "modelos": [
         "Corolla",
         "Corolla Cross",
-        "Hilux",
-        "SW4",
         "Yaris",
         "Yaris Cross",
+        "Hilux",
+        "SW4",
         "RAV4",
-        "bZ4X"
+        "bZ4X",
+        "Raize",
+        "Etios",
+        "Yaris Sedan",
+        "Yaris XLS",
+        "Corolla XEi",
+        "Corolla Altis",
+        "Hilux SRV",
+        "SW4 GR-S",
+        "Corolla Hybrid",
+        "Prius"
       ]
     },
     {
       "nome": "Volkswagen",
       "modelos": [
-        "Amarok",
-        "Nivus",
         "Polo",
-        "Polo Track",
+        "Virtus",
         "Saveiro",
         "T-Cross",
+        "Nivus",
         "Taos",
-        "Virtus",
-        "Tera"
+        "Amarok",
+        "Tera",
+        "Polo Track",
+        "Gol",
+        "Gol Sedan",
+        "Fox",
+        "Voyage",
+        "Up!",
+        "Polo Highline",
+        "T-Cross Highline",
+        "Virtus Highline",
+        "Nivus Highline",
+        "Saveiro Cross",
+        "Amarok Panamericana",
+        "Golf",
+        "Jetta",
+        "CrossFox",
+        "Pointer",
+        "Gol Trend"
       ]
     },
     {
       "nome": "Volvo",
       "modelos": [
         "EX30",
-        "EX40"
+        "EX40",
+        "XC60"
       ]
     }
   ],
@@ -243,7 +377,8 @@
     "Sedan",
     "SUV",
     "Picape",
-    "Monovolume"
+    "Monovolume",
+    "Esportivo"
   ],
   "combustiveis": [
     "Flex",
@@ -294,7 +429,10 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 305,
+      "bateria_kwh": 38.9
     },
     {
       "marca": "BYD",
@@ -315,7 +453,10 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 490,
+      "bateria_kwh": 60.5
     },
     {
       "marca": "BYD",
@@ -336,7 +477,10 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 480,
+      "bateria_kwh": 60.5
     },
     {
       "marca": "BYD",
@@ -357,7 +501,8 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
     },
     {
       "marca": "BYD",
@@ -378,7 +523,10 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 570,
+      "bateria_kwh": 82.5
     },
     {
       "marca": "BYD",
@@ -399,7 +547,8 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "BYD",
@@ -420,7 +569,8 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
-      }
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
     },
     {
       "marca": "Chery",
@@ -441,7 +591,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chery",
@@ -462,7 +613,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chery",
@@ -483,7 +635,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chery",
@@ -504,7 +657,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -525,7 +679,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -546,7 +701,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -567,7 +723,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -588,7 +745,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -609,7 +767,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -630,7 +789,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Chevrolet",
@@ -651,7 +811,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Chevrolet",
@@ -672,7 +833,10 @@
         "bateria_anos": 8,
         "bateria_km": 160000,
         "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 300,
+      "bateria_kwh": 37.0
     },
     {
       "marca": "Citroën",
@@ -693,7 +857,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Citroën",
@@ -714,7 +879,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Citroën",
@@ -735,7 +901,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 320,
+      "bateria_kwh": 44.0
     },
     {
       "marca": "Fiat",
@@ -756,7 +925,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -777,7 +947,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -798,7 +969,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -819,7 +991,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -840,7 +1013,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -861,7 +1035,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -882,7 +1057,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Fiat",
@@ -903,7 +1079,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Ford",
@@ -924,7 +1101,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Ford",
@@ -945,7 +1123,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Ford",
@@ -966,7 +1145,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Ford",
@@ -987,7 +1167,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "GAC",
@@ -1008,7 +1189,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "GAC",
@@ -1029,7 +1211,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 420,
+      "bateria_kwh": 44.0
     },
     {
       "marca": "Geely",
@@ -1051,7 +1236,10 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 310,
+      "bateria_kwh": 36.6
     },
     {
       "marca": "Geely",
@@ -1073,7 +1261,10 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 380,
+      "bateria_kwh": 46.0
     },
     {
       "marca": "Geely",
@@ -1095,7 +1286,10 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 430,
+      "bateria_kwh": 49.5
     },
     {
       "marca": "Geely",
@@ -1117,7 +1311,10 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 450,
+      "bateria_kwh": 49.5
     },
     {
       "marca": "Geely",
@@ -1139,7 +1336,8 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
     },
     {
       "marca": "Geely",
@@ -1161,7 +1359,8 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
     },
     {
       "marca": "Geely",
@@ -1183,7 +1382,8 @@
         "bateria_anos": 8,
         "bateria_km": 150000,
         "obs": "Uso pessoal: 6 anos ou 150.000 km de veículo, 8 anos ou 150.000 km da bateria de tração e 2 anos de assistência 24h (fonte: geelybrasil.com.br). Uso comercial: 1 ano ou 100.000 km."
-      }
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
     },
     {
       "marca": "GWM",
@@ -1204,7 +1404,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "GWM",
@@ -1225,7 +1426,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 350,
+      "bateria_kwh": 47.8
     },
     {
       "marca": "GWM",
@@ -1246,7 +1450,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "GWM",
@@ -1267,7 +1472,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Honda",
@@ -1288,7 +1494,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Honda",
@@ -1309,7 +1516,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Honda",
@@ -1330,7 +1538,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Honda",
@@ -1351,7 +1560,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Honda",
@@ -1372,7 +1582,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Honda",
@@ -1393,7 +1604,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Honda",
@@ -1414,7 +1626,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Hyundai",
@@ -1435,7 +1648,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Hyundai",
@@ -1456,7 +1670,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Hyundai",
@@ -1477,7 +1692,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Hyundai",
@@ -1498,7 +1714,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Hyundai",
@@ -1516,10 +1733,13 @@
       "garantia": {
         "anos": 3,
         "km": null,
-        "bateria_anos": null,
-        "bateria_km": null,
-        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato. Bateria: 8 anos ou 160.000 km."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 450,
+      "bateria_kwh": 77.4
     },
     {
       "marca": "Hyundai",
@@ -1540,7 +1760,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Hyundai",
@@ -1561,7 +1782,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Jeep",
@@ -1582,7 +1804,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Jeep",
@@ -1603,7 +1826,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Jeep",
@@ -1624,7 +1848,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Jeep",
@@ -1645,7 +1870,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Kia",
@@ -1666,7 +1892,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Kia",
@@ -1687,7 +1914,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Kia",
@@ -1708,7 +1936,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Kia",
@@ -1729,7 +1958,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Kia",
@@ -1747,10 +1977,13 @@
       "garantia": {
         "anos": 3,
         "km": null,
-        "bateria_anos": null,
-        "bateria_km": null,
-        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+        "bateria_anos": 7,
+        "bateria_km": 150000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato. Bateria: 7 anos ou 150.000 km."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 510,
+      "bateria_kwh": 64.2
     },
     {
       "marca": "Kia",
@@ -1771,7 +2004,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Leapmotor",
@@ -1792,7 +2026,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 510,
+      "bateria_kwh": 62.0
     },
     {
       "marca": "Leapmotor",
@@ -1813,7 +2050,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 420,
+      "bateria_kwh": 52.9
     },
     {
       "marca": "Mitsubishi",
@@ -1834,7 +2074,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Mitsubishi",
@@ -1855,7 +2096,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Mitsubishi",
@@ -1876,7 +2118,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
     },
     {
       "marca": "Nissan",
@@ -1897,7 +2140,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Nissan",
@@ -1918,7 +2162,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Nissan",
@@ -1939,7 +2184,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Peugeot",
@@ -1960,7 +2206,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Peugeot",
@@ -1981,7 +2228,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Peugeot",
@@ -2002,7 +2250,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Peugeot",
@@ -2023,7 +2272,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Porsche",
@@ -2041,10 +2291,13 @@
       "garantia": {
         "anos": 3,
         "km": null,
-        "bateria_anos": null,
-        "bateria_km": null,
-        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato. Bateria: 8 anos ou 160.000 km."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 610,
+      "bateria_kwh": 100.0
     },
     {
       "marca": "Porsche",
@@ -2065,7 +2318,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Porsche",
@@ -2083,10 +2337,13 @@
       "garantia": {
         "anos": 3,
         "km": null,
-        "bateria_anos": null,
-        "bateria_km": null,
-        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato. Bateria: 8 anos ou 160.000 km."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 590,
+      "bateria_kwh": 105.0
     },
     {
       "marca": "RAM",
@@ -2107,7 +2364,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "RAM",
@@ -2128,7 +2386,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Renault",
@@ -2149,7 +2408,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Renault",
@@ -2170,7 +2430,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 265,
+      "bateria_kwh": 26.8
     },
     {
       "marca": "Renault",
@@ -2191,7 +2454,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Renault",
@@ -2212,7 +2476,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Renault",
@@ -2233,7 +2498,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Renault",
@@ -2254,7 +2520,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Turbo"
     },
     {
       "marca": "Suzuki",
@@ -2275,7 +2542,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Suzuki",
@@ -2296,7 +2564,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Toyota",
@@ -2317,7 +2586,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Toyota",
@@ -2338,7 +2608,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Toyota",
@@ -2359,7 +2630,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Toyota",
@@ -2380,7 +2652,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Toyota",
@@ -2401,7 +2674,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Toyota",
@@ -2422,7 +2696,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Toyota",
@@ -2443,7 +2718,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Hibrido"
     },
     {
       "marca": "Toyota",
@@ -2464,7 +2740,10 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
-      }
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 440,
+      "bateria_kwh": 71.4
     },
     {
       "marca": "Volkswagen",
@@ -2486,7 +2765,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volkswagen",
@@ -2507,7 +2787,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volkswagen",
@@ -2528,7 +2809,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volkswagen",
@@ -2549,7 +2831,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volkswagen",
@@ -2570,7 +2853,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volkswagen",
@@ -2591,7 +2875,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volkswagen",
@@ -2612,7 +2897,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Diesel"
     },
     {
       "marca": "Volkswagen",
@@ -2633,7 +2919,8 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
     },
     {
       "marca": "Volvo",
@@ -2651,10 +2938,13 @@
       "garantia": {
         "anos": 3,
         "km": null,
-        "bateria_anos": null,
-        "bateria_km": null,
-        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato. Bateria: 8 anos ou 160.000 km."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 450,
+      "bateria_kwh": 66.0
     },
     {
       "marca": "Volvo",
@@ -2672,10 +2962,13 @@
       "garantia": {
         "anos": 3,
         "km": null,
-        "bateria_anos": null,
-        "bateria_km": null,
-        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
-      }
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato. Bateria: 8 anos ou 160.000 km."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 510,
+      "bateria_kwh": 82.0
     },
     {
       "marca": "Volkswagen",
@@ -2697,7 +2990,3029 @@
         "bateria_anos": null,
         "bateria_km": null,
         "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
-      }
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "BYD",
+      "modelo": "Seal U",
+      "carroceria": "SUV",
+      "combustivel": "Eletrico",
+      "cambio": "Automatico",
+      "motor": "Eletrico 150 kW",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 259900,
+      "preco_usado_ref": 215000,
+      "consumo_km_l": 0,
+      "preco_a_vista_ref": 249500,
+      "garantia": {
+        "anos": 6,
+        "km": null,
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 500,
+      "bateria_kwh": 87.0
+    },
+    {
+      "marca": "BYD",
+      "modelo": "Shark",
+      "carroceria": "Picape",
+      "combustivel": "Hibrido",
+      "cambio": "Automatico",
+      "motor": "Hibrido PHEV 1.5 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 399900,
+      "preco_usado_ref": 345000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 383900,
+      "garantia": {
+        "anos": 6,
+        "km": null,
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Uso pessoal: 6 anos de veículo e 8 anos ou 160.000 km para motor e bateria (fonte: Autoesporte, mar/2026). Uso comercial tem prazos menores."
+      },
+      "tipo_motor": "Hibrido recarregavel (PHEV)"
+    },
+    {
+      "marca": "Chery",
+      "modelo": "Tiggo 4 Pro",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 119900,
+      "preco_usado_ref": 85000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 115100,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chery",
+      "modelo": "Arrizo 5",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 99900,
+      "preco_usado_ref": 70000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 95900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chery",
+      "modelo": "Arrizo 8",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 139900,
+      "preco_usado_ref": 98000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 134300,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chery",
+      "modelo": "Omoda 5",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 159900,
+      "preco_usado_ref": 115000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 153500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Cruze",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 149900,
+      "preco_usado_ref": 95000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 149900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Prisma",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 84900,
+      "preco_usado_ref": 55000,
+      "consumo_km_l": 14.5,
+      "preco_a_vista_ref": 84900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Trailblazer",
+      "carroceria": "SUV",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.8 Diesel",
+      "portas": 4,
+      "lugares": 7,
+      "preco_novo_ref": 349900,
+      "preco_usado_ref": 285000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 335900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "S10",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Manual",
+      "motor": "2.8 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 249900,
+      "preco_usado_ref": 175000,
+      "consumo_km_l": 9.0,
+      "preco_a_vista_ref": 249900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Celta",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 55900,
+      "preco_usado_ref": 32000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 55900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Onix LTZ",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 112900,
+      "preco_usado_ref": 75000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 108380,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Onix Plus LTZ",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 118900,
+      "preco_usado_ref": 78000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 114140,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Tracker LTZ",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.2 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 159900,
+      "preco_usado_ref": 115000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 153500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Spin LTZ",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.8",
+      "portas": 5,
+      "lugares": 7,
+      "preco_novo_ref": 132900,
+      "preco_usado_ref": 95000,
+      "consumo_km_l": 11.0,
+      "preco_a_vista_ref": 127580,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Montana LTZ",
+      "carroceria": "Picape",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.2 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 124900,
+      "preco_usado_ref": 92000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 119900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Citroën",
+      "modelo": "C3 Shine",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 99900,
+      "preco_usado_ref": 68000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 95900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Citroën",
+      "modelo": "Ë-C3 Shine",
+      "carroceria": "Hatch",
+      "combustivel": "Eletrico",
+      "cambio": "Automatico",
+      "motor": "Eletrico 82 kW",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 124900,
+      "preco_usado_ref": 95000,
+      "consumo_km_l": 0,
+      "preco_a_vista_ref": 119900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Eletrico",
+      "autonomia_km": 320,
+      "bateria_kwh": 44.0
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Mobi Like",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 74900,
+      "preco_usado_ref": 52000,
+      "consumo_km_l": 14.0,
+      "preco_a_vista_ref": 71900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Argo Drive",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.3",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 97900,
+      "preco_usado_ref": 66000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 93980,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Cronos Drive",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.3",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 101900,
+      "preco_usado_ref": 69000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 97820,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Pulse Impetus",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3 T270",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 139900,
+      "preco_usado_ref": 100000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 134300,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Pulse Drive",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3 T270",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 119900,
+      "preco_usado_ref": 85000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 115100,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Strada Volcano",
+      "carroceria": "Picape",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3 T270",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 137900,
+      "preco_usado_ref": 100000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 132380,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Toro Volcano",
+      "carroceria": "Picape",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3 T270",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 189900,
+      "preco_usado_ref": 145000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 182300,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Fastback Turbo 200",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo 200",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 149900,
+      "preco_usado_ref": 110000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 143900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Punto",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 72900,
+      "preco_usado_ref": 42000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 72900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Ka",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 66900,
+      "preco_usado_ref": 42000,
+      "consumo_km_l": 14.5,
+      "preco_a_vista_ref": 66900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "EcoSport",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 129900,
+      "preco_usado_ref": 78000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 129900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Fusion",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 159900,
+      "preco_usado_ref": 85000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 159900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Focus",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 118900,
+      "preco_usado_ref": 65000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 118900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Fiesta",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 89900,
+      "preco_usado_ref": 55000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 89900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Mustang",
+      "carroceria": "Esportivo",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "5.0 V8",
+      "portas": 2,
+      "lugares": 4,
+      "preco_novo_ref": 479900,
+      "preco_usado_ref": 400000,
+      "consumo_km_l": 7.0,
+      "preco_a_vista_ref": 460700,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Ranger XLT",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.0 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 329900,
+      "preco_usado_ref": 275000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 316700,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Territory Titanium",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 169900,
+      "preco_usado_ref": 125000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 163100,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Bronco Sport Wildtrak",
+      "carroceria": "SUV",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "2.0 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 244900,
+      "preco_usado_ref": 200000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 235100,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "GWM",
+      "modelo": "Haval H6",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "2.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 189900,
+      "preco_usado_ref": 145000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 182300,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Honda",
+      "modelo": "Fit",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.4 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 105900,
+      "preco_usado_ref": 68000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 105900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Honda",
+      "modelo": "Civic Hybrid",
+      "carroceria": "Sedan",
+      "combustivel": "Hibrido",
+      "cambio": "CVT",
+      "motor": "Hibrido 2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 209900,
+      "preco_usado_ref": 175000,
+      "consumo_km_l": 17.0,
+      "preco_a_vista_ref": 201500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": 8,
+        "bateria_km": 160000,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Hibrido"
+    },
+    {
+      "marca": "Honda",
+      "modelo": "HR-V Touring",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.5",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 159900,
+      "preco_usado_ref": 118000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 153500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Honda",
+      "modelo": "City Touring",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.5",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 134900,
+      "preco_usado_ref": 100000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 129500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Hyundai",
+      "modelo": "HB20 Comfort",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 84900,
+      "preco_usado_ref": 57000,
+      "consumo_km_l": 14.0,
+      "preco_a_vista_ref": 81500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Hyundai",
+      "modelo": "HB20 Dynamic",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 95900,
+      "preco_usado_ref": 64000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 92060,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Hyundai",
+      "modelo": "HB20 Premium",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 109900,
+      "preco_usado_ref": 74000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 105500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Hyundai",
+      "modelo": "Creta Limited",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 144900,
+      "preco_usado_ref": 105000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 139100,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Jeep",
+      "modelo": "Renegade Sport",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.8 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 129900,
+      "preco_usado_ref": 90000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 124700,
+      "garantia": {
+        "anos": 5,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Jeep",
+      "modelo": "Compass Sport",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 164900,
+      "preco_usado_ref": 118000,
+      "consumo_km_l": 11.0,
+      "preco_a_vista_ref": 158300,
+      "garantia": {
+        "anos": 5,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Jeep",
+      "modelo": "Compass Trailhawk",
+      "carroceria": "SUV",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.0 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 224900,
+      "preco_usado_ref": 175000,
+      "consumo_km_l": 10.0,
+      "preco_a_vista_ref": 215900,
+      "garantia": {
+        "anos": 5,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Kia",
+      "modelo": "Sportage GT-Line",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "2.0 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 209900,
+      "preco_usado_ref": 165000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 201500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Kia",
+      "modelo": "Picanto LX",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 72900,
+      "preco_usado_ref": 50000,
+      "consumo_km_l": 14.5,
+      "preco_a_vista_ref": 69980,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "Kicks Advance",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.5 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 124900,
+      "preco_usado_ref": 88000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 119900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "Versa Sense",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 107900,
+      "preco_usado_ref": 74000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 103580,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "March",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 57900,
+      "preco_usado_ref": 38000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 57900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "Livina",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.8 Flex",
+      "portas": 5,
+      "lugares": 7,
+      "preco_novo_ref": 109900,
+      "preco_usado_ref": 72000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 109900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Peugeot",
+      "modelo": "208 Active",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 104900,
+      "preco_usado_ref": 72000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 100700,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Peugeot",
+      "modelo": "208 Allure",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 112900,
+      "preco_usado_ref": 78000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 108380,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Peugeot",
+      "modelo": "2008 Active",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 142900,
+      "preco_usado_ref": 103000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 137180,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Porsche",
+      "modelo": "Panamera",
+      "carroceria": "Sedan",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "2.9 V6 Turbo",
+      "portas": 4,
+      "lugares": 4,
+      "preco_novo_ref": 949900,
+      "preco_usado_ref": 780000,
+      "consumo_km_l": 8.0,
+      "preco_a_vista_ref": 911900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Porsche",
+      "modelo": "911",
+      "carroceria": "Esportivo",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "3.0 Twin Turbo",
+      "portas": 2,
+      "lugares": 4,
+      "preco_novo_ref": 1099900,
+      "preco_usado_ref": 900000,
+      "consumo_km_l": 7.5,
+      "preco_a_vista_ref": 1055900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "RAM",
+      "modelo": "RAM 1500",
+      "carroceria": "Picape",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "5.7 V8 HEMI",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 449900,
+      "preco_usado_ref": 380000,
+      "consumo_km_l": 7.0,
+      "preco_a_vista_ref": 431900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Sandero",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 74900,
+      "preco_usado_ref": 48000,
+      "consumo_km_l": 14.0,
+      "preco_a_vista_ref": 74900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Kwid Zen",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 74900,
+      "preco_usado_ref": 52000,
+      "consumo_km_l": 15.0,
+      "preco_a_vista_ref": 71900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Duster Intens",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 134900,
+      "preco_usado_ref": 95000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 129500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Oroch Outsider",
+      "carroceria": "Picape",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 136900,
+      "preco_usado_ref": 100000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 131420,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Suzuki",
+      "modelo": "Swift",
+      "carroceria": "Hatch",
+      "combustivel": "Gasolina",
+      "cambio": "CVT",
+      "motor": "1.2",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 109900,
+      "preco_usado_ref": 85000,
+      "consumo_km_l": 14.0,
+      "preco_a_vista_ref": 105500,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Raize",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 124900,
+      "preco_usado_ref": 92000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 119900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Etios",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.3",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 89900,
+      "preco_usado_ref": 58000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 89900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Yaris Sedan",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.5",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 106900,
+      "preco_usado_ref": 72000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 102620,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Yaris XLS",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.5",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 101900,
+      "preco_usado_ref": 70000,
+      "consumo_km_l": 14.0,
+      "preco_a_vista_ref": 97820,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Corolla XEi",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 178900,
+      "preco_usado_ref": 138000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 171740,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Corolla Altis",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 194900,
+      "preco_usado_ref": 150000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 187100,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Hilux SRV",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.8 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 254900,
+      "preco_usado_ref": 215000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 244700,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "SW4 GR-S",
+      "carroceria": "SUV",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.8 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 389900,
+      "preco_usado_ref": 335000,
+      "consumo_km_l": 9.0,
+      "preco_a_vista_ref": 374300,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Gol",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 89900,
+      "preco_usado_ref": 58000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 89900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Gol Sedan",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 86900,
+      "preco_usado_ref": 56000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 86900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Fox",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 76900,
+      "preco_usado_ref": 48000,
+      "consumo_km_l": 14.5,
+      "preco_a_vista_ref": 76900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Voyage",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 84900,
+      "preco_usado_ref": 55000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 84900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Up!",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 79900,
+      "preco_usado_ref": 52000,
+      "consumo_km_l": 15.0,
+      "preco_a_vista_ref": 79900,
+      "nota_a_vista": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Polo Highline",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 TSI",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 132900,
+      "preco_usado_ref": 95000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 127580,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "T-Cross Highline",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 TSI",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 166900,
+      "preco_usado_ref": 125000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 160220,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Virtus Highline",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 TSI",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 146900,
+      "preco_usado_ref": 108000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 141020,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Nivus Highline",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 TSI",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 156900,
+      "preco_usado_ref": 115000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 150620,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Saveiro Cross",
+      "carroceria": "Picape",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6 Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 122900,
+      "preco_usado_ref": 90000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 117980,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Amarok Panamericana",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "3.0 V6 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 339900,
+      "preco_usado_ref": 285000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 326300,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Volvo",
+      "modelo": "XC60",
+      "carroceria": "SUV",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "2.0 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 399900,
+      "preco_usado_ref": 330000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 383900,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Onix Turbo Automatico",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 107900,
+      "preco_usado_ref": 70000,
+      "consumo_km_l": 12.8,
+      "preco_a_vista_ref": 103600.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Onix Plus Turbo Automatico",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 114900,
+      "preco_usado_ref": 73000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 110300.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Onix Premier",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.0 Turbo Flex",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 118900,
+      "preco_usado_ref": 80000,
+      "consumo_km_l": 12.8,
+      "preco_a_vista_ref": 114100.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Tracker Premier",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.2 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 166900,
+      "preco_usado_ref": 120000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 160200.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Spin Premier",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.8",
+      "portas": 5,
+      "lugares": 7,
+      "preco_novo_ref": 138400,
+      "preco_usado_ref": 99000,
+      "consumo_km_l": 11.0,
+      "preco_a_vista_ref": 132900.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Trailblazer High Country",
+      "carroceria": "SUV",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.8 Diesel",
+      "portas": 4,
+      "lugares": 7,
+      "preco_novo_ref": 394900,
+      "preco_usado_ref": 315000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 379100.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "S10 High Country",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Manual",
+      "motor": "2.8 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 289900,
+      "preco_usado_ref": 195000,
+      "consumo_km_l": 9.0,
+      "preco_a_vista_ref": 278300.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Modelo descontinuado — o preço indicado e o ultimo valor de tabela quando saiu de linha; no mercado de seminovos vale a tabela FIPE do ano e da quilometragem do exemplar."
+      },
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Mobi Trekking",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0 Firefly",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 84900,
+      "preco_usado_ref": 53000,
+      "consumo_km_l": 15.0,
+      "preco_a_vista_ref": 81500.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Argo Trekking",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.3 Firefly",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 105000,
+      "preco_usado_ref": 63000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 100800.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Ranger Limited",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.0 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 359900,
+      "preco_usado_ref": 295000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 345500.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Maverick Lariat",
+      "carroceria": "Picape",
+      "combustivel": "Hibrido",
+      "cambio": "Automatico",
+      "motor": "2.5 Hibrido",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 240000,
+      "preco_usado_ref": 195000,
+      "consumo_km_l": 14.0,
+      "preco_a_vista_ref": 230400.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Hibrido"
+    },
+    {
+      "marca": "Ford",
+      "modelo": "Bronco Sport Outer Banks",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "1.5 EcoBoost",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 220000,
+      "preco_usado_ref": 172000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 211200.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Toro Rubicon",
+      "carroceria": "Picape",
+      "combustivel": "Diesel",
+      "cambio": "Automatico",
+      "motor": "2.2 Diesel",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 259900,
+      "preco_usado_ref": 195000,
+      "consumo_km_l": 8.5,
+      "preco_a_vista_ref": 249500.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Diesel"
+    },
+    {
+      "marca": "Citroën",
+      "modelo": "C3 Aircross Shine",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0 Turbo",
+      "portas": 4,
+      "lugares": 7,
+      "preco_novo_ref": 145990,
+      "preco_usado_ref": 101000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 140200.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "RAM",
+      "modelo": "RAM 1500 Laramie",
+      "carroceria": "Picape",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "5.7 V8 HEMI",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 494900,
+      "preco_usado_ref": 410000,
+      "consumo_km_l": 7.0,
+      "preco_a_vista_ref": 475100.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chery",
+      "modelo": "Tiggo 7 Pro Max",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.5 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 201990,
+      "preco_usado_ref": 153000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 193900.0,
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Golf",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.4 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 149900,
+      "preco_usado_ref": 78000,
+      "consumo_km_l": 12.5,
+      "preco_a_vista_ref": 143900.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Jetta",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.4 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 159900,
+      "preco_usado_ref": 75000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 153500.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "CrossFox",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 67900,
+      "preco_usado_ref": 37000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 65200.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Pointer",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 64900,
+      "preco_usado_ref": 34000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 62300.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Volkswagen",
+      "modelo": "Gol Trend",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 65900,
+      "preco_usado_ref": 35000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 63300.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Garantia total de 3 anos sem limite de quilometragem para a linha nacional (fonte: vw.com.br). Existe garantia estendida opcional de 6, 12 ou 24 meses."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Astra",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 84900,
+      "preco_usado_ref": 42000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 81500.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Vectra",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 104900,
+      "preco_usado_ref": 45000,
+      "consumo_km_l": 10.0,
+      "preco_a_vista_ref": 100700.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Meriva",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.8",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 91900,
+      "preco_usado_ref": 43000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 88200.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Zafira",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "2.0",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 124900,
+      "preco_usado_ref": 58000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 119900.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Cobalt",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 77900,
+      "preco_usado_ref": 38000,
+      "consumo_km_l": 11.0,
+      "preco_a_vista_ref": 74800.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Agile",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.4",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 64900,
+      "preco_usado_ref": 32000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 62300.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Chevrolet",
+      "modelo": "Captiva",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "Automatico",
+      "motor": "2.4",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 134900,
+      "preco_usado_ref": 55000,
+      "consumo_km_l": 9.0,
+      "preco_a_vista_ref": 129500.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica; nos modelos elétricos a bateria de alta tensão tem 8 anos ou 160.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Uno",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 62900,
+      "preco_usado_ref": 36000,
+      "consumo_km_l": 13.5,
+      "preco_a_vista_ref": 60400.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Palio",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 61900,
+      "preco_usado_ref": 33000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 59400.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Palio Weekend",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 72900,
+      "preco_usado_ref": 34000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 70000.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Siena",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.4",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 69900,
+      "preco_usado_ref": 35000,
+      "consumo_km_l": 12.0,
+      "preco_a_vista_ref": 67100.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Idea",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.4",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 77900,
+      "preco_usado_ref": 36000,
+      "consumo_km_l": 11.5,
+      "preco_a_vista_ref": 74800.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Linea",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 87900,
+      "preco_usado_ref": 40000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 84400.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Fiat",
+      "modelo": "Bravo",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 94900,
+      "preco_usado_ref": 42000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 91100.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Corolla Hybrid",
+      "carroceria": "Sedan",
+      "combustivel": "Hibrido",
+      "cambio": "CVT",
+      "motor": "2.0 Hibrido",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 169900,
+      "preco_usado_ref": 98000,
+      "consumo_km_l": 18.0,
+      "preco_a_vista_ref": 163100.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Hibrido"
+    },
+    {
+      "marca": "Toyota",
+      "modelo": "Prius",
+      "carroceria": "Sedan",
+      "combustivel": "Hibrido",
+      "cambio": "CVT",
+      "motor": "1.8 Hibrido",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 149900,
+      "preco_usado_ref": 62000,
+      "consumo_km_l": 17.0,
+      "preco_a_vista_ref": 143900.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "3 anos de fábrica, com renovação por revisão no programa Toyota 10 — até 10 anos ou 200.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Hibrido"
+    },
+    {
+      "marca": "Hyundai",
+      "modelo": "Elantra",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 97900,
+      "preco_usado_ref": 45000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 94000.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Logan",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 67900,
+      "preco_usado_ref": 34000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 65200.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Renault",
+      "modelo": "Fluence",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "2.0",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 114900,
+      "preco_usado_ref": 48000,
+      "consumo_km_l": 10.0,
+      "preco_a_vista_ref": 110300.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Kia",
+      "modelo": "Cerato",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 109900,
+      "preco_usado_ref": 47000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 105500.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "Sentra",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 124900,
+      "preco_usado_ref": 55000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 119900.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "Tiida",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 84900,
+      "preco_usado_ref": 38000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 81500.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Nissan",
+      "modelo": "X-Trail",
+      "carroceria": "SUV",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "2.0",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 174900,
+      "preco_usado_ref": 78000,
+      "consumo_km_l": 9.5,
+      "preco_a_vista_ref": 167900.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Peugeot",
+      "modelo": "308",
+      "carroceria": "Hatch",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.6",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 134900,
+      "preco_usado_ref": 55000,
+      "consumo_km_l": 11.0,
+      "preco_a_vista_ref": 129500.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Citroën",
+      "modelo": "Xsara Picasso",
+      "carroceria": "Monovolume",
+      "combustivel": "Flex",
+      "cambio": "Manual",
+      "motor": "1.6",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 79900,
+      "preco_usado_ref": 33000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 76700.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Mitsubishi",
+      "modelo": "Lancer",
+      "carroceria": "Sedan",
+      "combustivel": "Flex",
+      "cambio": "CVT",
+      "motor": "1.8",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 104900,
+      "preco_usado_ref": 46000,
+      "consumo_km_l": 10.5,
+      "preco_a_vista_ref": 100700.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Aspirado"
+    },
+    {
+      "marca": "Suzuki",
+      "modelo": "Swift Sport",
+      "carroceria": "Hatch",
+      "combustivel": "Gasolina",
+      "cambio": "Manual",
+      "motor": "1.4 Turbo",
+      "portas": 4,
+      "lugares": 5,
+      "preco_novo_ref": 139900,
+      "preco_usado_ref": 78000,
+      "consumo_km_l": 13.0,
+      "preco_a_vista_ref": 134300.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 3,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "Referência tradicional do mercado brasileiro (3 anos de fábrica). Confirme o prazo no manual e no contrato."
+      },
+      "tipo_motor": "Turbo"
+    },
+    {
+      "marca": "Jeep",
+      "modelo": "Wrangler",
+      "carroceria": "SUV",
+      "combustivel": "Gasolina",
+      "cambio": "Automatico",
+      "motor": "2.0 Turbo",
+      "portas": 5,
+      "lugares": 5,
+      "preco_novo_ref": 369900,
+      "preco_usado_ref": 265000,
+      "consumo_km_l": 8.0,
+      "preco_a_vista_ref": 355100.0,
+      "nota_a_vista": "Estimativa de negociacao a vista a partir da tabela, com desconto de referencia - confirme o valor final na concessionaria.",
+      "garantia": {
+        "anos": 5,
+        "km": null,
+        "bateria_anos": null,
+        "bateria_km": null,
+        "obs": "5 anos de fábrica desde 2024 para a linha de SUVs; cada revisão acrescenta 12 meses ou 10.000 km (fonte: Autoesporte, mar/2026)."
+      },
+      "tipo_motor": "Turbo"
     }
   ]
 }

@@ -112,6 +112,19 @@ input:focus, select:focus { outline: 2px solid var(--azul-claro); border-color: 
   font-size: .9rem;
 }
 .chips .chip-selecionado .remover:hover { background: rgba(255, 255, 255, .5); }
+.chips .chip-selecionado .condicao-toggle {
+  border: 1px solid rgba(255, 255, 255, .6);
+  background: transparent;
+  color: #fff;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: .72rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.chips .chip-selecionado .condicao-toggle:hover { background: rgba(255, 255, 255, .25); }
+.chips .chip-selecionado.seminovo { background: var(--laranja, #c2410c); border-color: var(--laranja, #c2410c); }
 
 .acoes { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
 .acoes-menores { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }

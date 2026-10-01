@@ -92,3 +92,13 @@ def test_financiamento_price():
 def test_financiamento_sem_juros():
     resultado = payments.simulate_financing(preco=48000, entrada=0, taxa_aa=0, meses=48)
     assert resultado["parcela"] == pytest.approx(1000)
+
+
+def test_modelo_alvo_gera_mais_opcoes_de_usados(catalogo):
+    filtros = {"marca": "Chevrolet", "modelo": "Onix"}
+    ofertas = search.ofertas_estimadas(filtros, catalogo)
+    usados = [o for o in ofertas if o["ano"] < 2026]
+    assert len(usados) >= 8, "modelo alvo deve ter varios usados estimados"
+    assert max(o["ano"] for o in usados) == 2025
+    assert all(o["km"] > 0 for o in usados)
+    assert all(o["caracteristicas"] for o in usados)

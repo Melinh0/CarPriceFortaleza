@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Comparativo de carros novos — CarPrice{% endblock %}
+{% block title %}Comparativo — CarPrice{% endblock %}
 
 {% block content %}
 <section class="titulo-pagina">
   <div>
-    <h1>Comparativo de carros novos</h1>
+    <h1>Comparativo</h1>
     <p class="sub">Preço à vista, parcelas com a sua entrada e garantia — modelo a modelo</p>
   </div>
   {% if rel and rel_id %}
@@ -16,7 +16,7 @@
 </section>
 
 <form class="card form-busca" method="post" action="{{ url_for('routes.comparativo') }}">
-  <h2>1. Escolha os carros (novos)</h2>
+  <h2>1. Escolha os carros (novo ou seminovo)</h2>
   <div class="grade">
     <label>Marca
       <select id="cmp-marca">
@@ -29,6 +29,14 @@
     <label>Modelo
       <select id="cmp-modelo"></select>
     </label>
+    <label>Câmbio (filtra os modelos)
+      <select name="cambio" id="cmp-cambio">
+        <option value="">Qualquer câmbio</option>
+        {% for c in catalogo.cambios %}
+        <option value="{{ c }}"{% if (condicoes.cambio or '') == c %} selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+    </label>
     <label>&nbsp;
       <button type="button" class="btn" id="cmp-adicionar">Adicionar ao comparativo</button>
     </label>
@@ -37,9 +45,10 @@
   <div class="chips" id="cmp-lista">
     {% if selecoes %}
       {% for s in selecoes %}
-      <span class="chip-selecionado">
-        <input type="hidden" name="carros" value="{{ s.marca }}|{{ s.modelo }}">
+      <span class="chip-selecionado{% if s.condicao == 'seminovo' %} seminovo{% endif %}">
+        <input type="hidden" name="carros" value="{{ s.marca }}|{{ s.modelo }}|{{ s.condicao or 'novo' }}">
         <span>{{ s.marca }} {{ s.modelo }}</span>
+        <button type="button" class="condicao-toggle">{{ 'Seminovo' if s.condicao == 'seminovo' else 'Novo' }}</button>
         <button type="button" class="remover" aria-label="Remover">×</button>
       </span>
       {% endfor %}
@@ -84,14 +93,22 @@
 
 {% if erro %}<div class="aviso erro">{{ erro }}</div>{% endif %}
 
+{% if rel and rel.erros %}
+<div class="aviso erro">
+  <strong>{{ rel.carros|length }} de {{ rel.selecoes|length }} carros entraram no comparativo.</strong>
+  Ficaram de fora:
+  {% for e in rel.erros %}{{ e.fonte }} — {{ e.motivo }}{% if not loop.last %}; {% endif %}{% endfor %}
+</div>
+{% endif %}
+
 {% if rel %}
 {% set entrada_txt = (rel.condicoes.entrada|brl) if rel.condicoes.entrada is not none else (rel.condicoes.entrada_pct|int ~ '% do valor de cada carro') %}
 
 <p class="menor">
   Fontes: {% for f in rel.fontes %}{{ f.nome }} [{% if f.ok %}ok{% else %}parcial{% endif %}]{% if not loop.last %} · {% endif %}{% endfor %}
   · gerado em {{ rel.gerado_em }}
+  {%- if rel.condicoes.cambio %} · câmbio: {{ rel.condicoes.cambio }}{% endif %}
   · <a href="{{ url_for('routes.comparativo_detalhe', cmp_id=rel_id) }}">link permanente</a>
-  {%- if rel.erros %} · com problema: {% for e in rel.erros %}{{ e.fonte }} ({{ e.motivo }}){% if not loop.last %}; {% endif %}{% endfor %}{% endif %}
 </p>
 
 <section class="card">
@@ -104,6 +121,7 @@
           <th class="num">Preço loja virtual / tabela</th>
           <th class="num">Preço à vista real</th>
           <th class="num">Economia</th>
+          <th>Consumo / autonomia</th>
           <th>Garantia do veículo</th>
           <th>Garantia da bateria</th>
           <th>Origem do preço à vista</th>
@@ -112,11 +130,12 @@
       <tbody>
         {% for c in rel.carros %}
         <tr>
-          <td><strong>{{ c.marca }} {{ c.modelo }}</strong></td>
+          <td><strong>{{ c.marca }} {{ c.modelo }}</strong>{% if c.condicao == 'seminovo' %} <span class="selo estimativa">seminovo</span>{% endif %}</td>
           <td class="num">{{ c.preco_loja|brl }}</td>
           <td class="num destaque-texto">{{ c.preco_a_vista|brl }}</td>
           <td class="num">{{ c.economia|brl }} ({{ c.economia_pct|round(1) }}%)</td>
-          <td>{{ c.garantia.anos }} ano(s){% if c.garantia.km %} ou {{ '{:,}'.format(c.garantia.km).replace(',', '.') }} km{% else %} — sem limite de km{% endif %}</td>
+          <td>{% if c.autonomia_km %}{{ c.autonomia_km }} km{% if c.bateria_kwh %} · {{ c.bateria_kwh }} kWh{% endif %}{% elif c.consumo_km_l %}{{ c.consumo_km_l }} km/L{% else %}—{% endif %}</td>
+          <td>{% if c.garantia.rotulo %}{{ c.garantia.rotulo }}{% else %}{{ c.garantia.anos }} ano(s){% if c.garantia.km %} ou {{ '{:,}'.format(c.garantia.km).replace(',', '.') }} km{% else %} — sem limite de km{% endif %}{% endif %}</td>
           <td>{% if c.garantia.bateria_anos %}{{ c.garantia.bateria_anos }} ano(s){% if c.garantia.bateria_km %} ou {{ '{:,}'.format(c.garantia.bateria_km).replace(',', '.') }} km{% endif %}{% else %}—{% endif %}</td>
           <td>{% if c.origem_avista == 'web' %}<span class="selo vivo">web ao vivo</span>{% else %}<span class="selo estimativa">estimativa local</span>{% endif %}</td>
         </tr>
@@ -164,25 +183,25 @@
 {% set co = c.cenarios.consorcio %}
 <section class="card" id="carro-{{ loop.index }}">
   <h2>{{ c.marca }} {{ c.modelo }} — relatório detalhado</h2>
-  <p class="menor">{{ c.titulo }} · {{ c.carroceria }} · {{ c.combustivel }} · {{ c.cambio }}</p>
+  <p class="menor">{{ c.titulo }} · {{ c.carroceria }} · {{ c.combustivel }} · {{ c.cambio }}{% if c.condicao == 'seminovo' %} · seminovo{% endif %}</p>
 
   <div class="dois-colunas">
     <div>
-      <h3>Preço à vista real x preço de loja virtual</h3>
+      <h3>Preço à vista real x preço anunciado</h3>
       <ul class="listagem-detalhes">
-        <li><span>Preço de tabela / loja virtual (anunciado)</span><strong>{{ c.preco_loja|brl }}</strong></li>
+        <li><span>{{ 'Preço pedido (referência de mercado)' if c.condicao == 'seminovo' else 'Preço de tabela / loja virtual (anunciado)' }}</span><strong>{{ c.preco_loja|brl }}</strong></li>
         <li><span>Preço à vista de negociação</span><strong class="destaque-texto">{{ c.preco_a_vista|brl }}</strong></li>
         <li><span>Economia frente ao anunciado</span><strong>{{ c.economia|brl }} ({{ c.economia_pct|round(1) }}%)</strong></li>
         <li><span>Estimativa local de referência</span><strong>{{ c.preco_a_vista_base|brl }}</strong></li>
         {% if c.preco_a_vista_web %}
-        <li><span>Mediana dos preços 0 km vistos na web</span><strong>{{ c.preco_a_vista_web|brl }}</strong></li>
+        <li><span>Mediana dos preços {{ 'de seminovos' if c.condicao == 'seminovo' else '0 km' }} vistos na web</span><strong>{{ c.preco_a_vista_web|brl }}</strong></li>
         {% endif %}
         <li><span>Origem do valor usado</span><strong>{% if c.origem_avista == 'web' %}web ao vivo ({{ c.precos_web|length }} valores plausíveis){% else %}base local{% endif %}</strong></li>
       </ul>
       {% if c.nota_a_vista %}<p class="menor">{{ c.nota_a_vista }}</p>{% endif %}
       {% if c.nota_web %}<div class="aviso">{{ c.nota_web }}</div>{% endif %}
       {% if c.precos_web %}
-      <p class="menor">Valores 0 km plausíveis encontrados na web:
+      <p class="menor">Valores {{ 'de seminovos' if c.condicao == 'seminovo' else '0 km' }} plausíveis encontrados na web:
         {% for p in c.precos_web %}{{ p|brl }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
       {% endif %}
 
@@ -202,9 +221,9 @@
     </div>
 
     <div>
-      <h3>Garantia de fábrica</h3>
+      <h3>{{ 'Garantia da loja e procedência' if c.condicao == 'seminovo' else 'Garantia de fábrica' }}</h3>
       <ul class="listagem-detalhes">
-        <li><span>Veículo</span><strong>{{ c.garantia.anos }} ano(s){% if c.garantia.km %} ou {{ '{:,}'.format(c.garantia.km).replace(',', '.') }} km{% else %} — sem limite de km{% endif %}</strong></li>
+        <li><span>Veículo</span><strong>{% if c.garantia.rotulo %}{{ c.garantia.rotulo }}{% else %}{{ c.garantia.anos }} ano(s){% if c.garantia.km %} ou {{ '{:,}'.format(c.garantia.km).replace(',', '.') }} km{% else %} — sem limite de km{% endif %}{% endif %}</strong></li>
         {% if c.garantia.bateria_anos %}
         <li><span>Bateria e motor elétrico</span><strong>{{ c.garantia.bateria_anos }} ano(s){% if c.garantia.bateria_km %} ou {{ '{:,}'.format(c.garantia.bateria_km).replace(',', '.') }} km{% endif %}</strong></li>
         {% endif %}
@@ -223,9 +242,20 @@
       <h3>Ficha resumida</h3>
       <ul class="listagem-detalhes">
         <li><span>Motor</span><strong>{{ c.motor }}</strong></li>
+        {% if c.tipo_motor %}
+        <li><span>Tipo do motor</span><strong>{{ c.tipo_motor }}</strong></li>
+        {% endif %}
         <li><span>Câmbio</span><strong>{{ c.cambio }}</strong></li>
         <li><span>Carroceria</span><strong>{{ c.carroceria }}</strong></li>
         <li><span>Combustível</span><strong>{{ c.combustivel }}</strong></li>
+        {% if c.autonomia_km %}
+        <li><span>Autonomia elétrica (referência)</span><strong>{{ c.autonomia_km }} km</strong></li>
+        {% if c.bateria_kwh %}
+        <li><span>Bateria (capacidade)</span><strong>{{ c.bateria_kwh }} kWh</strong></li>
+        {% endif %}
+        {% elif c.consumo_km_l %}
+        <li><span>Consumo (referência)</span><strong>{{ c.consumo_km_l }} km/L</strong></li>
+        {% endif %}
       </ul>
     </div>
   </div>
@@ -334,9 +364,11 @@
 {% block scripts %}
 <script>
   const CMP_MARCAS = {{ catalogo.marcas | tojson }};
+  const CMP_FICHAS = {{ fichas | tojson }};
   (function () {
     const campoMarca = document.getElementById("cmp-marca");
     const campoModelo = document.getElementById("cmp-modelo");
+    const campoCambio = document.getElementById("cmp-cambio");
     const botaoAdd = document.getElementById("cmp-adicionar");
     const lista = document.getElementById("cmp-lista");
     if (!campoMarca || !campoModelo || !botaoAdd || !lista) return;
@@ -350,21 +382,35 @@
 
     function popularModelos() {
       const marca = campoMarca.value;
+      const cambio = campoCambio ? campoCambio.value : "";
       campoModelo.innerHTML = "";
       campoModelo.appendChild(
         opcao("", marca ? "Escolha o modelo" : "Selecione a marca primeiro")
       );
       if (!marca) return;
       const encontrada = CMP_MARCAS.find((m) => m.nome === marca);
-      const modelos = (encontrada ? encontrada.modelos : []).slice().sort(
+      let modelos = (encontrada ? encontrada.modelos : []).slice().sort(
         (a, b) => a.localeCompare(b, "pt-BR")
       );
+      if (cambio) {
+        modelos = modelos.filter((m) => (CMP_FICHAS[marca + "|" + m] || "") === cambio);
+      }
+      if (!modelos.length) {
+        campoModelo.appendChild(
+          opcao("", "Nenhum modelo com esse câmbio")
+        );
+        return;
+      }
       modelos.forEach((m) => campoModelo.appendChild(opcao(m, m)));
     }
 
-    function jaAdicionado(valor) {
+    function baseDe(valor) {
+      return valor.split("|").slice(0, 2).join("|");
+    }
+
+    function jaAdicionado(base) {
       return Array.from(lista.querySelectorAll("input[name=carros]")).some(
-        (i) => i.value === valor
+        (i) => baseDe(i.value) === base
       );
     }
 
@@ -389,8 +435,8 @@
         alert("Escolha a marca e o modelo primeiro.");
         return;
       }
-      const valor = marca + "|" + modelo;
-      if (jaAdicionado(valor)) return;
+      const base = marca + "|" + modelo;
+      if (jaAdicionado(base)) return;
       limparDica();
 
       const chip = document.createElement("span");
@@ -399,10 +445,16 @@
       const input = document.createElement("input");
       input.type = "hidden";
       input.name = "carros";
-      input.value = valor;
+      input.value = base + "|novo";
 
       const texto = document.createElement("span");
       texto.textContent = marca + " " + modelo;
+
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "condicao-toggle";
+      toggle.textContent = "Novo";
+      toggle.setAttribute("aria-label", "Alternar condição de " + marca + " " + modelo);
 
       const remover = document.createElement("button");
       remover.type = "button";
@@ -412,16 +464,33 @@
 
       chip.appendChild(input);
       chip.appendChild(texto);
+      chip.appendChild(toggle);
       chip.appendChild(remover);
       lista.appendChild(chip);
     }
 
+    function alternarCondicao(botao) {
+      const chip = botao.closest(".chip-selecionado");
+      const input = chip.querySelector("input[name=carros]");
+      const partes = input.value.split("|");
+      const nova = partes[2] === "seminovo" ? "novo" : "seminovo";
+      input.value = partes[0] + "|" + partes[1] + "|" + nova;
+      botao.textContent = nova === "seminovo" ? "Seminovo" : "Novo";
+      chip.classList.toggle("seminovo", nova === "seminovo");
+    }
+
     campoMarca.addEventListener("change", popularModelos);
+    if (campoCambio) campoCambio.addEventListener("change", popularModelos);
     botaoAdd.addEventListener("click", adicionar);
     lista.addEventListener("click", function (ev) {
-      if (!ev.target.classList.contains("remover")) return;
-      ev.target.parentNode.remove();
-      mostrarDicaSeVazia();
+      if (ev.target.classList.contains("remover")) {
+        ev.target.parentNode.remove();
+        mostrarDicaSeVazia();
+        return;
+      }
+      if (ev.target.classList.contains("condicao-toggle")) {
+        alternarCondicao(ev.target);
+      }
     });
     popularModelos();
   })();

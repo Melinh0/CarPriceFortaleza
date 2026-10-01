@@ -265,6 +265,203 @@ def test_limite_de_carros_por_relatorio(monkeypatch):
     app = create_app()
     resp = app.test_client().post(
         "/comparativo",
-        data=MultiDict([("carros", "Volkswagen|Polo")] * 7),
+        data=MultiDict([("carros", "Volkswagen|Polo")] * 9),
     )
     assert "no máximo" in resp.data.decode("utf-8")
+
+
+def test_limite_do_comparativo_e_oito_carros():
+    assert comparativo.MAX_CARROS == 8
+
+
+def _sete_carros(inclui_invalido=False):
+    carros = [
+        "Chevrolet|Onix", "Volkswagen|Polo Track", "Fiat|Argo",
+        "Hyundai|HB20", "Toyota|Corolla", "Renault|Kwid",
+    ]
+    if inclui_invalido:
+        carros.append("Marca|Inexistente XYZ")
+    else:
+        carros.append("Ford|KA")
+    return MultiDict([("carros", c) for c in carros] + [("entrada", "20000")])
+
+
+def test_sete_carros_geram_sete_carros(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    app = create_app()
+    html = app.test_client().post(
+        "/comparativo", data=_sete_carros()
+    ).data.decode("utf-8")
+    assert html.count("relatório detalhado") == 7
+    assert "de 7 carros entraram" not in html
+
+
+def test_carro_que_falha_aparece_com_destaque_e_contagem(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    app = create_app()
+    html = app.test_client().post(
+        "/comparativo", data=_sete_carros(inclui_invalido=True)
+    ).data.decode("utf-8")
+    assert html.count("relatório detalhado") == 6
+    assert "6 de 7 carros entraram no comparativo" in html
+    assert "modelo não encontrado" in html
+
+
+def test_titulo_e_navegacao_dizem_apenas_comparativo():
+    app = create_app()
+    html = app.test_client().get("/comparativo").data.decode("utf-8")
+    assert "<h1>Comparativo</h1>" in html
+    assert ">Comparativo</a>" in html
+    assert "Comparativo novos" not in html
+    assert "Comparativo de carros novos e seminovos" not in html
+
+
+def test_catalogo_com_tipo_de_motor_e_autonomia():
+    import json
+
+    with open(os.path.join(DATA_DIR, "catalog.json"), encoding="utf-8") as fh:
+        catalogo = json.load(fh)
+    assert len(catalogo["modelos"]) >= 240
+    for item in catalogo["modelos"]:
+        assert item.get("tipo_motor"), item["modelo"]
+        if item["combustivel"] == "Eletrico":
+            assert item.get("autonomia_km", 0) > 0, item["modelo"]
+            assert item.get("bateria_kwh", 0) > 0, item["modelo"]
+            assert item["consumo_km_l"] == 0, item["modelo"]
+        else:
+            assert not item.get("autonomia_km"), item["modelo"]
+            assert item["consumo_km_l"] > 0, item["modelo"]
+
+
+def test_versoes_automaticas_do_onix_existem_e_mobi_kwid_nao_inventam():
+    import json
+
+    with open(os.path.join(DATA_DIR, "catalog.json"), encoding="utf-8") as fh:
+        catalogo = json.load(fh)
+    por_modelo = {(m["marca"], m["modelo"]): m for m in catalogo["modelos"]}
+    for nome in ("Onix Turbo Automatico", "Onix Plus Turbo Automatico"):
+        item = por_modelo[("Chevrolet", nome)]
+        assert item["cambio"] == "Automatico"
+        assert "Turbo" in item["motor"]
+    assert por_modelo[("Chevrolet", "Onix Turbo Automatico")]["preco_a_vista_ref"] < (
+        por_modelo[("Chevrolet", "Onix Turbo Automatico")]["preco_novo_ref"]
+    )
+    mobil = [m for m in catalogo["modelos"] if m["marca"] == "Fiat" and m["modelo"].startswith("Mobi")]
+    assert mobil and all(m["cambio"] == "Manual" for m in mobil)
+    kwid = por_modelo[("Renault", "Kwid")]
+    assert kwid["cambio"] == "Manual"
+    kwid_ev = por_modelo[("Renault", "Kwid E-Tech")]
+    assert kwid_ev["cambio"] == "Automatico"
+
+
+def test_relatorio_mostra_eficiencia_tipo_do_motor_e_bateria(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    app = create_app()
+    resp = app.test_client().post(
+        "/comparativo",
+        data=MultiDict([
+            ("carros", "Volkswagen|Polo Track"),
+            ("carros", "BYD|Dolphin Mini"),
+        ]),
+    )
+    assert resp.status_code == 200
+    html = resp.data.decode("utf-8")
+    assert "Consumo / autonomia" in html
+    assert "Tipo do motor" in html
+    assert "km/L" in html
+    assert "Autonomia elétrica (referência)" in html
+    assert "Bateria (capacidade)" in html and "kWh" in html
+
+
+def _precos_seminovo(filtros):
+    mencoes = [
+        {
+            "titulo": f"Seminovo {filtros.get('marca')} {filtros.get('modelo')} ({i})",
+            "url": f"https://exemplo.com/seminovo{i}",
+            "trecho": "seminovo a venda em Fortaleza",
+            "preco": preco,
+            "tipo": "preco",
+            "consulta": "preco usado",
+        }
+        for i, preco in enumerate((80000, 81000, 82000))
+    ]
+    return {"consultas": ["q"], "mencoes": mencoes}
+
+
+def test_comparativo_seminovo_usa_preco_usado_e_garantia_da_loja(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    monkeypatch.setattr(comparativo, "pesquisar_precos", _precos_seminovo)
+    _, rel = comparativo.executar_comparativo(
+        [{"marca": "BYD", "modelo": "Dolphin Mini", "condicao": "seminovo"}], {}, CONFIG
+    )
+    dolphin = rel["carros"][0]
+    assert dolphin["condicao"] == "seminovo"
+    assert dolphin["preco_loja"] == 85000
+    assert dolphin["preco_a_vista_base"] == 85000
+    assert dolphin["preco_a_vista"] == 81000
+    assert dolphin["origem_avista"] == "web"
+    assert dolphin["garantia"]["anos"] == 1
+    assert "90 dias" in dolphin["garantia"]["rotulo"]
+    assert dolphin["mencoes_precos"]
+    assert "seminovo" in dolphin["titulo"].lower()
+    assert rel["selecoes"][0]["condicao"] == "seminovo"
+
+
+def test_comparativo_novo_continua_com_tabela_de_zero_km(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    monkeypatch.setattr(comparativo, "pesquisar_precos", _precos_seminovo)
+    _, rel = comparativo.executar_comparativo(
+        [{"marca": "BYD", "modelo": "Dolphin Mini"}], {}, CONFIG
+    )
+    dolphin = rel["carros"][0]
+    assert dolphin["condicao"] == "novo"
+    assert dolphin["preco_loja"] == 118990
+    assert dolphin["preco_a_vista"] == 109990
+    assert dolphin["garantia"]["anos"] == 6
+    assert "rotulo" not in dolphin["garantia"]
+
+
+def test_filtro_de_cambio_sem_versao_vira_erro(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    _, rel = comparativo.executar_comparativo(
+        [{"marca": "BYD", "modelo": "Dolphin Mini"}], {"cambio": "Manual"}, CONFIG
+    )
+    assert rel["carros"] == []
+    assert any("câmbio Manual" in e["motivo"] for e in rel["erros"])
+
+
+def test_filtro_de_cambio_compativel_passa(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    _, rel = comparativo.executar_comparativo(
+        [{"marca": "BYD", "modelo": "Dolphin Mini"}], {"cambio": "Automatico"}, CONFIG
+    )
+    assert len(rel["carros"]) == 1
+    assert rel["condicoes"]["cambio"] == "Automatico"
+    assert rel["carros"][0]["cambio"] == "Automatico"
+
+
+def test_formulario_tem_filtro_de_cambio_e_chips_de_condicao():
+    app = create_app()
+    html = app.test_client().get("/comparativo").data.decode("utf-8")
+    assert 'name="cambio"' in html
+    assert "Qualquer câmbio" in html
+    assert "condicao-toggle" in html
+    assert "CMP_FICHAS" in html
+
+
+def test_rota_post_com_condicao_seminovo_e_cambio(monkeypatch):
+    monkeypatch.setattr(comparativo, "pesquisar_detalhes", _sem_web)
+    monkeypatch.setattr(comparativo, "pesquisar_precos", _precos_seminovo)
+    app = create_app()
+    resp = app.test_client().post(
+        "/comparativo",
+        data=MultiDict([
+            ("carros", "BYD|Dolphin Mini|seminovo"),
+            ("cambio", "Automatico"),
+        ]),
+    )
+    assert resp.status_code == 200
+    html = resp.data.decode("utf-8")
+    assert "seminovo" in html
+    assert "90 dias da loja" in html
+    assert "Preços e garantia" in html

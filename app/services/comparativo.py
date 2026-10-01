@@ -8,7 +8,7 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor, wait as futures_wait
 from urllib.parse import quote
 
-from ..scrapers.websearch import pesquisar_detalhes
+from ..scrapers.websearch import _tipo_mencao, pesquisar_detalhes, pesquisar_precos
 from . import payments
 from .report import ROTA_GOOGLE_MAPS, concessionarias_para
 from .search import _modelos_selecionados, carregar_catalogo, normalizar
@@ -16,9 +16,10 @@ from .search import _modelos_selecionados, carregar_catalogo, normalizar
 COMPARATIVO_TTL = 2 * 60 * 60
 COMPARATIVO_TIMEOUT = 75
 COMPARATIVO_GRACIA = 15
-MAX_CARROS = 6
+MAX_CARROS = 8
 MAX_CONCESSIONARIAS_POR_CARRO = 4
 FAIXA_PRECO_0KM = (0.75, 1.10)
+FAIXA_PRECO_USADO = (0.72, 1.12)
 FAIXA_CONFIANCA_WEB = (0.85, 1.02)
 MINIMOS_PRECOS_WEB = 3
 
@@ -30,7 +31,26 @@ CONDICOES_PADRAO = {
     "meses_sem_juros": 12,
     "meses_consorcio": 60,
     "taxa_adm": 10.0,
+    "cambio": "",
 }
+
+
+def normalizar_condicao(valor: str) -> str:
+    chave = normalizar(valor or "")
+    if chave.startswith("semin") or chave in ("usado", "usada", "ocasiao"):
+        return "seminovo"
+    return "novo"
+
+
+def normalizar_cambio(valor: str) -> str:
+    chave = normalizar(valor or "")
+    if not chave or chave in ("qualquer", "todas", "todos", "nenhum"):
+        return ""
+    for opcao in ("Manual", "Automatico", "CVT", "Robotizado"):
+        if normalizar(opcao) == chave:
+            return opcao
+    return (valor or "").strip()
+
 
 _COMPARATIVOS: dict[str, dict] = {}
 
@@ -107,10 +127,14 @@ def montar_cenarios(preco: float, cond: dict) -> dict:
     }
 
 
-def _precos_plausiveis(mencoes: list[dict], preco_loja: float) -> list[float]:
+def _precos_plausiveis(
+    mencoes: list[dict], preco_loja: float, faixa: tuple[float, float] | None = None
+) -> list[float]:
     if not preco_loja:
         return []
-    inferior, superior = FAIXA_PRECO_0KM[0] * preco_loja, FAIXA_PRECO_0KM[1] * preco_loja
+    inferior, superior = (faixa or FAIXA_PRECO_0KM)[0] * preco_loja, (
+        faixa or FAIXA_PRECO_0KM
+    )[1] * preco_loja
     return sorted(
         {
             float(m["preco"])
@@ -122,7 +146,9 @@ def _precos_plausiveis(mencoes: list[dict], preco_loja: float) -> list[float]:
     )
 
 
-def _definir_preco_avista(preco_base: float, precos_web: list[float]) -> tuple[float, str, str | None]:
+def _definir_preco_avista(
+    preco_base: float, precos_web: list[float], contexto: str = "0 km"
+) -> tuple[float, str, str | None]:
     if len(precos_web) < MINIMOS_PRECOS_WEB:
         return preco_base, "base", None
 
@@ -132,8 +158,8 @@ def _definir_preco_avista(preco_base: float, precos_web: list[float]) -> tuple[f
         return mediana, "web", None
     if mediana < faixa[0] * preco_base:
         return preco_base, "base", (
-            "A web traz valores muito abaixo da referência (provavelmente usados ou outras "
-            "versões); manteve-se a estimativa local de 0 km."
+            f"A web traz valores muito baixos para {contexto} (provavelmente outras "
+            "versões); manteve-se a estimativa local da base."
         )
     return preco_base, "base", (
         "A mediana dos preços encontrados na web está acima da estimativa local; usou-se o "
@@ -141,29 +167,65 @@ def _definir_preco_avista(preco_base: float, precos_web: list[float]) -> tuple[f
     )
 
 
-def montar_ficha(item: dict, cond: dict, resultado_web: dict | None, data_dir: str) -> dict:
-    preco_loja = float(item["preco_novo_ref"])
-    preco_base = float(item.get("preco_a_vista_ref") or preco_loja)
-    mencoes = (resultado_web or {}).get("mencoes", [])
-    precos_web = _precos_plausiveis(mencoes, preco_loja)
-    preco_avista, origem, nota_web = _definir_preco_avista(preco_base, precos_web)
+GARANTIA_SEMINOVO = {
+    "anos": 1,
+    "km": None,
+    "rotulo": "90 dias da loja + remanescente de fábrica",
+    "obs": (
+        "Garantia da loja: 90 dias contra vícios ocultos (Código de Defesa do Consumidor) "
+        "e, quando houver, o remanescente de garantia de fábrica — peça a cobertura, a "
+        "quilometragem e a assistência por escrito no contrato."
+    ),
+}
 
-    garantia = dict(item.get("garantia") or {})
+
+def montar_ficha(
+    item: dict,
+    cond: dict,
+    resultado_web: dict | None,
+    data_dir: str,
+    condicao: str = "novo",
+) -> dict:
+    seminovo = condicao == "seminovo"
+    preco_loja = float(item["preco_usado_ref"] if seminovo else item["preco_novo_ref"])
+    preco_base = float(
+        preco_loja if seminovo else (item.get("preco_a_vista_ref") or preco_loja)
+    )
+    mencoes = (resultado_web or {}).get("mencoes", [])
+    precos_web = _precos_plausiveis(
+        mencoes, preco_loja, FAIXA_PRECO_USADO if seminovo else FAIXA_PRECO_0KM
+    )
+    contexto = "seminovo" if seminovo else "0 km"
+    preco_avista, origem, nota_web = _definir_preco_avista(
+        preco_base, precos_web, contexto
+    )
+
+    garantia = dict(GARANTIA_SEMINOVO) if seminovo else dict(item.get("garantia") or {})
+    titulo = f"{item['marca']} {item['modelo']} — {item['motor']} {item['cambio']}"
+    if seminovo:
+        titulo += " (seminovo)"
+    else:
+        titulo = f"{item['marca']} {item['modelo']} 0 km — {item['motor']} {item['cambio']}"
 
     return {
         "marca": item["marca"],
         "modelo": item["modelo"],
-        "titulo": f"{item['marca']} {item['modelo']} 0 km — {item['motor']} {item['cambio']}",
+        "condicao": condicao,
+        "titulo": titulo,
         "carroceria": item["carroceria"],
         "combustivel": item["combustivel"],
         "cambio": item["cambio"],
         "motor": item["motor"],
+        "tipo_motor": item.get("tipo_motor", ""),
+        "consumo_km_l": item.get("consumo_km_l") or None,
+        "autonomia_km": item.get("autonomia_km") or None,
+        "bateria_kwh": item.get("bateria_kwh") or None,
         "preco_loja": preco_loja,
         "preco_a_vista": preco_avista,
         "preco_a_vista_base": preco_base,
         "preco_a_vista_web": statistics.median(precos_web) if len(precos_web) >= MINIMOS_PRECOS_WEB else None,
         "origem_avista": origem,
-        "nota_a_vista": item.get("nota_a_vista", ""),
+        "nota_a_vista": item.get("nota_a_vista", "") if not seminovo else "",
         "nota_web": nota_web,
         "precos_web": precos_web,
         "economia": preco_loja - preco_avista,
@@ -181,32 +243,57 @@ def montar_ficha(item: dict, cond: dict, resultado_web: dict | None, data_dir: s
     }
 
 
-def _buscar_detalhes_em_paralelo(itens: list[dict], erros: list[dict]) -> dict[str, dict]:
+def _buscar_web_em_paralelo(
+    pares: list[tuple[dict, str]], erros: list[dict]
+) -> dict[str, dict]:
     web: dict[str, dict] = {}
-    if not itens:
+    if not pares:
         return web
 
-    pool = ThreadPoolExecutor(max_workers=min(4, len(itens)))
-    futuros = {
-        pool.submit(pesquisar_detalhes, item["marca"], item["modelo"]): item for item in itens
-    }
+    pool = ThreadPoolExecutor(max_workers=min(4, len(pares)))
+    futuros: dict = {}
+    for item, condicao in pares:
+        chave = f"{item['marca']}|{item['modelo']}"
+        futuros[pool.submit(pesquisar_detalhes, item["marca"], item["modelo"])] = (
+            chave,
+            "detalhes",
+        )
+        if condicao == "seminovo":
+            futuros[
+                pool.submit(
+                    pesquisar_precos,
+                    {"marca": item["marca"], "modelo": item["modelo"], "condicao": "seminovo"},
+                )
+            ] = (chave, "precos")
+
     concluidos, pendentes = futures_wait(set(futuros), timeout=COMPARATIVO_TIMEOUT)
     if pendentes:
         extras, pendentes = futures_wait(pendentes, timeout=COMPARATIVO_GRACIA)
         concluidos = set(concluidos) | set(extras)
 
+    def _guardar(chave: str, tipo: str, resultado: dict) -> None:
+        entrada = web.setdefault(chave, {"consultas": [], "mencoes": []})
+        entrada["consultas"].extend(
+            q for q in resultado.get("consultas", []) if q not in entrada["consultas"]
+        )
+        vistos = {m.get("url") for m in entrada["mencoes"]}
+        for mencao in resultado.get("mencoes", []):
+            if mencao.get("url") in vistos:
+                continue
+            vistos.add(mencao.get("url"))
+            entrada["mencoes"].append(mencao)
+
     for futuro in concluidos:
-        item = futuros[futuro]
-        chave = f"{item['marca']}|{item['modelo']}"
+        chave, tipo = futuros[futuro]
         try:
-            web[chave] = futuro.result() or {"consultas": [], "mencoes": []}
+            resultado = futuro.result() or {"consultas": [], "mencoes": []}
         except Exception as exc:
-            web[chave] = {"consultas": [], "mencoes": []}
+            resultado = {"consultas": [], "mencoes": []}
             erros.append({"fonte": chave, "motivo": str(exc)})
+        _guardar(chave, tipo, resultado)
     for futuro in pendentes:
-        item = futuros[futuro]
-        chave = f"{item['marca']}|{item['modelo']}"
-        web[chave] = {"consultas": [], "mencoes": []}
+        chave, tipo = futuros[futuro]
+        web.setdefault(chave, {"consultas": [], "mencoes": []})
         erros.append({"fonte": chave, "motivo": "tempo esgotado"})
     pool.shutdown(wait=False, cancel_futures=True)
     return web
@@ -221,10 +308,16 @@ def executar_comparativo(
     for chave, valor in (condicoes or {}).items():
         if valor is not None:
             cond[chave] = valor
+    cond["cambio"] = normalizar_cambio(cond.get("cambio") or "")
 
     erros: list[dict] = []
-    itens: list[dict] = []
+    itens: list[tuple[dict, str]] = []
+    selecoes_norm: list[dict] = []
     for selecao in selecoes[:MAX_CARROS]:
+        marca = (selecao.get("marca") or "").strip()
+        modelo = (selecao.get("modelo") or "").strip()
+        condicao = normalizar_condicao(selecao.get("condicao") or "")
+        selecoes_norm.append({"marca": marca, "modelo": modelo, "condicao": condicao})
         item = resolver_modelo(selecao, catalogo)
         if item is None:
             erros.append(
@@ -233,14 +326,30 @@ def executar_comparativo(
                     "motivo": f"modelo não encontrado: {selecao.get('marca', '')} {selecao.get('modelo', '')}".strip(),
                 }
             )
-        else:
-            itens.append(item)
+            continue
+        cambio_filtro = cond["cambio"]
+        if cambio_filtro and normalizar(item["cambio"]) != normalizar(cambio_filtro):
+            erros.append(
+                {
+                    "fonte": f"{item['marca']} {item['modelo']}",
+                    "motivo": f"não há versão com câmbio {cambio_filtro} para este modelo "
+                    f"(o catálogo traz {item['cambio']})",
+                }
+            )
+            continue
+        itens.append((item, condicao))
 
-    web = _buscar_detalhes_em_paralelo(itens, erros)
+    web = _buscar_web_em_paralelo(itens, erros)
 
     carros = [
-        montar_ficha(item, cond, web.get(f"{item['marca']}|{item['modelo']}"), data_dir)
-        for item in itens
+        montar_ficha(
+            item,
+            cond,
+            web.get(f"{item['marca']}|{item['modelo']}"),
+            data_dir,
+            condicao,
+        )
+        for item, condicao in itens
     ]
 
     total_mencoes = sum(
@@ -252,7 +361,7 @@ def executar_comparativo(
         "ts": time.time(),
         "gerado_em": time.strftime("%d/%m/%Y às %H:%M"),
         "condicoes": cond,
-        "selecoes": selecoes,
+        "selecoes": selecoes_norm,
         "carros": carros,
         "erros": erros,
         "fontes": [

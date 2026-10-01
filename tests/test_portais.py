@@ -93,3 +93,45 @@ def test_consultas_genericas_de_eletricos_sao_locais():
 def test_consultas_genericas_sem_eletrico_continuam_vazias():
     assert websearch._consultas_precos({"marca": "", "modelo": ""}) == []
     assert websearch._consultas_precos({"marca": "Geely", "modelo": "EX2"})
+
+
+def test_portais_novos_de_busca():
+    olx = _scraper("OLX")
+    urls = olx.build_urls({"marca": "BYD", "modelo": "Dolphin Mini"})
+    assert urls[0] == "https://www.olx.com.br/busca?q=BYD+Dolphin+Mini"
+    assert olx.build_urls({"marca": "", "modelo": ""}) == ["https://www.olx.com.br/busca"]
+
+    ml = _scraper("Mercado Livre")
+    urls = ml.build_urls({"marca": "BYD", "modelo": "Dolphin Mini"})
+    assert urls[0] == "https://lista.mercadolivre.com.br/byd/dolphin-mini"
+    assert ml.build_urls({"marca": "", "modelo": ""}) == [
+        "https://lista.mercadolivre.com.br"
+    ]
+
+
+def test_busca_na_web_merge_resultados_e_deduplica(monkeypatch):
+    monkeypatch.setattr(websearch, "_motores_fora", {}, raising=False)
+    monkeypatch.setattr(websearch, "SLEEP_ENTRE_QUERIES", 0, raising=False)
+
+    def motor_a(query, max_resultados, timeout):
+        return [
+            {"titulo": "a1", "url": "http://comum", "trecho": "", "preco": None},
+            {"titulo": "a2", "url": "http://a2", "trecho": "", "preco": 10},
+        ]
+
+    def motor_b(query, max_resultados, timeout):
+        return [
+            {"titulo": "b1", "url": "http://comum", "trecho": "", "preco": None},
+            {"titulo": "b2", "url": "http://b2", "trecho": "", "preco": 20},
+        ]
+
+    monkeypatch.setattr(websearch, "ENGINES", [motor_a, motor_b], raising=False)
+    resultados = websearch.buscar_na_web("query", max_resultados=8)
+    urls = [r["url"] for r in resultados]
+    assert urls == ["http://comum", "http://a2", "http://b2"], "mergeia e remove repetidos"
+
+
+def test_padrao_tem_varios_motores():
+    assert len(websearch.ENGINES) >= 5
+    nomes = [e.__name__ for e in websearch.ENGINES]
+    assert len(nomes) == len(set(nomes))

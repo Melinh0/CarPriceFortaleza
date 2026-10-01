@@ -824,6 +824,8 @@ def _entrada_txt(condicoes: dict) -> str:
 
 
 def _garantia_txt(garantia: dict, chave_anos: str, chave_km: str) -> str:
+    if chave_anos == "anos" and garantia.get("rotulo"):
+        return str(garantia["rotulo"])
     anos = garantia.get(chave_anos)
     if not anos:
         return "-"
@@ -833,15 +835,35 @@ def _garantia_txt(garantia: dict, chave_anos: str, chave_km: str) -> str:
     return f"{anos} ano(s) sem limite de km"
 
 
+def _rotulo_veiculo(c: dict) -> str:
+    base = f"{c.get('marca')} {c.get('modelo')}"
+    if c.get("condicao") == "seminovo":
+        return f"{base} (seminovo)"
+    return base
+
+
+def _eficiencia_txt(c: dict) -> str:
+    autonomia = c.get("autonomia_km")
+    if autonomia:
+        kwh = c.get("bateria_kwh")
+        if kwh:
+            return f"{autonomia} km · {str(kwh).replace('.', ',')} kWh"
+        return f"{autonomia} km"
+    consumo = c.get("consumo_km_l")
+    if consumo:
+        return f"{str(consumo).replace('.', ',')} km/L"
+    return "—"
+
+
 def comparativo_pdf(rel: dict) -> bytes:
-    buffer, documento = _documento_pdf("Comparativo de carros novos")
+    buffer, documento = _documento_pdf("Comparativo")
     estilos = _estilos_pdf()
     largura = A4[0] - 32 * mm
     elementos = []
     cond = rel.get("condicoes") or {}
 
     elementos.append(
-        Paragraph(_texto("Comparativo de carros novos"), estilos["titulo"])
+        Paragraph(_texto("Comparativo"), estilos["titulo"])
     )
     elementos.append(
         Paragraph(
@@ -860,6 +882,7 @@ def comparativo_pdf(rel: dict) -> bytes:
                 f"{_percent(cond.get('taxa_aa'))}% a.a. em {cond.get('meses')}x · sem juros "
                 f"{cond.get('meses_sem_juros')}x · consórcio {cond.get('meses_consorcio')}x "
                 f"(adm. {_percent(cond.get('taxa_adm'))}%)"
+                + (f" · câmbio {cond.get('cambio')}" if cond.get("cambio") else "")
             ),
             estilos["nota"],
         )
@@ -872,6 +895,7 @@ def comparativo_pdf(rel: dict) -> bytes:
             "Preço tabela",
             "Preço à vista",
             "Economia",
+            "Consumo / autonomia",
             "Garantia do veículo",
             "Garantia da bateria",
         ]
@@ -880,10 +904,11 @@ def comparativo_pdf(rel: dict) -> bytes:
         garantia = c.get("garantia") or {}
         linhas.append(
             [
-                f"{c.get('marca')} {c.get('modelo')}",
+                _rotulo_veiculo(c),
                 _brl(c.get("preco_loja")),
                 _brl(c.get("preco_a_vista")),
                 f"{_brl(c.get('economia'))} ({_percent(c.get('economia_pct'))}%)",
+                _eficiencia_txt(c),
                 _garantia_txt(garantia, "anos", "km"),
                 _garantia_txt(garantia, "bateria_anos", "bateria_km"),
             ]
@@ -892,12 +917,13 @@ def comparativo_pdf(rel: dict) -> bytes:
         elementos,
         linhas,
         [
-            largura * 0.22,
-            largura * 0.15,
-            largura * 0.15,
-            largura * 0.16,
-            largura * 0.16,
-            largura * 0.16,
+            largura * 0.20,
+            largura * 0.13,
+            largura * 0.13,
+            largura * 0.14,
+            largura * 0.13,
+            largura * 0.135,
+            largura * 0.135,
         ],
         estilos,
         colunas_num=(1, 2, 3),
@@ -917,7 +943,7 @@ def comparativo_pdf(rel: dict) -> bytes:
         av = cenarios.get("a_vista") or {}
         linhas.append(
             [
-                f"{c.get('marca')} {c.get('modelo')}",
+                _rotulo_veiculo(c),
                 Paragraph(_texto(_brl(av.get("total_pago"))), estilos["celula"]),
                 Paragraph(
                     _duas_linhas(
@@ -962,7 +988,7 @@ def comparativo_pdf(rel: dict) -> bytes:
         sj = cenarios.get("sem_juros") or {}
         co = cenarios.get("consorcio") or {}
         garantia = c.get("garantia") or {}
-        _add(elementos, estilos, f"{c.get('marca')} {c.get('modelo')}")
+        _add(elementos, estilos, _rotulo_veiculo(c))
         linhas = [["Campo", "Valor"]]
         linhas += [
             ["Preço de tabela / loja virtual", _brl(c.get("preco_loja"))],
@@ -975,7 +1001,18 @@ def comparativo_pdf(rel: dict) -> bytes:
                 "Origem do preço à vista",
                 "web ao vivo" if c.get("origem_avista") == "web" else "estimativa local",
             ],
+            [
+                "Condição",
+                "Seminovo" if c.get("condicao") == "seminovo" else "Novo",
+            ],
             ["Ficha", f"{c.get('motor')} · {c.get('cambio')} · {c.get('carroceria')} · {c.get('combustivel')}"],
+            ["Tipo do motor", c.get("tipo_motor") or "—"],
+            [
+                "Autonomia elétrica (referência)"
+                if c.get("autonomia_km")
+                else "Consumo (referência)",
+                _eficiencia_txt(c),
+            ],
             ["Garantia do veículo", _garantia_txt(garantia, "anos", "km")],
             ["Garantia da bateria", _garantia_txt(garantia, "bateria_anos", "bateria_km")],
             ["Entrada", f"{_brl(cenarios.get('entrada'))} ({_percent(cenarios.get('entrada_pct'))})"],
@@ -1047,7 +1084,7 @@ def _aba_condicoes(planilha, rel: dict) -> None:
     cond = rel.get("condicoes") or {}
     linha = 1
     identificacao = [
-        ("Relatório", "Comparativo de carros novos"),
+        ("Relatório", "Comparativo"),
         ("Gerado em", rel.get("gerado_em") or _data(rel.get("ts"))),
         ("ID", str(rel.get("id") or "-")),
         ("Entrada", _entrada_txt(cond)),
@@ -1057,6 +1094,7 @@ def _aba_condicoes(planilha, rel: dict) -> None:
             "Consórcio",
             f"{cond.get('meses_consorcio')}x · adm. {_percent(cond.get('taxa_adm'))}%",
         ),
+        ("Câmbio", cond.get("cambio") or "Qualquer"),
         ("Carros", str(len(rel.get("carros") or []))),
     ]
     for rotulo, valor in identificacao:
@@ -1096,7 +1134,7 @@ def _aba_precos(planilha, rel: dict) -> None:
     )
     for linha, c in enumerate(rel.get("carros") or [], start=2):
         garantia = c.get("garantia") or {}
-        planilha.cell(row=linha, column=1, value=f"{c.get('marca')} {c.get('modelo')}")
+        planilha.cell(row=linha, column=1, value=_rotulo_veiculo(c))
         _celula_moeda(planilha, linha, 2, c.get("preco_loja"))
         _celula_moeda(planilha, linha, 3, c.get("preco_a_vista"))
         _celula_moeda(planilha, linha, 4, c.get("economia"))
@@ -1141,7 +1179,7 @@ def _aba_parcelas(planilha, rel: dict) -> None:
         sj = cenarios.get("sem_juros") or {}
         co = cenarios.get("consorcio") or {}
         av = cenarios.get("a_vista") or {}
-        planilha.cell(row=linha, column=1, value=f"{c.get('marca')} {c.get('modelo')}")
+        planilha.cell(row=linha, column=1, value=_rotulo_veiculo(c))
         _celula_moeda(planilha, linha, 2, av.get("total_pago"))
         _celula_moeda(planilha, linha, 3, cj.get("parcela"))
         _celula_moeda(planilha, linha, 4, cj.get("total_pago"))
@@ -1155,7 +1193,7 @@ def _aba_parcelas(planilha, rel: dict) -> None:
 def _aba_detalhes(planilha, rel: dict) -> None:
     _larguras(
         planilha,
-        [32, 16, 16, 16, 14, 15, 15, 14, 12, 15, 15, 14, 16, 14],
+        [32, 16, 16, 16, 14, 15, 15, 14, 12, 15, 15, 14, 16, 14, 18, 14, 14, 14],
     )
     _linha_cabecalho(
         planilha,
@@ -1175,13 +1213,17 @@ def _aba_detalhes(planilha, rel: dict) -> None:
             "Juros",
             "Garantia (anos)",
             "Bateria (anos)",
+            "Tipo motor",
+            "Consumo km/L",
+            "Autonomia km",
+            "Bateria kWh",
         ],
     )
     for linha, c in enumerate(rel.get("carros") or [], start=2):
         cenarios = c.get("cenarios") or {}
         cj = cenarios.get("com_juros") or {}
         garantia = c.get("garantia") or {}
-        planilha.cell(row=linha, column=1, value=f"{c.get('marca')} {c.get('modelo')}")
+        planilha.cell(row=linha, column=1, value=_rotulo_veiculo(c))
         planilha.cell(row=linha, column=2, value=c.get("motor"))
         planilha.cell(row=linha, column=3, value=c.get("cambio"))
         planilha.cell(row=linha, column=4, value=c.get("carroceria"))
@@ -1195,6 +1237,10 @@ def _aba_detalhes(planilha, rel: dict) -> None:
         _celula_moeda(planilha, linha, 12, cj.get("juros"))
         planilha.cell(row=linha, column=13, value=garantia.get("anos"))
         planilha.cell(row=linha, column=14, value=garantia.get("bateria_anos"))
+        planilha.cell(row=linha, column=15, value=c.get("tipo_motor") or "—")
+        planilha.cell(row=linha, column=16, value=c.get("consumo_km_l"))
+        planilha.cell(row=linha, column=17, value=c.get("autonomia_km"))
+        planilha.cell(row=linha, column=18, value=c.get("bateria_kwh"))
 
 
 def _aba_lojas(planilha, rel: dict) -> None:

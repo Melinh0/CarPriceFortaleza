@@ -60,13 +60,21 @@ def _parse_filtros(valores) -> dict:
 def _parse_selecoes(brutos: list[str]) -> list[dict]:
     selecoes = []
     for bruto in brutos:
-        if "|" in bruto:
-            marca, modelo = bruto.split("|", 1)
+        partes = [p.strip() for p in bruto.split("|")]
+        if len(partes) >= 3:
+            marca, modelo, condicao = partes[0], partes[1], partes[2]
+        elif len(partes) == 2:
+            marca, modelo, condicao = partes[0], partes[1], ""
         else:
-            marca, modelo = "", bruto
-        marca, modelo = marca.strip(), modelo.strip()
+            marca, modelo, condicao = "", partes[0], ""
         if marca or modelo:
-            selecoes.append({"marca": marca, "modelo": modelo})
+            selecoes.append(
+                {
+                    "marca": marca,
+                    "modelo": modelo,
+                    "condicao": comparativo_service.normalizar_condicao(condicao),
+                }
+            )
     return selecoes
 
 
@@ -85,6 +93,7 @@ def _parse_condicoes(valores) -> dict:
         "meses_sem_juros": int(num("meses_sem_juros", "meses_sem_juros")),
         "meses_consorcio": int(num("meses_consorcio", "meses_consorcio")),
         "taxa_adm": num("taxa_adm", "taxa_adm"),
+        "cambio": comparativo_service.normalizar_cambio(valores.get("cambio")),
     }
 
 
@@ -146,6 +155,9 @@ def relatorio_xlsx(search_id: str):
 def comparativo():
     config = current_app.config
     catalogo = search_service.carregar_catalogo(config["DATA_DIR"])
+    fichas = {
+        f"{m['marca']}|{m['modelo']}": m["cambio"] for m in catalogo["modelos"]
+    }
     erro = None
     rel = None
     rel_id = None
@@ -172,12 +184,16 @@ def comparativo():
                 rel = None
             else:
                 if not rel["carros"]:
-                    erro = "Nenhum dos modelos selecionados foi encontrado no catálogo."
+                    motivos = "; ".join(
+                        e.get("motivo", "") for e in rel.get("erros", []) if e.get("motivo")
+                    )
+                    erro = motivos or "Nenhum dos modelos selecionados foi encontrado no catálogo."
                     rel = None
 
     return render_template(
         "comparativo.html",
         catalogo=catalogo,
+        fichas=fichas,
         rel=rel,
         rel_id=rel_id,
         erro=erro,
@@ -193,9 +209,13 @@ def comparativo_detalhe(cmp_id: str):
     if not rel:
         abort(404)
     catalogo = search_service.carregar_catalogo(config["DATA_DIR"])
+    fichas = {
+        f"{m['marca']}|{m['modelo']}": m["cambio"] for m in catalogo["modelos"]
+    }
     return render_template(
         "comparativo.html",
         catalogo=catalogo,
+        fichas=fichas,
         rel=rel,
         rel_id=cmp_id,
         erro=None,
